@@ -22,11 +22,11 @@ final class BugRuleCaller {
 
     void callRules(){
         for(BugRule rule: rules){
-            Log.i(TAG, String.format("Calling rule %s", rule.getDescription()));
+            // Log.i(TAG, String.format("Calling rule %s", rule.getDescription()));
             try {
                 rule.run();
             } catch (Exception e){
-                Log.e(TAG, "Error calling rule", e);
+                // Log.e(TAG, "Error calling rule", e);
             }
         }
     }

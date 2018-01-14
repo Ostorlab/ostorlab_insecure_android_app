@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import co.ostorlab.insecure_app.bugs.calls.ClearTextTraffic;
 import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
+import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         BugRuleCaller caller = new BugRuleCaller();
 
         caller.addRule(new ECBModeCipher());
+        caller.addRule(new ClearTextTraffic());
+        caller.addRule(new TLSTraffic());
 
         caller.callRules();
     }
