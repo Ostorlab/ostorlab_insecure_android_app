@@ -12,8 +12,13 @@ import co.ostorlab.insecure_app.BugRule;
 public final class ECBModeCall extends BugRule {
 
     private static final String TAG = "RULE";
-    private String DESCRIPTION = "Use of insecure ECB Mode";
 
+    @Override
+    public String getDescription() {
+        return "Use of insecure ECB Mode";
+    }
+
+    @Override
     public void run() throws Exception{
         String clearText = "Jan van Eyck was here 1434";
         String key = "ThisIs128bitSize";
