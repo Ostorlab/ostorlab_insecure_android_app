@@ -2,10 +2,11 @@ package co.ostorlab.insecure_app;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
-import co.ostorlab.insecure_app.bugs.calls.ECBModeCall;
+import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,13 +15,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        executeAllRules();
+        final Button runAllButton = findViewById(R.id.runAllId);
+        final TextView outputView = findViewById(R.id.runOutputId);
+        runAllButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                outputView.append("Running");
+                executeAllRules();
+            }
+        });
+
+        // executeAllRules();
     }
 
     private void executeAllRules() {
         BugRuleCaller caller = new BugRuleCaller();
 
-        caller.addRule(new ECBModeCall());
+        caller.addRule(new ECBModeCipher());
 
         caller.callRules();
     }

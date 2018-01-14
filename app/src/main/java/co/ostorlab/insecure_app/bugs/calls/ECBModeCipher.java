@@ -9,7 +9,7 @@ import javax.crypto.spec.SecretKeySpec;
 import co.ostorlab.insecure_app.BugRule;
 
 
-public final class ECBModeCall extends BugRule {
+public final class ECBModeCipher extends BugRule {
 
     private static final String TAG = "RULE";
 
