@@ -1,6 +1,47 @@
 #include <jni.h>
 #include <string>
 
+void crackaddrOverflow(const char* input, unsigned int length){
+    unsigned int buffersize = 200;
+    char c, localbuf[buffersize];
+    unsigned int upperlimit = buffersize - 1;
+    bool quotation = false;
+    bool roundquote = false;
+    unsigned int inputIndex = 0;
+    unsigned int outputIndex = 0;
+    while(inputIndex < length){
+        c = input[inputIndex++];
+        if ((c == '<') && (not quotation)){
+            quotation = true;
+            upperlimit--;
+        }
+        if ((c == '>') && (quotation)){
+            quotation = false;
+            upperlimit++;
+        }
+        if ((c == '(') and (not quotation) and (not roundquote)){
+            roundquote = true;
+            // upperlimit--;  // missing fix.
+        }
+        if ((c == '(') and (not quotation) and (roundquote)){
+            roundquote = false;
+            upperlimit++;
+        }
+        if ((outputIndex < upperlimit)){
+            localbuf[outputIndex] = c;
+            outputIndex++;
+        }
+    }
+    if (roundquote){
+        localbuf[outputIndex] = ')';
+        outputIndex++;
+    }
+    if (quotation){
+        localbuf[outputIndex] = '>';
+        outputIndex++;
+    }
+}
+
 std::string jstringToString(JNIEnv *env, jstring str) {
     if (!str)
         return "";
@@ -26,6 +67,7 @@ Java_co_ostorlab_insecure_1app_bugs_calls_MemoryCorruption_triggerStackOverflow(
         JNIEnv *env,
         jobject ,
         jstring input) {
-    std::string hello = jstringToString(env, input);
-    return env->NewStringUTF(hello.c_str());
+    std::string strInput = jstringToString(env, input);
+    crackaddrOverflow(strInput.c_str(), strInput.length());
+    return input;
 }
