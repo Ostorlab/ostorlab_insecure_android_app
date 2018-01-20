@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import co.ostorlab.insecure_app.bugs.calls.AESCipher;
 import co.ostorlab.insecure_app.bugs.calls.ClearTextTraffic;
+import co.ostorlab.insecure_app.bugs.calls.InsecureFilePermissions;
 import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void executeAllRules() {
-        BugRuleCaller caller = new BugRuleCaller();
+        BugRuleCaller caller = new BugRuleCaller(getApplicationContext());
 
         caller.addRule(new ECBModeCipher());
         caller.addRule(new ClearTextTraffic());
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new StaticIV());
         caller.addRule(new PathClassLoaderCall());
         caller.addRule(new DexClassLoaderCall());
+        caller.addRule(new InsecureFilePermissions());
 
         caller.callRules();
     }

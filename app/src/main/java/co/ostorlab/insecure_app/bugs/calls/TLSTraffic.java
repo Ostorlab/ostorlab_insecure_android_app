@@ -8,6 +8,8 @@ import okhttp3.Response;
 
 public final class TLSTraffic extends BugRule {
 
+
+
     @Override
     public void run() throws Exception {
         OkHttpClient client = new OkHttpClient();

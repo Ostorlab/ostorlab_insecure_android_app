@@ -1,6 +1,7 @@
 package co.ostorlab.insecure_app;
 
 
+import android.content.Context;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -11,9 +12,11 @@ final class BugRuleCaller {
     private static final String TAG = "BugRuleCaller";
 
     private List<BugRule> rules;
+    private Context context;
 
-    BugRuleCaller(){
-        rules = new ArrayList<>();
+    BugRuleCaller(Context context){
+        this.context = context;
+        this.rules = new ArrayList<>();
     }
 
     public List<BugRule> getRules(){
@@ -21,6 +24,7 @@ final class BugRuleCaller {
     }
 
     <T extends BugRule> void addRule(T rule){
+        rule.setContext(context);
         rules.add(rule);
     }
 
