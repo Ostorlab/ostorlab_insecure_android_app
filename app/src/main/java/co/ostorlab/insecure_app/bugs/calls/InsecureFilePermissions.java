@@ -1,15 +1,7 @@
 package co.ostorlab.insecure_app.bugs.calls;
 
 import android.content.Context;
-import android.util.Base64;
-import android.util.Log;
-
 import java.io.File;
-import java.io.FileOutputStream;
-
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
-
 import co.ostorlab.insecure_app.BugRule;
 
 
