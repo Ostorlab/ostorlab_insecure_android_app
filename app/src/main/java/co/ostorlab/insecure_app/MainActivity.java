@@ -11,6 +11,7 @@ import co.ostorlab.insecure_app.bugs.calls.ClearTextTraffic;
 import co.ostorlab.insecure_app.bugs.calls.InsecureFilePermissions;
 import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
+import co.ostorlab.insecure_app.bugs.calls.MemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
 import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        System.loadLibrary("native-lib");
 
         final Button runAllButton = findViewById(R.id.runAllId);
         final TextView outputView = findViewById(R.id.runOutputId);
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new PathClassLoaderCall());
         caller.addRule(new DexClassLoaderCall());
         caller.addRule(new InsecureFilePermissions());
+        caller.addRule(new MemoryCorruption());
 
         caller.callRules();
     }

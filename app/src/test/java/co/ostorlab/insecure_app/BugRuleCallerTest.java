@@ -20,6 +20,7 @@ import co.ostorlab.insecure_app.bugs.calls.ClearTextTraffic;
 import co.ostorlab.insecure_app.bugs.calls.InsecureFilePermissions;
 import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
+import co.ostorlab.insecure_app.bugs.calls.MemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
 import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
@@ -65,6 +66,7 @@ public class BugRuleCallerTest {
         caller.addRule(new PathClassLoaderCall());
         caller.addRule(new DexClassLoaderCall());
         caller.addRule(new InsecureFilePermissions());
+        caller.addRule(new MemoryCorruption());
         caller.callRules();
 
         Assert.assertEquals(caller.getRules().size(), 8);
