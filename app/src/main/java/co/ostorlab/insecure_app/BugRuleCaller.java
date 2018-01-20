@@ -16,6 +16,10 @@ final class BugRuleCaller {
         rules = new ArrayList<>();
     }
 
+    public List<BugRule> getRules(){
+        return rules;
+    }
+
     <T extends BugRule> void addRule(T rule){
         rules.add(rule);
     }

@@ -1,6 +1,5 @@
 package co.ostorlab.insecure_app.bugs.calls;
 
-
 import co.ostorlab.insecure_app.BugRule;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -15,7 +14,6 @@ public class ClearTextTraffic extends BugRule {
                              .url("http://www.google.com/")
                              .build();
         Response response = client.newCall(request).execute();
-
     }
 
     @Override

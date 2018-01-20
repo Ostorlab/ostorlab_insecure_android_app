@@ -6,8 +6,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import co.ostorlab.insecure_app.bugs.calls.AESCipher;
 import co.ostorlab.insecure_app.bugs.calls.ClearTextTraffic;
+import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
+import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
+import co.ostorlab.insecure_app.bugs.calls.StaticIV;
 import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
                 executeAllRules();
             }
         });
-
-        // executeAllRules();
     }
 
     private void executeAllRules() {
@@ -36,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new ECBModeCipher());
         caller.addRule(new ClearTextTraffic());
         caller.addRule(new TLSTraffic());
+        caller.addRule(new AESCipher());
+        caller.addRule(new StaticIV());
+        caller.addRule(new PathClassLoaderCall());
+        caller.addRule(new DexClassLoaderCall());
 
         caller.callRules();
     }
