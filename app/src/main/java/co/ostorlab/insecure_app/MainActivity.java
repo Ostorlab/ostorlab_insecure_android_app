@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new PathClassLoaderCall());
         caller.addRule(new DexClassLoaderCall());
         caller.addRule(new InsecureFilePermissions());
-        caller.addRule(new MemoryCorruption());
+        // caller.addRule(new MemoryCorruption());
         try {
             caller.callRules();
         } catch (Exception e){
