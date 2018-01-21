@@ -18,7 +18,7 @@ public final class TLSTraffic extends BugRule {
                 .hostnameVerifier(ALLOW_ALL_HOSTNAME_VERIFIER)
                 .build();
         Request request = new Request.Builder()
-                .url("https://www.google.com/")
+                .url("https://ostorlab.co/")
                 .build();
         Call okhttpCall = client.newCall(request);
         Response response = okhttpCall.execute();
