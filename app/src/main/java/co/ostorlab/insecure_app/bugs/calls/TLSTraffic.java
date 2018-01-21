@@ -1,11 +1,12 @@
 package co.ostorlab.insecure_app.bugs.calls;
 
-import android.util.Log;
 import co.ostorlab.insecure_app.BugRule;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+
+import static org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER;
 
 public final class TLSTraffic extends BugRule {
 
@@ -13,23 +14,14 @@ public final class TLSTraffic extends BugRule {
 
     @Override
     public void run() throws Exception {
-        new Thread(new Runnable() {
-            public void run() {
-                try {
-                    OkHttpClient client = new OkHttpClient.Builder()
-                            .hostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER)
-                            .build();
-                    Request request = new Request.Builder()
-                            .url("https://www.google.com/")
-                            .build();
-                    Call okhttpCall = client.newCall(request);
-                    Response response = okhttpCall.execute();
-                }
-                catch (Exception e) {
-                    Log.e(TAG, "error initializing TLSTraffic thread", e);
-                }
-            }
-        }).start();
+        OkHttpClient client = new OkHttpClient.Builder()
+                .hostnameVerifier(ALLOW_ALL_HOSTNAME_VERIFIER)
+                .build();
+        Request request = new Request.Builder()
+                .url("https://www.google.com/")
+                .build();
+        Call okhttpCall = client.newCall(request);
+        Response response = okhttpCall.execute();
     }
 
     @Override

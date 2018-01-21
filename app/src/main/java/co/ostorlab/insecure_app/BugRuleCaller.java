@@ -7,6 +7,13 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+import static org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER;
+
 final class BugRuleCaller {
 
     private static final String TAG = "BugRuleCaller";
@@ -28,15 +35,24 @@ final class BugRuleCaller {
         rules.add(rule);
     }
 
-    void callRules(){
-        for(BugRule rule: rules){
-            // Log.i(TAG, String.format("Calling rule %s", rule.getDescription()));
-            try {
-                rule.run();
-            } catch (Exception e){
-                // Log.e(TAG, "Error calling rule", e);
-            }
+    void callRules() throws Exception{
+        for(final BugRule rule: rules){
+            runInThread(rule);
         }
+    }
+
+    private void runInThread(final BugRule rule) throws Exception {
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    rule.run();
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                    throw new RuntimeException(e.getMessage());
+                }
+            }
+        }).start();
     }
 
 }

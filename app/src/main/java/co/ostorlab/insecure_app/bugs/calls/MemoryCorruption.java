@@ -3,6 +3,8 @@ package co.ostorlab.insecure_app.bugs.calls;
 import android.util.Base64;
 import android.util.Log;
 
+import java.util.Collections;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -21,7 +23,7 @@ public final class MemoryCorruption extends BugRule {
 
     @Override
     public void run() throws Exception{
-        String input = "<<>><<>><<<<<<<<<<<<<<<<<<<<<";
+        String input = String.join("", Collections.nCopies(200, "()"));
         triggerStackOverflow(input);
     }
 
