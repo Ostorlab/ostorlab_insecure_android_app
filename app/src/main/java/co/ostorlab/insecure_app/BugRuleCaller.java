@@ -49,7 +49,6 @@ final class BugRuleCaller {
                 }
                 catch (Exception e) {
                     e.printStackTrace();
-                    throw new RuntimeException(e.getMessage());
                 }
             }
         }).start();
