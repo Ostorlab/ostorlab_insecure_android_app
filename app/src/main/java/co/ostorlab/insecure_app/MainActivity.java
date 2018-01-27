@@ -11,6 +11,7 @@ import co.ostorlab.insecure_app.bugs.calls.ClearTextTraffic;
 import co.ostorlab.insecure_app.bugs.calls.InsecureFilePermissions;
 import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
+import co.ostorlab.insecure_app.bugs.calls.InsecureSharedPreferences;
 import co.ostorlab.insecure_app.bugs.calls.MemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
@@ -29,13 +30,15 @@ public class MainActivity extends AppCompatActivity {
         runAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                outputView.append("Running");
-                executeAllRules();
+                outputView.setText("Running \n");
+                outputView.append(executeAllRules());
             }
         });
     }
 
-    private void executeAllRules() {
+    private String executeAllRules() {
+        String calledRules = "Executed rules \n";
+
         BugRuleCaller caller = new BugRuleCaller(getApplicationContext());
 
         caller.addRule(new ECBModeCipher());
@@ -47,10 +50,14 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new DexClassLoaderCall());
         caller.addRule(new InsecureFilePermissions());
         // caller.addRule(new MemoryCorruption());
+        caller.addRule(new InsecureSharedPreferences());
         try {
             caller.callRules();
+            calledRules += caller.getCalledRules();
         } catch (Exception e){
             e.printStackTrace();
         }
+
+        return calledRules;
     }
 }

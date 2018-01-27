@@ -41,6 +41,14 @@ final class BugRuleCaller {
         }
     }
 
+    String getCalledRules() throws Exception{
+        String calledRules = "";
+        for(final BugRule rule: rules) {
+            calledRules += rule.toString() + "\n";
+        }
+        return calledRules;
+    }
+
     private void runInThread(final BugRule rule) throws Exception {
         new Thread(new Runnable() {
             public void run() {

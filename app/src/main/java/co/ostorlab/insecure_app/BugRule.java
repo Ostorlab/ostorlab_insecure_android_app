@@ -10,4 +10,8 @@ abstract public class BugRule {
     public Context getContext(){ return context;}
     abstract public void run() throws Exception;
     abstract public String getDescription();
+    public String toString()
+    {
+        return this.getClass().getSimpleName();
+    }
 }

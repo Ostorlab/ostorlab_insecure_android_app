@@ -24,6 +24,7 @@
             android:id="@+id/runOutputId"
             android:layout_width="match_parent"
             android:layout_height="517dp"
+            android:singleLine="false"
             android:text="@string/output" />
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
