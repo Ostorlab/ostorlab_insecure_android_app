@@ -12,14 +12,18 @@ public class CommandExec extends BugRule {
     @Override
     public void run() throws Exception {
 
-        //command executed on sdcard
         String domainName = "google.com";
-        String command = "ping -c 3 " + domainName;
-        String output = executeCommand(command, "/sdcard/ostorlab");
+        String command = "";
 
         // command contains chmod
         command = "chmod " + domainName;
-        output = executeCommand(command, null);
+        executeCommand(command, null);
+
+        //command executed on sdcard
+        //command = "ping -c 3 " + domainName;
+        //executeCommand(command, "/sdcard/ostorlab");
+
+
     }
 
     private String executeCommand(String command, String pathName) {
@@ -28,7 +32,10 @@ public class CommandExec extends BugRule {
 
         Process p;
         try {
-            File file = new File(pathName);
+            File file = null;
+            if(pathName != null)
+                file = new File(pathName);
+
             p = Runtime.getRuntime().exec(command, null, file);
             p.waitFor();
             BufferedReader reader =
