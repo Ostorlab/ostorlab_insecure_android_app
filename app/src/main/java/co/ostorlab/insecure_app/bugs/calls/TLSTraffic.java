@@ -1,5 +1,7 @@
 package co.ostorlab.insecure_app.bugs.calls;
 
+import java.net.Socket;
+
 import co.ostorlab.insecure_app.BugRule;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;

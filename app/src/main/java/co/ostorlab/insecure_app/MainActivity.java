@@ -8,40 +8,41 @@ import android.widget.TextView;
 
 import co.ostorlab.insecure_app.bugs.calls.AESCipher;
 import co.ostorlab.insecure_app.bugs.calls.ClearTextTraffic;
-import co.ostorlab.insecure_app.bugs.calls.CommandExec;
+import co.ostorlab.insecure_app.bugs.calls.InsecureCommands;
 import co.ostorlab.insecure_app.bugs.calls.InsecureFilePermissions;
 import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
 import co.ostorlab.insecure_app.bugs.calls.InsecureSharedPreferences;
-import co.ostorlab.insecure_app.bugs.calls.MemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
 import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
 
 public class MainActivity extends AppCompatActivity {
+    private TextView outputView;
+    private Button runAllButton ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         System.loadLibrary("native-lib");
+        outputView = findViewById(R.id.runOutputId);
+        runAllButton = findViewById(R.id.runAllId);
+
 
         final Button runAllButton = findViewById(R.id.runAllId);
-        final TextView outputView = findViewById(R.id.runOutputId);
         runAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 outputView.setText("Running \n");
-                outputView.append(executeAllRules());
+                executeAllRules();
             }
         });
     }
 
-    private String executeAllRules() {
-        String calledRules = "Executed rules \n";
-
+    private void executeAllRules() {
         BugRuleCaller caller = new BugRuleCaller(getApplicationContext());
-
+        outputView.append("Adding rules ...\n");
         caller.addRule(new ECBModeCipher());
         caller.addRule(new ClearTextTraffic());
         caller.addRule(new TLSTraffic());
@@ -50,17 +51,16 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new PathClassLoaderCall());
         caller.addRule(new DexClassLoaderCall());
         caller.addRule(new InsecureFilePermissions());
-        // caller.addRule(new MemoryCorruption());
         caller.addRule(new InsecureSharedPreferences());
-        caller.addRule(new CommandExec());
+        caller.addRule(new InsecureCommands());
+        // caller.addRule(new MemoryCorruption());
 
         try {
             caller.callRules();
-            calledRules += caller.getCalledRules();
+            outputView.append(caller.listBugRules());
+
         } catch (Exception e){
             e.printStackTrace();
         }
-
-        return calledRules;
     }
 }
