@@ -14,6 +14,7 @@ import co.ostorlab.insecure_app.bugs.calls.InsecureFilePermissions;
 import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
 import co.ostorlab.insecure_app.bugs.calls.InsecureSharedPreferences;
+import co.ostorlab.insecure_app.bugs.calls.IntentCall;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
 import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new InsecureSharedPreferences());
         caller.addRule(new InsecureCommands());
         caller.addRule(new CommandExec());
+        caller.addRule(new IntentCall());
         // caller.addRule(new MemoryCorruption());
 
         try {

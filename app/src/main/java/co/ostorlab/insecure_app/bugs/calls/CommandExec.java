@@ -1,9 +1,7 @@
 package co.ostorlab.insecure_app.bugs.calls;
 
 import co.ostorlab.insecure_app.BugRule;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
 
 public class CommandExec extends BugRule {
 
@@ -43,6 +41,6 @@ public class CommandExec extends BugRule {
 
     @Override
     public String getDescription() {
-        return "The application executes commands from an external storage";
+        return "The application executes commands";
     }
 }
