@@ -16,20 +16,17 @@ public class CommandExec extends BugRule {
         String command = "";
 
         // command contains chmod
-        command = "chmod " + domainName;
+        command = "chmod 777" + domainName;
         executeCommand(command, null);
 
         //command executed on sdcard
-        //command = "ping -c 3 " + domainName;
-        //executeCommand(command, "/sdcard/ostorlab");
+        command = "ping -c 3 " + domainName;
+        executeCommand(command, "/sdcard/ostorlab");
 
 
     }
 
-    private String executeCommand(String command, String pathName) {
-
-        StringBuffer output = new StringBuffer();
-
+    private void executeCommand(String command, String pathName) {
         Process p;
         try {
             File file = null;
@@ -38,20 +35,10 @@ public class CommandExec extends BugRule {
 
             p = Runtime.getRuntime().exec(command, null, file);
             p.waitFor();
-            BufferedReader reader =
-                    new BufferedReader(new InputStreamReader(p.getInputStream()));
-
-            String line = "";
-            while ((line = reader.readLine())!= null) {
-                output.append(line + "\n");
-            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return output.toString();
-
     }
 
     @Override
