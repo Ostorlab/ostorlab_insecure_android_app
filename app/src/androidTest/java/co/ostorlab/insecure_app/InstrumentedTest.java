@@ -12,9 +12,11 @@ import org.junit.runner.RunWith;
 
 import co.ostorlab.insecure_app.bugs.calls.AESCipher;
 import co.ostorlab.insecure_app.bugs.calls.ClearTextTraffic;
+import co.ostorlab.insecure_app.bugs.calls.InsecureCommands;
 import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
 import co.ostorlab.insecure_app.bugs.calls.InsecureFilePermissions;
+import co.ostorlab.insecure_app.bugs.calls.InsecureSharedPreferences;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
 import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
@@ -97,6 +99,22 @@ public class InstrumentedTest {
     @Test
     public void ruleCaller_callInsecureFilePermissions_NoExceptionThrown() throws Exception{
         caller.addRule(new InsecureFilePermissions());
+        caller.callRules();
+
+        Assert.assertEquals(caller.getRules().size(), 1);
+    }
+
+    @Test
+    public void ruleCaller_callInsecureSharedPreferences_NoExceptionThrown() throws Exception{
+        caller.addRule(new InsecureSharedPreferences());
+        caller.callRules();
+
+        Assert.assertEquals(caller.getRules().size(), 1);
+    }
+
+    @Test
+    public void ruleCaller_callInsecureCommands_NoExceptionThrown() throws Exception{
+        caller.addRule(new InsecureCommands());
         caller.callRules();
 
         Assert.assertEquals(caller.getRules().size(), 1);

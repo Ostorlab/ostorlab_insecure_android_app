@@ -41,12 +41,13 @@ final class BugRuleCaller {
         }
     }
 
-    String getCalledRules() throws Exception{
-        String calledRules = "";
-        for(final BugRule rule: rules) {
-            calledRules += rule.toString() + "\n";
+    String listBugRules() throws Exception{
+        StringBuilder buffer = new StringBuilder();
+        for(BugRule rule: rules) {
+            buffer.append(rule.toString());
+            buffer.append("\n");
         }
-        return calledRules;
+        return buffer.toString();
     }
 
     private void runInThread(final BugRule rule) throws Exception {
