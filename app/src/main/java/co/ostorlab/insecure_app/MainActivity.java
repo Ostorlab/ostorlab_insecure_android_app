@@ -9,6 +9,7 @@ import android.widget.TextView;
 import co.ostorlab.insecure_app.bugs.calls.AESCipher;
 import co.ostorlab.insecure_app.bugs.calls.ClearTextTraffic;
 import co.ostorlab.insecure_app.bugs.calls.CommandExec;
+import co.ostorlab.insecure_app.bugs.calls.HashCall;
 import co.ostorlab.insecure_app.bugs.calls.InsecureCommands;
 import co.ostorlab.insecure_app.bugs.calls.InsecureFilePermissions;
 import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new InsecureCommands());
         caller.addRule(new CommandExec());
         caller.addRule(new IntentCall());
+        caller.addRule((new HashCall()));
         // caller.addRule(new MemoryCorruption());
 
         try {
