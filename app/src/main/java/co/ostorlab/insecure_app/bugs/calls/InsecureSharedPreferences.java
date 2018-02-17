@@ -17,8 +17,9 @@ public final class InsecureSharedPreferences extends BugRule {
     @Override
     public void run() throws Exception{
         String myPreference = "myPreference";
-        getContext().getSharedPreferences(myPreference, Context.MODE_PRIVATE);
-        getContext().getSharedPreferences(myPreference, Context.MODE_WORLD_READABLE);
-        getContext().getSharedPreferences(myPreference, Context.MODE_WORLD_READABLE | Context.MODE_WORLD_WRITEABLE);
+        getContext().getSharedPreferences("PrivateOnly", Context.MODE_PRIVATE);
+        getContext().getSharedPreferences("WorldReadableOnly", Context.MODE_WORLD_READABLE);
+        getContext().getSharedPreferences("WorldReadableAndWritable", Context.MODE_WORLD_READABLE | Context.MODE_WORLD_WRITEABLE);
+        getContext().getSharedPreferences("WorldReadableAndAppend", Context.MODE_WORLD_READABLE | Context.MODE_APPEND);
     }
 }

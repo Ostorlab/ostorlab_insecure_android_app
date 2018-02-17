@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new InsecureCommands());
         caller.addRule(new CommandExec());
         caller.addRule(new IntentCall());
-        caller.addRule((new HashCall()));
+        caller.addRule(new HashCall());
         caller.addRule(new WebviewInsecureSettings());
         // caller.addRule(new MemoryCorruption());
 
