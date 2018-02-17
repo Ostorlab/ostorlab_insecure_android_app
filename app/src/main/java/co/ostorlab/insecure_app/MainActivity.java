@@ -16,6 +16,7 @@ import co.ostorlab.insecure_app.bugs.calls.InsecureSharedPreferences;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
 import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
+import co.ostorlab.insecure_app.bugs.calls.WebviewInsecureSettings;
 
 public class MainActivity extends AppCompatActivity {
     private TextView outputView;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new InsecureFilePermissions());
         caller.addRule(new InsecureSharedPreferences());
         caller.addRule(new InsecureCommands());
+        caller.addRule(new WebviewInsecureSettings());
         // caller.addRule(new MemoryCorruption());
 
         try {

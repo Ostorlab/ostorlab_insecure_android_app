@@ -20,6 +20,7 @@ import co.ostorlab.insecure_app.bugs.calls.InsecureSharedPreferences;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
 import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
+import co.ostorlab.insecure_app.bugs.calls.WebviewInsecureSettings;
 
 import static org.junit.Assert.*;
 
@@ -115,6 +116,14 @@ public class InstrumentedTest {
     @Test
     public void ruleCaller_callInsecureCommands_NoExceptionThrown() throws Exception{
         caller.addRule(new InsecureCommands());
+        caller.callRules();
+
+        Assert.assertEquals(caller.getRules().size(), 1);
+    }
+
+    @Test
+    public void ruleCaller_callWebviewInsecureSettings_NoExceptionThrown() throws Exception{
+        caller.addRule(new WebviewInsecureSettings());
         caller.callRules();
 
         Assert.assertEquals(caller.getRules().size(), 1);
