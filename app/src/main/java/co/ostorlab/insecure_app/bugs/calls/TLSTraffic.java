@@ -1,5 +1,7 @@
 package co.ostorlab.insecure_app.bugs.calls;
 
+import android.net.SSLCertificateSocketFactory;
+
 import co.ostorlab.insecure_app.BugRule;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
@@ -22,6 +24,7 @@ public final class TLSTraffic extends BugRule {
                 .build();
         Call okhttpCall = client.newCall(request);
         Response response = okhttpCall.execute();
+        SSLCertificateSocketFactory.getInsecure(0,null);
     }
 
     @Override
