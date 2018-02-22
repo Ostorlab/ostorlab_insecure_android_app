@@ -21,6 +21,7 @@ import co.ostorlab.insecure_app.bugs.calls.InsecureFilePermissions;
 import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
 import co.ostorlab.insecure_app.bugs.calls.MemoryCorruption;
+import co.ostorlab.insecure_app.bugs.calls.MobileOnlyDownloadManager;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
 import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
@@ -118,6 +119,14 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_callWebviewInsecureSettings_NoExceptionThrown() throws Exception{
         caller.addRule(new WebviewInsecureSettings());
+        caller.callRules();
+
+        Assert.assertEquals(caller.getRules().size(), 1);
+    }
+
+    @Test
+    public void ruleCaller_callMobileOnlyDownloadManager_NoExceptionThrown() throws Exception{
+        caller.addRule(new MobileOnlyDownloadManager());
         caller.callRules();
 
         Assert.assertEquals(caller.getRules().size(), 1);
