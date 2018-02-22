@@ -10,8 +10,12 @@ public class IntentCall extends BugRule {
     @Override
     public void run() throws Exception {
 
-        Intent intent = new Intent("co.ostorlab");
-        getContext().sendBroadcast(intent);
+        Intent intent1 = new Intent("co.ostorlab");
+        Intent intent2 = new Intent("com.google.android.view");
+        Intent intent3 = new Intent("android.test.VIEW");
+        getContext().sendBroadcast(intent1);
+        getContext().sendBroadcast(intent2);
+        getContext().sendBroadcast(intent3);
 
     }
 

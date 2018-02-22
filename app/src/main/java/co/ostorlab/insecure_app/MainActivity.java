@@ -14,6 +14,7 @@ import co.ostorlab.insecure_app.bugs.calls.InsecureCommands;
 import co.ostorlab.insecure_app.bugs.calls.InsecureFilePermissions;
 import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
+import co.ostorlab.insecure_app.bugs.calls.InsecureRandom;
 import co.ostorlab.insecure_app.bugs.calls.InsecureSharedPreferences;
 import co.ostorlab.insecure_app.bugs.calls.IntentCall;
 import co.ostorlab.insecure_app.bugs.calls.MobileOnlyDownloadManager;
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new HashCall());
         caller.addRule(new WebviewInsecureSettings());
         caller.addRule(new MobileOnlyDownloadManager());
+        caller.addRule(new InsecureRandom());
         // caller.addRule(new MemoryCorruption());
 
         try {
