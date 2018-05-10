@@ -27,6 +27,7 @@ import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
 import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
 import co.ostorlab.insecure_app.bugs.calls.WebviewInsecureSettings;
+import co.ostorlab.insecure_app.bugs.calls.ArrayCall;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
@@ -136,6 +137,14 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_callInsecureRandom_NoExceptionThrown() throws Exception{
         caller.addRule(new InsecureRandom());
+        caller.callRules();
+
+        Assert.assertEquals(caller.getRules().size(), 1);
+    }
+
+    @Test
+    public void ruleCaller_ArrayCall_NoExceptionThrown() throws Exception{
+        caller.addRule(new ArrayCall());
         caller.callRules();
 
         Assert.assertEquals(caller.getRules().size(), 1);
