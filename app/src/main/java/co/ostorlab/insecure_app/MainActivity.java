@@ -23,6 +23,7 @@ import co.ostorlab.insecure_app.bugs.calls.StaticIV;
 import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
 import co.ostorlab.insecure_app.bugs.calls.WebviewInsecureSettings;
 import co.ostorlab.insecure_app.bugs.calls.ArrayCall;
+import co.ostorlab.insecure_app.bugs.calls.SQLiteDatabaseCall;
 
 public class MainActivity extends AppCompatActivity {
     private TextView outputView;
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new MobileOnlyDownloadManager());
         caller.addRule(new InsecureRandom());
         caller.addRule(new ArrayCall());
+        caller.addRule(new SQLiteDatabaseCall());
         // caller.addRule(new MemoryCorruption());
 
         try {

@@ -28,6 +28,7 @@ import co.ostorlab.insecure_app.bugs.calls.StaticIV;
 import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
 import co.ostorlab.insecure_app.bugs.calls.WebviewInsecureSettings;
 import co.ostorlab.insecure_app.bugs.calls.ArrayCall;
+import co.ostorlab.insecure_app.bugs.calls.SQLiteDatabaseCall;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
@@ -145,6 +146,14 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_ArrayCall_NoExceptionThrown() throws Exception{
         caller.addRule(new ArrayCall());
+        caller.callRules();
+
+        Assert.assertEquals(caller.getRules().size(), 1);
+    }
+
+    @Test
+    public void ruleCaller_SQLiteDatabaseCall_NoExceptionThrown() throws Exception{
+        caller.addRule(new SQLiteDatabaseCall());
         caller.callRules();
 
         Assert.assertEquals(caller.getRules().size(), 1);
