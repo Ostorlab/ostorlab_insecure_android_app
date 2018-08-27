@@ -21,6 +21,7 @@ import co.ostorlab.insecure_app.bugs.calls.InsecureFilePermissions;
 import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
 import co.ostorlab.insecure_app.bugs.calls.InsecureRandom;
+import co.ostorlab.insecure_app.bugs.calls.IntentCall;
 import co.ostorlab.insecure_app.bugs.calls.MemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.MobileOnlyDownloadManager;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
@@ -154,6 +155,14 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_SQLiteDatabaseCall_NoExceptionThrown() throws Exception{
         caller.addRule(new SQLiteDatabaseCall());
+        caller.callRules();
+
+        Assert.assertEquals(caller.getRules().size(), 1);
+    }
+
+    @Test
+    public void ruleCaller_IntentCall_NoExceptionThrown() throws Exception{
+        caller.addRule(new IntentCall());
         caller.callRules();
 
         Assert.assertEquals(caller.getRules().size(), 1);

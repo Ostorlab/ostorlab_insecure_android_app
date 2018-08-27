@@ -18,6 +18,7 @@ import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
 import co.ostorlab.insecure_app.bugs.calls.InsecureFilePermissions;
 import co.ostorlab.insecure_app.bugs.calls.InsecureRandom;
 import co.ostorlab.insecure_app.bugs.calls.InsecureSharedPreferences;
+import co.ostorlab.insecure_app.bugs.calls.IntentCall;
 import co.ostorlab.insecure_app.bugs.calls.MobileOnlyDownloadManager;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
@@ -142,6 +143,14 @@ public class InstrumentedTest {
     @Test
     public void ruleCaller_callInsecureRandom_NoExceptionThrown() throws Exception{
         caller.addRule(new InsecureRandom());
+        caller.callRules();
+
+        Assert.assertEquals(caller.getRules().size(), 1);
+    }
+
+    @Test
+    public void ruleCaller_callIntent_NoExceptionThrown() throws Exception{
+        caller.addRule(new IntentCall());
         caller.callRules();
 
         Assert.assertEquals(caller.getRules().size(), 1);
