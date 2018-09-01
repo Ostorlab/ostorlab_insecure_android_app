@@ -8,4 +8,8 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">android.com</domain>
     </domain-config>
+    <domain-config>
+        <domain includeSubdomains="true">ostorlab.co</domain>
+    </domain-config>
+
 </network-security-config>
