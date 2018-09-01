@@ -7,6 +7,7 @@
     </base-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">android.com</domain>
+        <domain includeSubdomains="true">google.com</domain>
     </domain-config>
     <domain-config>
         <domain includeSubdomains="true">ostorlab.co</domain>
