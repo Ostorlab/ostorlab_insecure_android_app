@@ -12,7 +12,7 @@ public final class DexClassLoaderCall extends BugRule {
 
     @Override
     public String getDescription() {
-        return "Use of insecure ECB Mode";
+        return "Use of dex class load";
     }
 
     @Override
