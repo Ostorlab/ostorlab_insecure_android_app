@@ -18,6 +18,7 @@ public final class WebviewInsecureSettings extends BugRule {
         WebView webView  = new WebView(getContext());
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setAllowFileAccess(true);
+        webView.setWebContentsDebuggingEnabled(true);
         webView.loadUrl("http://www.ostorlab.co");
     }
 }
