@@ -33,11 +33,5 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: build
+          arguments: test
           gradle-version: 7.3.3
-          
-      - name: Execute Gradle test
-        run: ./gradlew cAt
-      
-      - name: Android Test Report
-        uses: asadmansr/android-test-report-action@v1.2.0
