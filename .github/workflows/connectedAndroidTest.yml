@@ -16,7 +16,10 @@ jobs:
       
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
-    
+        with:
+          arguments: build
+          gradle-version: 7.3.3
+          
       - name: Execute Gradle test
         run: ./gradlew cAt
       
