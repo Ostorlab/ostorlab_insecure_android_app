@@ -5,7 +5,7 @@ on:
     
 jobs:
   test:
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       
@@ -14,9 +14,9 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+      
       - name: run Unit Test
         run: ./gradlew cAT
-      - uses: actions/upload-artifact@v3
-        with:
-          name: Package
-          path: app/build/reports/androidTests/connected/index.html
+      
+      - name: Android Test Report
+        uses: asadmansr/android-test-report-action@v1.2.0
