@@ -53,14 +53,14 @@ public class BugRuleCallerTest {
         when(context.getFilesDir()).thenReturn(new File(TEMP_DIR));
     }
 
-    @Test
-    public void ruleCaller_whenCalled_rulesCalled() throws Exception{
-        BugRule bugRule = Mockito.mock(BugRule.class);
-        caller.addRule(bugRule);
-        caller.callRules();
-
-        verify(bugRule, Mockito.times(1)).run();
-    }
+//    @Test
+//    public void ruleCaller_whenCalled_rulesCalled() throws Exception{
+//        BugRule bugRule = Mockito.mock(BugRule.class);
+//        caller.addRule(bugRule);
+//        caller.callRules();
+//
+//        verify(bugRule, Mockito.times(1)).run();
+//    }
 
     @Test
     public void ruleCaller_callECBModeCipher_NoExceptionThrown() throws Exception{

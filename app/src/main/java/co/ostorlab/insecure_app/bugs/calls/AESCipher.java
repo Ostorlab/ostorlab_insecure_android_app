@@ -25,7 +25,7 @@ public final class AESCipher extends BugRule {
         SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes(), "AES");
         Cipher cipher = Cipher.getInstance("AES");
         Cipher cipher0 = Cipher.getInstance("aes");
-        Cipher cipher1 = Cipher.getInstance("3DES");
+        // Cipher cipher1 = Cipher.getInstance("3DES");  # removed for github action
         Cipher cipher2 = Cipher.getInstance("tripledes");
         Cipher cipher3 = Cipher.getInstance("DESED");
         cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
