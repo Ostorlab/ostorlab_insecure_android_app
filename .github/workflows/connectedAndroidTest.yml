@@ -14,8 +14,9 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Unit Test
+      - name: run Unit Test
         run: ./gradlew cAT
-      
-      - name: Android Test Report
-        uses: asadmansr/android-test-report-action@v1.2.0
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Package
+          path: app/build/reports/androidTests/connected/index.html
