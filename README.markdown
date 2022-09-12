@@ -75,3 +75,6 @@ The list of vulnerabilities;
 * WebviewInsecureSettings : 
 > Webview debugging uses the Chrome Debug Protocol and is exposed using an abstract named unix socket.Abstract sockets do not use file system permissions to enforce access and are therefore accessible to all applications on the device.
   [link](https://docs.ostorlab.co/kb/DANGEROUS_API_WEBVIEW_REMOTE_DEBUGGING_ENABLED/)
+
+*  SerializableMemoryCorruption :
+> Controlling the object and json payload of the serializable can be used to cause memory corruption with native android library such as [VirtualRefBasePtr](https://github.com/aosp-mirror/platform_frameworks_base/blob/6bebb8418ceecf44d2af40033870f3aabacfe36e/core/java/com/android/internal/util/VirtualRefBasePtr.java),
