@@ -10,6 +10,7 @@ import co.ostorlab.insecure_app.bugs.calls.AESCipher;
 import co.ostorlab.insecure_app.bugs.calls.ClearTextTraffic;
 import co.ostorlab.insecure_app.bugs.calls.CommandExec;
 import co.ostorlab.insecure_app.bugs.calls.HashCall;
+import co.ostorlab.insecure_app.bugs.calls.ImplicitPendingIntentVulnerability;
 import co.ostorlab.insecure_app.bugs.calls.InsecureCommands;
 import co.ostorlab.insecure_app.bugs.calls.InsecureFilePermissions;
 import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         // caller.addRule(new MemoryCorruption());
         caller.addRule(new SerializableMemoryCorruption());
         caller.addRule(new PathTraversalVulnerability());
-
+        caller.addRule(new ImplicitPendingIntentVulnerability());
         try {
             caller.callRules();
             outputView.append(caller.listBugRules());
