@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new SQLiteDatabaseCall());
         // caller.addRule(new MemoryCorruption());
         caller.addRule(new SerializableMemoryCorruption());
-        //caller.addRule(new PathTraversalVulnerability());
+        caller.addRule(new PathTraversalVulnerability());
 
         try {
             caller.callRules();
