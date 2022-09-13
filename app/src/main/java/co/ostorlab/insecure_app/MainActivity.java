@@ -20,6 +20,7 @@ import co.ostorlab.insecure_app.bugs.calls.IntentCall;
 import co.ostorlab.insecure_app.bugs.calls.MobileOnlyDownloadManager;
 import co.ostorlab.insecure_app.bugs.calls.ParcelableMemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
+import co.ostorlab.insecure_app.bugs.calls.PathTraversalVulnerability;
 import co.ostorlab.insecure_app.bugs.calls.SerializableMemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
 import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         // caller.addRule(new MemoryCorruption());
         caller.addRule(new ParcelableMemoryCorruption());
         caller.addRule(new SerializableMemoryCorruption());
+        caller.addRule(new PathTraversalVulnerability());
 
         try {
             caller.callRules();
