@@ -78,3 +78,6 @@ The list of vulnerabilities;
 
 * ParcelableMemoryCorruption :
 > Controlling the object and json payload of the parcelable can be used to cause memory corruption with native android library such as [VirtualRefBasePtr](https://github.com/aosp-mirror/platform_frameworks_base/blob/6bebb8418ceecf44d2af40033870f3aabacfe36e/core/java/com/android/internal/util/VirtualRefBasePtr.java),
+
+*  SerializableMemoryCorruption :
+> Controlling the object and json payload of the serializable can be used to cause memory corruption with native android library such as [VirtualRefBasePtr](https://github.com/aosp-mirror/platform_frameworks_base/blob/6bebb8418ceecf44d2af40033870f3aabacfe36e/core/java/com/android/internal/util/VirtualRefBasePtr.java),
