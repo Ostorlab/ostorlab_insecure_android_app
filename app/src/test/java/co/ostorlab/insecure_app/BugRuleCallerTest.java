@@ -17,6 +17,7 @@ import java.io.FileOutputStream;
 
 import co.ostorlab.insecure_app.bugs.calls.AESCipher;
 import co.ostorlab.insecure_app.bugs.calls.ClearTextTraffic;
+import co.ostorlab.insecure_app.bugs.calls.ImplicitPendingIntentVulnerability;
 import co.ostorlab.insecure_app.bugs.calls.InsecureFilePermissions;
 import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
@@ -195,4 +196,11 @@ public class BugRuleCallerTest {
         Assert.assertEquals(caller.getRules().size(), 1);
     }
 
+    @Test
+    public void ruleCaller_ImplicitPendingIntentVulnerability_NoExceptionThrown() throws Exception{
+        caller.addRule(new ImplicitPendingIntentVulnerability());
+        caller.callRules();
+
+        Assert.assertEquals(caller.getRules().size(), 1);
+    }
 }

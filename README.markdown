@@ -84,3 +84,6 @@ The list of vulnerabilities;
 
 * Path Traversal Vulnerability
 >  Note that calling getLastPathSegment on the Uri parameter is not safe. A malicious app can supply an encoded Uri path like %2F..%2F..path%2Fto%2Fsecret.txt so the result of getLastPathSegment will be /../../path/to/secret.txt.[link](https://support.google.com/faqs/answer/7496913?hl=en)
+
+* Implicit PendingIntent Vulnerability
+> PendingIntents are Intents delegated to another app to be delivered at some future time. Creating an implicit intent wrapped under a PendingIntent is a security vulnerability that might lead to denial-of-service, private data theft, and privilege escalation.[link](https://support.google.com/faqs/answer/10437428?hl=en) 
