@@ -22,6 +22,7 @@ import co.ostorlab.insecure_app.bugs.calls.IntentCall;
 import co.ostorlab.insecure_app.bugs.calls.MobileOnlyDownloadManager;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
+import co.ostorlab.insecure_app.bugs.calls.HardcodedUrlInUrl;
 import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
 import co.ostorlab.insecure_app.bugs.calls.WebviewInsecureSettings;
 
@@ -82,6 +83,13 @@ public class InstrumentedTest {
     @Test
     public void ruleCaller_callStaticIV_NoExceptionThrown() throws Exception{
         caller.addRule(new StaticIV());
+        caller.callRules();
+
+        Assert.assertEquals(caller.getRules().size(), 1);
+    }
+    @Test
+    public void ruleCaller_callHardcodedKeyInUrl_NoExceptionThrown() throws Exception{
+        caller.addRule(new HardcodedUrlInUrl());
         caller.callRules();
 
         Assert.assertEquals(caller.getRules().size(), 1);

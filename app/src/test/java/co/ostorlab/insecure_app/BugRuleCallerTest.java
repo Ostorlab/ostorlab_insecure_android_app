@@ -30,6 +30,7 @@ import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.PathTraversalVulnerability;
 import co.ostorlab.insecure_app.bugs.calls.SerializableMemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
+import co.ostorlab.insecure_app.bugs.calls.HardcodedUrlInUrl;
 import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
 import co.ostorlab.insecure_app.bugs.calls.WebviewInsecureSettings;
 import co.ostorlab.insecure_app.bugs.calls.ArrayCall;
@@ -98,6 +99,13 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_callStaticIV_NoExceptionThrown() throws Exception{
         caller.addRule(new StaticIV());
+        caller.callRules();
+
+        Assert.assertEquals(caller.getRules().size(), 1);
+    }
+    @Test
+    public void ruleCaller_callHardcodedKeyInUrl_NoExceptionThrown() throws Exception{
+        caller.addRule(new HardcodedUrlInUrl());
         caller.callRules();
 
         Assert.assertEquals(caller.getRules().size(), 1);
