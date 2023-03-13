@@ -12,7 +12,7 @@ public final class HardcodedUrlInUrl extends BugRule {
 
     @SuppressLint("AuthLeak")
     public String get_url() {
-        return "https://ostora:07b8a0abfx53p98f7ae5@ostora.ostorlab.com/faq/?country=morocco";
+        return "https://ostora:07b8a0abfx53p98f7ae5@ostora.ostorlab.com/faq/?country=mars";
     }
 
     @Override
