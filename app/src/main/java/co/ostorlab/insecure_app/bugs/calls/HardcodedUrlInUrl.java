@@ -4,6 +4,7 @@ import co.ostorlab.insecure_app.BugRule;
 
 import android.annotation.SuppressLint;
 import android.util.Log;
+import android.webkit.WebView;
 
 
 public final class HardcodedUrlInUrl extends BugRule {
@@ -18,6 +19,8 @@ public final class HardcodedUrlInUrl extends BugRule {
     @Override
     public void run() throws Exception {
         Log.i(TAG, String.format("Message: %s", get_url()));
+        WebView webView  = new WebView(getContext());
+        webView.loadUrl(this.get_url());
     }
 
     @Override
