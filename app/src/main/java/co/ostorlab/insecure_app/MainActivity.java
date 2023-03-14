@@ -24,6 +24,7 @@ import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.PathTraversalVulnerability;
 import co.ostorlab.insecure_app.bugs.calls.SerializableMemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
+import co.ostorlab.insecure_app.bugs.calls.HardcodedUrlInUrl;
 import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
 import co.ostorlab.insecure_app.bugs.calls.WebviewInsecureSettings;
 import co.ostorlab.insecure_app.bugs.calls.ArrayCall;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new TLSTraffic());
         caller.addRule(new AESCipher());
         caller.addRule(new StaticIV());
+        caller.addRule(new HardcodedUrlInUrl());
         caller.addRule(new PathClassLoaderCall());
         caller.addRule(new DexClassLoaderCall());
         caller.addRule(new InsecureFilePermissions());
