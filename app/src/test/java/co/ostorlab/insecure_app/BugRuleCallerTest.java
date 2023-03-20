@@ -35,6 +35,7 @@ import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
 import co.ostorlab.insecure_app.bugs.calls.WebviewInsecureSettings;
 import co.ostorlab.insecure_app.bugs.calls.ArrayCall;
 import co.ostorlab.insecure_app.bugs.calls.SQLiteDatabaseCall;
+import co.ostorlab.insecure_app.bugs.calls.BiometricFingerprintManagerVulnerability;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
@@ -207,6 +208,14 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_ImplicitPendingIntentVulnerability_NoExceptionThrown() throws Exception{
         caller.addRule(new ImplicitPendingIntentVulnerability());
+        caller.callRules();
+
+        Assert.assertEquals(caller.getRules().size(), 1);
+    }
+
+    @Test
+    public void ruleCaller_BiometricFingerprintManagerVulnerability_NoExceptionThrown() throws Exception{
+        caller.addRule(new BiometricFingerprintManagerVulnerability());
         caller.callRules();
 
         Assert.assertEquals(caller.getRules().size(), 1);
