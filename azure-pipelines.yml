@@ -22,11 +22,7 @@ steps:
     script: |
       sudo mkdir -p /usr/local/lib/android/sdk/ndk
       sudo chmod -R 777 /usr/local/lib/android/sdk/ndk
-- task: CmdLine@2
-  inputs:
-    script: |
-      sudo mkdir -p /usr/local/lib/android/sdk/ndk
-      sudo chmod -R 777 /usr/local/lib/android/sdk/ndk
+      export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.xml.bind'
       echo "y" | sudo $ANDROID_HOME/tools/bin/sdkmanager --install "ndk;25.1.8937393"
 - task: Gradle@2
   inputs:
