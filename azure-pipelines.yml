@@ -10,7 +10,7 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
-- task: Gradle@2
+- task: Gradle@3
   inputs:
     versionSpec: '11'
     jdkArchitectureOption: 'x64'
