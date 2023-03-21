@@ -10,6 +10,12 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
+- task: JavaToolInstaller@0
+  displayName: 'Use Java 11'
+  inputs:
+    versionSpec: 11
+    jdkArchitectureOption: x64
+    jdkSourceOption: PreInstalled
 - task: Gradle@2
   inputs:
     javaHomeOption: 'JDKVersion'
