@@ -27,7 +27,6 @@ steps:
     script: |
       sudo mkdir -p /usr/local/lib/android/sdk/ndk
       sudo chmod -R 777 /usr/local/lib/android/sdk/ndk
-      sudo chown -R $USER:$USER /usr/local/lib/android/sdk/ndksudo chown -R $USER:$USER /usr/local/lib/android/sdk/ndk
       echo "y" | sudo $ANDROID_HOME/tools/bin/sdkmanager --install "ndk;25.1.8937393"
 - task: Gradle@2
   inputs:
