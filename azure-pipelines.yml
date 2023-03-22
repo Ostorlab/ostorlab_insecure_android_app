@@ -16,7 +16,7 @@ steps:
       sudo mkdir -p /usr/local/lib/android
       yes | $ANDROID_HOME/tools/bin/sdkmanager --install "ndk;25.1.8937393"
       ls $ANDROID_HOME/ndk
-      sudo ln -s /usr/local/lib/android/sdk $ANDROID_HOME/ndk
+      sudo cp -r $ANDROID_HOME /usr/local/lib/android/sdk
       ls /usr/local/lib/android/sdk/ndk/25.1.8937393
 - task: JavaToolInstaller@0
   displayName: 'Use Java 11'
