@@ -15,7 +15,6 @@ steps:
     script: |
       sudo mkdir -p /usr/local/lib/android/sdk/ndk
       sudo chmod -R 777 /usr/local/lib/android/sdk/ndk
-      export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.xml.bind'
       yes | $ANDROID_HOME/tools/bin/sdkmanager --install "ndk;25.1.8937393"
 - task: JavaToolInstaller@0
   displayName: 'Use Java 11'
