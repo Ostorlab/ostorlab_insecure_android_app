@@ -29,6 +29,7 @@ import co.ostorlab.insecure_app.bugs.calls.TLSTraffic;
 import co.ostorlab.insecure_app.bugs.calls.WebviewInsecureSettings;
 import co.ostorlab.insecure_app.bugs.calls.ArrayCall;
 import co.ostorlab.insecure_app.bugs.calls.SQLiteDatabaseCall;
+import co.ostorlab.insecure_app.bugs.calls.BiometricFingerprintManagerVulnerability;
 
 public class MainActivity extends AppCompatActivity {
     private TextView outputView;
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new SerializableMemoryCorruption());
         caller.addRule(new PathTraversalVulnerability());
         caller.addRule(new ImplicitPendingIntentVulnerability());
+        caller.addRule(new BiometricFingerprintManagerVulnerability());
         try {
             caller.callRules();
             outputView.append(caller.listBugRules());

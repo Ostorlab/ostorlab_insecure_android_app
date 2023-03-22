@@ -3,6 +3,7 @@
     package="co.ostorlab.insecure_app">
     <uses-permission android:name="android.permission.INTERNET">
     </uses-permission>
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE">
     </uses-permission>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE">
