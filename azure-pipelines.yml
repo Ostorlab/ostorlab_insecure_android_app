@@ -10,13 +10,6 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
-- task: JavaToolInstaller@0
-  displayName: 'Use Java 11'
-  inputs:
-    versionSpec: 11
-    jdkArchitectureOption: x64
-    jdkSourceOption: PreInstalled
-
 - task: CmdLine@2
   inputs:
     script: |
@@ -24,6 +17,12 @@ steps:
       sudo chmod -R 777 /usr/local/lib/android/sdk/ndk
       export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
       yes | $ANDROID_HOME/tools/bin/sdkmanager --install "ndk;25.1.8937393"
+- task: JavaToolInstaller@0
+  displayName: 'Use Java 11'
+  inputs:
+    versionSpec: 11
+    jdkArchitectureOption: x64
+    jdkSourceOption: PreInstalled
 - task: Gradle@2
   inputs:
     javaHomeOption: 'JDKVersion'
