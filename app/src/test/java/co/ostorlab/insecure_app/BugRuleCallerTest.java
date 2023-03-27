@@ -1,6 +1,7 @@
 package co.ostorlab.insecure_app;
 
 
+import android.app.Activity;
 import android.content.Context;
 
 import junit.framework.Assert;
@@ -16,6 +17,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 import co.ostorlab.insecure_app.bugs.calls.AESCipher;
+import co.ostorlab.insecure_app.bugs.calls.BiometricFingerprintPromptVulnerability;
 import co.ostorlab.insecure_app.bugs.calls.ClearTextTraffic;
 import co.ostorlab.insecure_app.bugs.calls.ImplicitPendingIntentVulnerability;
 import co.ostorlab.insecure_app.bugs.calls.InsecureFilePermissions;
@@ -40,13 +42,17 @@ import co.ostorlab.insecure_app.bugs.calls.BiometricFingerprintManagerVulnerabil
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import androidx.fragment.app.FragmentActivity;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BugRuleCallerTest {
 
     private static final String TEMP_DIR = "/tmp/";
+    FragmentActivity mockActivity = mock(FragmentActivity.class);
 
     private BugRuleCaller caller;
     @Mock private Context context;
@@ -216,6 +222,14 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_BiometricFingerprintManagerVulnerability_NoExceptionThrown() throws Exception{
         caller.addRule(new BiometricFingerprintManagerVulnerability());
+        caller.callRules();
+
+        Assert.assertEquals(caller.getRules().size(), 1);
+    }
+
+    @Test
+    public void ruleCaller_BiometricFingerprintPromptVulnerability_NoExceptionThrown() throws Exception{
+        caller.addRule(new BiometricFingerprintPromptVulnerability(mockActivity));
         caller.callRules();
 
         Assert.assertEquals(caller.getRules().size(), 1);

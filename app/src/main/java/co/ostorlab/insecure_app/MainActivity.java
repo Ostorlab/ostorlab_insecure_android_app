@@ -1,12 +1,14 @@
 package co.ostorlab.insecure_app;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import co.ostorlab.insecure_app.bugs.calls.AESCipher;
+import co.ostorlab.insecure_app.bugs.calls.BiometricFingerprintPromptVulnerability;
 import co.ostorlab.insecure_app.bugs.calls.ClearTextTraffic;
 import co.ostorlab.insecure_app.bugs.calls.CommandExec;
 import co.ostorlab.insecure_app.bugs.calls.HashCall;
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new PathTraversalVulnerability());
         caller.addRule(new ImplicitPendingIntentVulnerability());
         caller.addRule(new BiometricFingerprintManagerVulnerability());
+        caller.addRule(new BiometricFingerprintPromptVulnerability(this));
         try {
             caller.callRules();
             outputView.append(caller.listBugRules());
