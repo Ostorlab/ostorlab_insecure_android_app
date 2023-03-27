@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new PathTraversalVulnerability());
         caller.addRule(new ImplicitPendingIntentVulnerability());
         caller.addRule(new BiometricFingerprintManagerVulnerability());
-        caller.addRule(new BiometricFingerprintPromptVulnerability(this));
+        caller.addRule(new BiometricFingerprintPromptVulnerability());
         try {
             caller.callRules();
             outputView.append(caller.listBugRules());

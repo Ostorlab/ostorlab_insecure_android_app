@@ -227,7 +227,7 @@ public class BugRuleCallerTest {
 
     @Test
     public void ruleCaller_BiometricFingerprintPromptVulnerability_NoExceptionThrown() throws Exception{
-        caller.addRule(new BiometricFingerprintPromptVulnerability((FragmentActivity) context));
+        caller.addRule(new BiometricFingerprintPromptVulnerability());
         caller.callRules();
 
         Assert.assertEquals(caller.getRules().size(), 1);
