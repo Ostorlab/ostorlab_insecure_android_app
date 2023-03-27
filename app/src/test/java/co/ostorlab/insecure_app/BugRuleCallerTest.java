@@ -42,6 +42,7 @@ import co.ostorlab.insecure_app.bugs.calls.BiometricFingerprintManagerVulnerabil
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -51,6 +52,7 @@ import androidx.fragment.app.FragmentActivity;
 public class BugRuleCallerTest {
 
     private static final String TEMP_DIR = "/tmp/";
+    FragmentActivity mockActivity = mock(FragmentActivity.class);
 
     private BugRuleCaller caller;
     @Mock private Context context;
@@ -227,7 +229,7 @@ public class BugRuleCallerTest {
 
     @Test
     public void ruleCaller_BiometricFingerprintPromptVulnerability_NoExceptionThrown() throws Exception{
-        caller.addRule(new BiometricFingerprintPromptVulnerability());
+        caller.addRule(new BiometricFingerprintPromptVulnerability(mockActivity));
         caller.callRules();
 
         Assert.assertEquals(caller.getRules().size(), 1);
