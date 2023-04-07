@@ -41,8 +41,9 @@ public final class PackageContextCall extends BugRule {
                             Context.CONTEXT_INCLUDE_CODE | Context.CONTEXT_IGNORE_SECURITY);
 
                     Class<?> loaderClass = packageContext.getClassLoader().loadClass("co.ostorlab.plugins.camera.Loader");
-                    Method loadMetadata = loaderClass.getMethod("Update", Context.class);
-                    loadMetadata.invoke(null, packageContext);
+                    Method updateMethod = loaderClass.getMethod("Update", Context.class);
+                    updateMethod.invoke(null, packageContext);
+
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
