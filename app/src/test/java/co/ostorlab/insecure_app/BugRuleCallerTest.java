@@ -38,6 +38,7 @@ import co.ostorlab.insecure_app.bugs.calls.WebviewInsecureSettings;
 import co.ostorlab.insecure_app.bugs.calls.ArrayCall;
 import co.ostorlab.insecure_app.bugs.calls.SQLiteDatabaseCall;
 import co.ostorlab.insecure_app.bugs.calls.BiometricFingerprintManagerVulnerability;
+import co.ostorlab.insecure_app.bugs.calls.PackageContextCall;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
@@ -230,6 +231,14 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_BiometricFingerprintPromptVulnerability_NoExceptionThrown() throws Exception{
         caller.addRule(new BiometricFingerprintPromptVulnerability(mockActivity));
+        caller.callRules();
+
+        Assert.assertEquals(caller.getRules().size(), 1);
+    }
+
+    @Test
+    public void ruleCaller_PackageContext_NoExceptionThrown() throws Exception{
+        caller.addRule(new PackageContextCall());
         caller.callRules();
 
         Assert.assertEquals(caller.getRules().size(), 1);
