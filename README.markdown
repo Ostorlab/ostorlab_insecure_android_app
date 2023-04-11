@@ -87,3 +87,7 @@ The list of vulnerabilities;
 
 * Implicit PendingIntent Vulnerability
 > PendingIntents are Intents delegated to another app to be delivered at some future time. Creating an implicit intent wrapped under a PendingIntent is a security vulnerability that might lead to denial-of-service, private data theft, and privilege escalation.[link](https://support.google.com/faqs/answer/10437428?hl=en) 
+
+* PackageContextLoadCall :
+> The applications loads a package from the package manager using a hardcoded prefix or package name. This load process can be hijacked, allowing access to private data and execution of arbitrary commands in the context of the vulnerable application.
+[link](https://docs.ostorlab.co/kb/APK_INSECURE_PACKAGE_CONTEXT_LOADER/)
