@@ -35,14 +35,13 @@ public final class PackageContextCall extends BugRule {
             String packageName = info.packageName;
 
             if (packageName.startsWith("co.ostorlab.plugins.")) {
-
                 try {
                     Context packageContext = context.createPackageContext(packageName,
                             Context.CONTEXT_INCLUDE_CODE | Context.CONTEXT_IGNORE_SECURITY);
 
                     Class<?> loaderClass = packageContext.getClassLoader().loadClass("co.ostorlab.plugins.camera.Loader");
                     Method updateMethod = loaderClass.getMethod("Update", Context.class);
-                    updateMethod.invoke(null, packageContext);
+                    updateMethod.invoke(null, context);
 
                 } catch (Exception e) {
                     throw new RuntimeException(e);
