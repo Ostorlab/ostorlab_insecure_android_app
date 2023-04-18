@@ -17,6 +17,7 @@ public final class WebviewInsecureSettings extends BugRule {
     public void run() throws Exception {
         WebView webView  = new WebView(getContext());
         webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setAllowUniversalFileAccessFromUrls(true);
         webView.getSettings().setAllowFileAccess(true);
         webView.setWebContentsDebuggingEnabled(true);
         webView.loadUrl("http://www.ostorlab.co");
