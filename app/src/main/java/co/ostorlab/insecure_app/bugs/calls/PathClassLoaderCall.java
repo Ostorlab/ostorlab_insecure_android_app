@@ -1,22 +1,35 @@
 package co.ostorlab.insecure_app.bugs.calls;
 
+import android.os.Environment;
+
 import co.ostorlab.insecure_app.BugRule;
+import dalvik.system.DexClassLoader;
 import dalvik.system.PathClassLoader;
 import java.lang.ClassLoader;
 
 
 public final class PathClassLoaderCall extends BugRule {
 
-    private static final String TAG = "RULE";
+    private static final String TAG = PathClassLoaderCall.class.toString();
 
     @Override
     public String getDescription() {
-        return "Use of insecure ECB Mode";
+        return "Use of path class load";
     }
 
     @Override
     public void run() throws Exception{
-        PathClassLoader classLoader = new PathClassLoader("/sdcard/test.apk", ClassLoader.getSystemClassLoader());
-        classLoader.loadClass("a.b.c");
+        /*
+            Path class loading from external storage
+         */
+        String apkFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/test.apk";
+        PathClassLoader classLoader1 = new PathClassLoader(apkFile, ClassLoader.getSystemClassLoader());
+        classLoader1.loadClass("a.b.c");
+
+        /*
+            Path class loading from hard-coded sdcard path
+         */
+        PathClassLoader classLoader2 = new PathClassLoader("/sdcard/test.apk", ClassLoader.getSystemClassLoader());
+        classLoader2.loadClass("a.b.c");
     }
 }
