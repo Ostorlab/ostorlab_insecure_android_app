@@ -30,7 +30,7 @@ android {
             jniDebuggable true
         }
         profile {
-          initWith debug
+            initWith debug
         }
     }
     externalNativeBuild {
@@ -41,14 +41,14 @@ android {
 }
 
 String storageUrl = System.env.FLUTTER_STORAGE_BASE_URL ?:
-"https://storage.googleapis.com"
+        "https://storage.googleapis.com"
 repositories {
-maven {
-    url '../ostorlab_insecure_flutter_app/build/host/outputs/repo'
-}
-maven {
-    url "$storageUrl/download.flutter.io"
-}
+    maven {
+        url '../ostorlab_insecure_flutter_app/build/host/outputs/repo'
+    }
+    maven {
+        url "$storageUrl/download.flutter.io"
+    }
 }
 
 dependencies {
@@ -69,7 +69,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-all:1.+'
     implementation 'androidx.biometric:biometric:1.1.0'
-    debugImplementation 'co.ostorlab.vulnerable_flutter_app:flutter_debug:1.0'
-    profileImplementation 'co.ostorlab.vulnerable_flutter_app:flutter_profile:1.0'
-    releaseImplementation 'co.ostorlab.vulnerable_flutter_app:flutter_release:1.0'
+    debugImplementation 'co.ostorlab.ostorlab_insecure_flutter_app:flutter_debug:1.0'
+    profileImplementation 'co.ostorlab.ostorlab_insecure_flutter_app:flutter_profile:1.0'
+    releaseImplementation 'co.ostorlab.ostorlab_insecure_flutter_app:flutter_release:1.0'
 }
