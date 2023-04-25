@@ -84,5 +84,5 @@ flutter:
   # identifiers, which may be completely independent or the same as these.
   module:
     androidX: true
-    androidPackage: co.ostorlab.vulnerable_flutter_app
-    iosBundleIdentifier: co.ostorlab.vulnerableFlutterApp
+    androidPackage: co.ostorlab.ostorlab_insecure_flutter_app
+    iosBundleIdentifier: co.ostorlab.OstorlabInsecureFlutterApp
