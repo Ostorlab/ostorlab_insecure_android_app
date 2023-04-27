@@ -1,25 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:ostorlab_insecure_flutter_app/bug_rule.dart';
 
+/// A class that manages a list of [BugRule] instances and calls their implementation of the [run] method.
 class BugRuleCaller {
   static const String TAG = "BugRuleCaller";
 
   late List<BugRule> rules;
   late BuildContext context;
 
+  /// Creates a new instance of [BugRuleCaller] with the provided [BuildContext].
   BugRuleCaller(this.context) {
     rules = [];
   }
 
+  /// Returns the list of [BugRule] instances managed by this [BugRuleCaller] instance.
   List<BugRule> getRules() {
     return rules;
   }
 
+  /// Adds the provided [BugRule] instance to the list of managed rules and sets its [BuildContext].
   void addRule<T extends BugRule>(T rule) {
     rule.setContext(context);
     rules.add(rule);
   }
 
+  /// Returns a string representation of the [BugRule] instances managed by this [BugRuleCaller] instance.
   Future<String> listBugRules() async {
     final buffer = StringBuffer();
     for (final rule in rules) {
@@ -28,6 +33,7 @@ class BugRuleCaller {
     return buffer.toString();
   }
 
+  /// Calls the [run] method of each [BugRule] instance managed by this [BugRuleCaller] instance.
   Future<void> callRules() async {
     for (final rule in rules) {
       try {

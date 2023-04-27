@@ -1,11 +1,26 @@
 # Ostorlab Insecure app - vulnerable flutter module
+==========
 
-A new Flutter module project.
+This is a vulnerable Flutter module which contains a number of vulnerabilities
+and the main purpose is to identify the ability of the static and dynamic analysis to identify them
 
-## Getting Started
+The list of vulnerabilities;
 
-For help getting started with Flutter development, view the online
-[documentation](https://flutter.dev/).
+* ECBModeCipher :
+> insecure ECB mode.
+[link](https://docs.ostorlab.co/kb/CRYPTO_INSECURE_CIPHER_MODE/#description)
 
-For instructions integrating Flutter modules to your existing applications,
-see the [add-to-app documentation](https://flutter.dev/docs/development/add-to-app).
+* ClearTextTraffic :
+>Mobile Applications must use Transport Layer Security (TLS) to provide encryption at the transport layer and ensure the confidentiality and integrity of data in transit.This application does not use SSL/TLS and is vulnerable to traffic interception and modification.
+[link](https://docs.ostorlab.co/kb/TLS_HTTP/)
+
+* TLSTraffic :
+> It was identified that the endpoint supports a combination of cipher suites and Secure Sockets Layer / Transport Layer Security (SSL/TLS) protocols that suffer from known cryptographic weaknesses.
+[link](https://docs.ostorlab.co/kb/TLS_INSECURE_CIPHER/)
+
+* StaticIV:
+> Use of a non-random initialization vector makes the application vulnerable to dictionary attacks.
+[link](https://docs.ostorlab.co/kb/CRYPTO_INSECURE_IV/)
+
+* HardcodedCredsInUrl:
+> [TODO]

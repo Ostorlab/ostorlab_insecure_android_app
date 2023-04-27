@@ -42,5 +42,11 @@
       <version>1.0.0-1a65d409c7a1438a34d21b60bf30a6fd5db59314</version>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>io.flutter.plugins.webviewflutter</groupId>
+      <artifactId>webview_flutter_android_debug</artifactId>
+      <version>1.0</version>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
 </project>
