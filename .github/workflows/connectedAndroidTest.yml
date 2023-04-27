@@ -18,7 +18,18 @@ jobs:
       - name: Install NDK
         if: steps.ndk-cache.outputs.cache-hit != 'true'
         run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;25.1.8937393"
-      
+
+      - uses: subosito/flutter-action@v2
+          with:
+            flutter-version: "3.0.0"
+            channel: 'stable'
+
+      - name: Get dependencies
+          run: flutter pub get
+
+      - name: Start AAR build
+        run: flutter build aar
+
       - uses: actions/setup-java@v3
         with:
           distribution: temurin
