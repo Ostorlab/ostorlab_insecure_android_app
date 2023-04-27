@@ -2,30 +2,30 @@ name: Android test
 on:
   pull_request:
     branches: [ master ]
-    
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Prepare NDK dir for caching ( workaround for https://github.com/actions/virtual-environments/issues/1337 )
         run: |
           sudo mkdir -p /usr/local/lib/android/sdk/ndk
           sudo chmod -R 777 /usr/local/lib/android/sdk/ndk
           sudo chown -R $USER:$USER /usr/local/lib/android/sdk/ndk
-        
+
       - name: Install NDK
         if: steps.ndk-cache.outputs.cache-hit != 'true'
         run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;25.1.8937393"
 
       - uses: subosito/flutter-action@v2
-          with:
-            flutter-version: "3.0.0"
-            channel: 'stable'
+        with:
+          flutter-version: "3.0.0"
+          channel: 'stable'
 
       - name: Get dependencies
-          run: flutter pub get
+        run: flutter pub get
 
       - name: Start AAR build
         run: flutter build aar
@@ -34,7 +34,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 11
-        
+
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
         with:
