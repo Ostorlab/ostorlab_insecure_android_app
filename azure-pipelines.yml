@@ -24,6 +24,15 @@ steps:
     versionSpec: 11
     jdkArchitectureOption: x64
     jdkSourceOption: PreInstalled
+- task: FlutterGet@0
+  inputs:
+    workingDirectory: 'ostorlab_insecure_flutter_app'
+  displayName: Get dependencies
+
+- script: |
+    flutter build aar
+  workingDirectory: 'ostorlab_insecure_flutter_app'
+  displayName: Start AAR build
 - task: Gradle@2
   inputs:
     javaHomeOption: 'JDKVersion'
