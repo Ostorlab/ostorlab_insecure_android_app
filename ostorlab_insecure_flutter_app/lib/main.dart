@@ -7,7 +7,10 @@ import 'package:ostorlab_insecure_flutter_app/bugs/clear_text_traffic.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/hardcoded_creds_in_url.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/hash_call.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/insecure_commands.dart';
+import 'package:ostorlab_insecure_flutter_app/bugs/insecure_random.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/intent_call.dart';
+import 'package:ostorlab_insecure_flutter_app/bugs/path_traversal.dart';
+import 'package:ostorlab_insecure_flutter_app/bugs/sqlite_database_call.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/static_iv.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/tls_traffic.dart';
 
@@ -69,6 +72,9 @@ class _MyHomePageState extends State<MyHomePage> {
     caller.addRule(CommandExec());
     caller.addRule(IntentCall());
     caller.addRule(HashCall());
+    caller.addRule(InsecureRandom());
+    caller.addRule(SQLiteDatabaseCall());
+    caller.addRule(PathTraversal());
 
     try {
       await caller.callRules();

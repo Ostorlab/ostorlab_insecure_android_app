@@ -10,7 +10,7 @@ class ClearTextTraffic extends BugRule {
   @override
   Future<void> run() async {
     var client = http.Client();
-    var request = http.Request('GET', Uri.parse('http://linuxfr.org/'));
+    var request = http.Request('GET', Uri.parse('http://ostorlab.co/'));
     var response = await client.send(request);
   }
 

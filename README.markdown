@@ -130,37 +130,20 @@ The list of vulnerabilities;
 > It was identified that the endpoint supports a combination of cipher suites and Secure Sockets Layer / Transport Layer Security (SSL/TLS) protocols that suffer from known cryptographic weaknesses.
 [link](https://docs.ostorlab.co/kb/TLS_INSECURE_CIPHER/)
 
-* ParcelableMemoryCorruption : [TODO]
-> Controlling the object and json payload of the parcelable can be used to cause memory corruption with native android library such as [VirtualRefBasePtr](https://github.com/aosp-mirror/platform_frameworks_base/blob/6bebb8418ceecf44d2af40033870f3aabacfe36e/core/java/com/android/internal/util/VirtualRefBasePtr.java),
-
-*  SerializableMemoryCorruption : [TODO]
-> Controlling the object and json payload of the serializable can be used to cause memory corruption with native android library such as [VirtualRefBasePtr](https://github.com/aosp-mirror/platform_frameworks_base/blob/6bebb8418ceecf44d2af40033870f3aabacfe36e/core/java/com/android/internal/util/VirtualRefBasePtr.java),
-
 * Path Traversal Vulnerability [TODO]
 >  Note that calling getLastPathSegment on the Uri parameter is not safe. A malicious app can supply an encoded Uri path like %2F..%2F..path%2Fto%2Fsecret.txt so the result of getLastPathSegment will be /../../path/to/secret.txt.[link](https://support.google.com/faqs/answer/7496913?hl=en)
-
-* Implicit PendingIntent Vulnerability [TODO]
-> PendingIntents are Intents delegated to another app to be delivered at some future time. Creating an implicit intent wrapped under a PendingIntent is a security vulnerability that might lead to denial-of-service, private data theft, and privilege escalation.[link](https://support.google.com/faqs/answer/10437428?hl=en)
-
-* PackageContextLoadCall : [TODO]
-> The applications loads a package from the package manager using a hardcoded prefix or package name. This load process can be hijacked, allowing access to private data and execution of arbitrary commands in the context of the vulnerable application.
-[link](https://docs.ostorlab.co/kb/APK_INSECURE_PACKAGE_CONTEXT_LOADER/)
 
 * InsecureRandom : [TODO]
 > Random number generator is seeded using constant value which results in the generation of predictable numbers.
 [link](https://docs.ostorlab.co/kb/INSECURE_RANDOM_SEED/)
 
-* MemoryCorruption : [TODO]
-> memory corruption vulnerabilities can lead to denial of service, information leak, arbitrary read and write or remote code execution.
-[link](https://docs.ostorlab.co/kb/DANGEROUS_MEMORY_CORRUPTION/)
-
-* MobileOnlyDownloadManager : [TODO]
-> The download manager is a system service that handles long-running HTTP downloads. The application should not force using only the mobile network connection
-[link](https://docs.ostorlab.co/kb/APK_INSECURE_DOWNLOAD_MANAGER/)
-
 * SQLiteDatabaseCall : [TODO]
 > Improper SQL query construction could lead to SQL injection. An SQL injection attack consists of injecting of an SQL query via the input data from the client to the application
 [link](https://docs.ostorlab.co/kb/DANGEROUS_API_SQL/)
+
+* SerializableMemoryCorruption : [?]
+
+* MemoryCorruption : [?]
 
 * ~~AESCipher :~~
 
@@ -173,3 +156,11 @@ The list of vulnerabilities;
 * ~~WebviewInsecureSettings :~~
 
 * ~~InsecureSharedPreferences :~~
+
+* ~~MobileOnlyDownloadManager :~~
+
+* ~~ParcelableMemoryCorruption :~~
+
+* ~~PackageContextLoadCall :~~
+
+* ~~Implicit PendingIntent Vulnerability :~~
