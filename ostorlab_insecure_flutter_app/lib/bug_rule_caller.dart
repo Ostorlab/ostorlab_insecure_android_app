@@ -3,7 +3,7 @@ import 'package:ostorlab_insecure_flutter_app/bug_rule.dart';
 
 /// A class that manages a list of [BugRule] instances and calls their implementation of the [run] method.
 class BugRuleCaller {
-  static const String TAG = "BugRuleCaller";
+  static const String _tag = "BugRuleCaller";
 
   late List<BugRule> rules;
   late BuildContext context;
@@ -20,7 +20,7 @@ class BugRuleCaller {
 
   /// Adds the provided [BugRule] instance to the list of managed rules and sets its [BuildContext].
   void addRule<T extends BugRule>(T rule) {
-    rule.setContext(context);
+    rule.context = context;
     rules.add(rule);
   }
 
@@ -39,7 +39,7 @@ class BugRuleCaller {
       try {
         await rule.run();
       } catch (e) {
-        print(e.toString());
+        print('Exception caught while running rule ${rule.toString()}: ${e.toString()}');
       }
     }
   }

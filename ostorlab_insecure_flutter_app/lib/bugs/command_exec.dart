@@ -10,14 +10,15 @@ class CommandExec extends BugRule {
   @override
   Future<void> run() async {
     String domainName = "google.com";
-    String command = "";
+    String fileName = "ostorlab.bin";
+    String command;
 
     // command contains chmod
-    command = "chmod 777 " + domainName;
+    command = "chmod 777 $fileName";
     await executeCommand(command, "/sdcard");
 
     //command executed on sdcard
-    command = "ping -c 3 " + domainName;
+    command = "ping -c 3 $domainName";
     await executeCommand(command, "/sdcard/ostorlab");
   }
 

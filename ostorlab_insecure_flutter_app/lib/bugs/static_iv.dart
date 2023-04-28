@@ -22,7 +22,7 @@ class StaticIV extends BugRule {
     final plainText = utf8.encode(data);
     final key = Key.fromUtf8(password);
     final iv = IV.fromUtf8("0123456789abcdef");
-    final encrypter = Encrypter(AES(key, mode: AESMode.ecb));
+    final encrypter = Encrypter(AES(key, mode: AESMode.cbc));
     final encrypted = encrypter.encryptBytes(plainText, iv: iv);
     final encryptedString = base64.encode(encrypted.bytes);
     print(_tag + ' Message: ' + 'Encrypted data: $encryptedString');

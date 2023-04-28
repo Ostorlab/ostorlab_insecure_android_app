@@ -4,16 +4,6 @@ import 'package:flutter/material.dart';
 abstract class BugRule {
   late BuildContext context;
 
-  /// Sets the [BuildContext] object associated with this [BugRule] instance.
-  void setContext(BuildContext context) {
-    this.context = context;
-  }
-
-  /// Returns the [BuildContext] object associated with this [BugRule] instance.
-  BuildContext getContext() {
-    return context;
-  }
-
   /// Runs the bug rule implementation asynchronously.
   Future<void> run() async {
     // Implementation of run method
