@@ -5,7 +5,7 @@ import 'package:ostorlab_insecure_flutter_app/bug_rule.dart';
 /// A [BugRule] implementation that triggers the use of insecure ECB mode for encryption.
 class ECBCipher extends BugRule {
   /// The tag used to identify instances of this rule.
-  static const String _tag = "AESCipher";
+  static const String _tag = "ECBCipher";
 
   /// Returns a description of this [BugRule] implementation.
   @override

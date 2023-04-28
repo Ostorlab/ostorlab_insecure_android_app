@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+
 import 'package:ostorlab_insecure_flutter_app/bug_rule_caller.dart';
+import 'package:ostorlab_insecure_flutter_app/bugs/command_exec.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/ecb_cipher_mode.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/clear_text_traffic.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/hardcoded_creds_in_url.dart';
+import 'package:ostorlab_insecure_flutter_app/bugs/hash_call.dart';
+import 'package:ostorlab_insecure_flutter_app/bugs/insecure_commands.dart';
+import 'package:ostorlab_insecure_flutter_app/bugs/intent_call.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/static_iv.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/tls_traffic.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -59,6 +65,10 @@ class _MyHomePageState extends State<MyHomePage> {
     caller.addRule(TLSTraffic());
     caller.addRule(StaticIV());
     caller.addRule(HardcodedCredsInUrl());
+    caller.addRule(InsecureCommands());
+    caller.addRule(CommandExec());
+    caller.addRule(IntentCall());
+    caller.addRule(HashCall());
 
     try {
       await caller.callRules();

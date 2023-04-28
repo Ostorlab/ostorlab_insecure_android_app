@@ -9,7 +9,7 @@ class InsecureCommands extends BugRule {
   /// Trigger the [BugRule]
   @override
   Future<void> run() async {
-    await executeCommand('chmod 755 test_file', '/data/data/');
+    await executeCommand('chmod 755 ostorlab.bin', '/sdcard/');
     await executeCommand('ping -c 3 www.ostorlab.co', '/sdcard/ostorlab');
   }
 
