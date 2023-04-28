@@ -6,7 +6,7 @@ import 'package:ostorlab_insecure_flutter_app/bug_rule.dart';
 /// A [BugRule] implementation that triggers the use of insecure random number generators.
 class InsecureRandom extends BugRule {
   /// The tag used to identify instances of this rule.
-  static const String _tag = "StaticIV";
+  static const String _tag = "InsecureRandom";
 
   /// The seed value used for the insecure random number generator.
   static const SEED = 12345;
