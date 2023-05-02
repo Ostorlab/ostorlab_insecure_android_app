@@ -13,8 +13,7 @@ class InsecureCommands extends BugRule {
   /// Trigger the [BugRule]
   @override
   Future<void> run() async {
-    await executeCommand('chmod 755 ostorlab.bin', '/sdcard/');
-    await executeCommand('ping -c 3 www.ostorlab.co', '/sdcard/ostorlab');
+    await executeCommand('chmod 777 ostorlab.bin', '/sdcard/');
   }
 
   /// Execute a command from the given directory path.

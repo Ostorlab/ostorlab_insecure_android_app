@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:ostorlab_insecure_flutter_app/bug_rule.dart';
 import 'dart:io';
 
@@ -13,8 +14,11 @@ class CommandExec extends BugRule {
   /// Trigger the [BugRule]
   @override
   Future<void> run() async {
-    String domainName = "google.com";
-    String fileName = "ostorlab.bin";
+    TextEditingController fileController = TextEditingController(text: "/sdcard/document.pdf");
+    TextEditingController domainController = TextEditingController(text: "www.ostorlab.co");
+
+    String fileName = fileController.text;
+    String domainName = domainController.text;
     String command;
 
     // command contains chmod

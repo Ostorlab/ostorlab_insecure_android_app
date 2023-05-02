@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:ostorlab_insecure_flutter_app/bug_rule.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -8,12 +9,22 @@ class SQLiteDatabaseCall extends BugRule {
   Future<void> run() async {
     SqfliteHelper sqfliteHelper = SqfliteHelper();
     Database db = await sqfliteHelper.getWritableDatabase();
-    sqfliteHelper.createTable();
-    String insertQuery = "INSERT INTO accounts(name, amount) VALUES(?, ?)";
-    await db.rawInsert(insertQuery, ['ostorlab_user', 1000]);
+
+    // get user input for name and amount from a text field
+    TextEditingController nameController = TextEditingController(text: "ostorlab_user");
+    TextEditingController amountController = TextEditingController(text: "0");
+
+    String name = nameController.text;
+    double amount = double.tryParse(amountController.text) ?? 0.0;
+
+    // insert data into database
+    String insertQuery = "INSERT INTO ${SqfliteHelper.TABLE_NAME}(${SqfliteHelper.NAME}, ${SqfliteHelper.AMOUNT}) VALUES(?, ?)";
+    await db.rawInsert(insertQuery, [name, amount]);
+
     sqfliteHelper.dropTable();
     db.close();
   }
+
 
   @override
   String get description => 'The application uses sqflite';
