@@ -4,46 +4,36 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/android
 
 trigger:
-  - master
+- master
 
 pool:
   vmImage: 'macos-latest'
 
 steps:
-  - task: CmdLine@2
-    inputs:
-      script: |
-        sudo mkdir -p /usr/local/lib/android
-        yes | $ANDROID_HOME/tools/bin/sdkmanager --install "ndk;25.1.8937393"
-        ls $ANDROID_HOME/ndk
-        sudo cp -r $ANDROID_HOME /usr/local/lib/android/sdk
-        ls /usr/local/lib/android/sdk/ndk/25.1.8937393
-  - task: JavaToolInstaller@0
-    displayName: 'Use Java 11'
-    inputs:
-      versionSpec: 11
-      jdkArchitectureOption: x64
-      jdkSourceOption: PreInstalled
-  - task: FlutterInstall@0
-      inputs:
-        mode: 'auto'
-        channel: 'stable'
-        version: 'latest'
-  - task: FlutterBuild@0
-    inputs:
-      target: 'aar'
-      projectDirectory: 'ostorlab_insecure_flutter_app'
-      entryPoint: "lib/main.dart"
-      iosCodesign: false
-  - task: Gradle@2
-    inputs:
-      javaHomeOption: 'JDKVersion'
-      versionSpec: '11'
-      jdkArchitectureOption: 'x64'
-      jdkSourceOption: 'PreInstalled'
-      workingDirectory: ''
-      gradleWrapperFile: 'gradlew'
-      gradleOptions: '-Xmx3072m'
-      publishJUnitResults: false
-      testResultsFiles: '**/TEST-*.xml'
-      tasks: 'assembleDebug'
+- task: CmdLine@2
+  inputs:
+    script: |
+      sudo mkdir -p /usr/local/lib/android
+      yes | $ANDROID_HOME/tools/bin/sdkmanager --install "ndk;25.1.8937393"
+      ls $ANDROID_HOME/ndk
+      sudo cp -r $ANDROID_HOME /usr/local/lib/android/sdk
+      ls /usr/local/lib/android/sdk/ndk/25.1.8937393
+- task: JavaToolInstaller@0
+  displayName: 'Use Java 11'
+  inputs:
+    versionSpec: 11
+    jdkArchitectureOption: x64
+    jdkSourceOption: PreInstalled
+- task: Gradle@2
+  inputs:
+    javaHomeOption: 'JDKVersion'
+    versionSpec: '11'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
+    workingDirectory: ''
+    gradleWrapperFile: 'gradlew'
+    gradleOptions: '-Xmx3072m'
+    publishJUnitResults: false
+    testResultsFiles: '**/TEST-*.xml'
+    tasks: 'assembleDebug'
+

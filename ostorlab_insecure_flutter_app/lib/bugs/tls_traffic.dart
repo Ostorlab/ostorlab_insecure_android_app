@@ -5,7 +5,6 @@ import 'package:ostorlab_insecure_flutter_app/bug_rule.dart';
 /// A [BugRule] that triggers insecure use of TLS/SSL in HTTP traffic.
 class TLSTraffic extends BugRule {
   /// The tag used to identify instances of this rule.
-
   static const String _tag = 'TLSTraffic';
 
   /// Returns a description of this [BugRule] implementation.
