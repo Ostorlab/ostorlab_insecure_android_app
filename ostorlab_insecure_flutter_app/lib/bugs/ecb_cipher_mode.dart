@@ -9,9 +9,7 @@ class ECBCipher extends BugRule {
 
   /// Returns a description of this [BugRule] implementation.
   @override
-  String getDescription() {
-    return "Use of insecure ECB Mode";
-  }
+  String get description => "Use of insecure ECB Mode";
 
   /// Trigger the bug rule
   @override

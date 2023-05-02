@@ -10,10 +10,9 @@ abstract class BugRule {
   }
 
   /// Returns the description of the bug rule.
-  String getDescription();
+  String get description;
 
   /// Returns a string representation of the bug rule's runtime type.
-  String toString() {
-    return runtimeType.toString();
-  }
+  @override
+  String toString() => runtimeType.toString();
 }

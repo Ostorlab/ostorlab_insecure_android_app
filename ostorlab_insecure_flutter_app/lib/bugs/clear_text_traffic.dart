@@ -6,17 +6,15 @@ class ClearTextTraffic extends BugRule {
   /// The tag used to identify instances of this rule.
   static const String _tag = 'ClearTextTraffic';
 
+  /// Returns a description of this [BugRule] implementation.
+  @override
+  String get description => 'Use of cleartext HTTP traffic';
+
   /// Trigger the [BugRule]
   @override
   Future<void> run() async {
     var client = http.Client();
     var request = http.Request('GET', Uri.parse('http://ostorlab.co/'));
     var response = await client.send(request);
-  }
-
-  /// Returns a description of this [BugRule] implementation.
-  @override
-  String getDescription() {
-    return 'Use of cleartext HTTP traffic';
   }
 }

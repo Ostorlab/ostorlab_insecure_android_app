@@ -8,9 +8,7 @@ class HardcodedCredsInUrl extends BugRule {
 
   /// Returns a description of this [BugRule] implementation.
   @override
-  String getDescription() {
-    return "Use of hardcoded password in URL";
-  }
+  String get description => "Use of hardcoded password in URL";
 
   /// Trigger the bug rule
   @override

@@ -7,6 +7,10 @@ class IntentCall extends BugRule {
   /// The tag used to identify instances of this rule.
   static const String _tag = 'IntentCall';
 
+  /// Returns a description of this [BugRule] implementation.
+  @override
+  String get description => "The application uses a string value to construct an Intent";
+
   /// Constructs an Intent with a string value.
   @override
   Future<void> run() async {
@@ -16,11 +20,5 @@ class IntentCall extends BugRule {
     intent1.launch();
     intent2.launch();
     intent3.launch();
-  }
-
-  /// Returns a description of this [BugRule] implementation.
-  @override
-  String getDescription() {
-    return 'The application uses a string value to construct an Intent';
   }
 }

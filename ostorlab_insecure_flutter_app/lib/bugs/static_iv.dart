@@ -9,9 +9,7 @@ class StaticIV extends BugRule {
 
   /// Returns a description of this [BugRule] implementation.
   @override
-  String getDescription() {
-    return "Use of hardcoded static IV";
-  }
+  String get description => 'Use of hardcoded static IV';
 
   /// Trigger the bug rule
   @override

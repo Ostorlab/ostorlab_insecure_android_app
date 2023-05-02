@@ -6,6 +6,10 @@ class InsecureCommands extends BugRule {
   /// The tag used to identify instances of this rule.
   static const String _tag = 'InsecureCommands';
 
+  /// Returns a description of this [BugRule] implementation.
+  @override
+  String get description => 'The application executes commands from an external storage';
+
   /// Trigger the [BugRule]
   @override
   Future<void> run() async {
@@ -17,11 +21,5 @@ class InsecureCommands extends BugRule {
   Future<void> executeCommand(String command, String pathName) async {
     final file = Directory(pathName);
     await Process.run(command, [], workingDirectory: file.path);
-  }
-
-  /// Returns a description of this [BugRule] implementation.
-  @override
-  String getDescription() {
-    return 'The application executes commands from an external storage';
   }
 }

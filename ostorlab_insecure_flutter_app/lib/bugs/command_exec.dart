@@ -6,6 +6,10 @@ class CommandExec extends BugRule {
   /// The tag used to identify instances of this rule.
   static const String _tag = 'CommandExec';
 
+  /// Returns a description of this [BugRule] implementation.
+  @override
+  String get description => 'The application executes commands';
+
   /// Trigger the [BugRule]
   @override
   Future<void> run() async {
@@ -34,11 +38,5 @@ class CommandExec extends BugRule {
     } catch (e) {
       print(e);
     }
-  }
-
-  /// Returns a description of this [BugRule] implementation.
-  @override
-  String getDescription() {
-    return "The application executes commands";
   }
 }

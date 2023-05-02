@@ -16,9 +16,7 @@ class SQLiteDatabaseCall extends BugRule {
   }
 
   @override
-  String getDescription() {
-    return 'The application uses sqflite';
-  }
+  String get description => 'The application uses sqflite';
 }
 
 class SqfliteHelper {

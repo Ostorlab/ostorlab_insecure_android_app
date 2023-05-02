@@ -6,9 +6,7 @@ import 'package:ostorlab_insecure_flutter_app/bug_rule.dart';
 
 class PathTraversal extends BugRule {
   @override
-  String getDescription() {
-    return 'call to getLastPathSegment with Uri parameter';
-  }
+  String get description => 'call to getLastPathSegment with Uri parameter';
 
   @override
   Future<void> run() async {

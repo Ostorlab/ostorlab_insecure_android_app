@@ -14,9 +14,7 @@ class BugRuleCaller {
   }
 
   /// Returns the list of [BugRule] instances managed by this [BugRuleCaller] instance.
-  List<BugRule> getRules() {
-    return rules;
-  }
+  List<BugRule> getRules() => rules;
 
   /// Adds the provided [BugRule] instance to the list of managed rules and sets its [BuildContext].
   void addRule<T extends BugRule>(T rule) {

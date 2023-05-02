@@ -9,9 +9,7 @@ class HashCall extends BugRule {
 
   /// Returns a description of this [BugRule] implementation.
   @override
-  String getDescription() {
-    return 'The application executes the hash functions';
-  }
+  String get description => "The application uses hash functions without salt or iteration";
 
   /// Computes the SHA-1 hash of a fixed message without salt or iteration.
   ///
