@@ -13,6 +13,7 @@ import 'package:ostorlab_insecure_flutter_app/bugs/path_traversal.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/sqlite_database_call.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/static_iv.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/tls_traffic.dart';
+import 'package:ostorlab_insecure_flutter_app/bugs/webview_insecure_settings.dart';
 
 
 void main() {
@@ -75,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
     caller.addRule(InsecureRandom());
     caller.addRule(SQLiteDatabaseCall());
     caller.addRule(PathTraversal());
+    caller.addRule(WebviewInsecureSettings());
 
     try {
       await caller.callRules();
