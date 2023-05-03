@@ -41,8 +41,9 @@ The list of vulnerabilities;
 > Random number generator is seeded using constant value which results in the generation of predictable numbers.
 [link](https://docs.ostorlab.co/kb/INSECURE_RANDOM_SEED/)
 
-* IntentCall :
-  [link]
+* IntentCall [TODO]:
+> The application broadcasts data through an intent created from hardcoded string
+[link](https://docs.ostorlab.co/kb/HARDCODED_INTENT_BROADCAST/)
 
 * MemoryCorruption :
 > memory corruption vulnerabilities can lead to denial of service, information leak, arbitrary read and write or remote code execution.
@@ -119,8 +120,9 @@ The list of vulnerabilities;
 > Setting Shared Preferences with insecure permissions either world readable or world writable may expose sensitive information stored in shared preferences to arbitrary read or write by a malicious attacker.
 [link](https://docs.ostorlab.co/kb/INSECURE_PERMISSION_SHARED_PREFERENCES/)
 
-* IntentCall :
-  [link]
+* IntentCall [TODO]:
+> The application broadcasts data through an intent created from hardcoded string
+[link](https://docs.ostorlab.co/kb/HARDCODED_INTENT_BROADCAST/)
 
 * StaticIV:
 > Use of a non-random initialization vector makes the application vulnerable to dictionary attacks.
@@ -130,37 +132,21 @@ The list of vulnerabilities;
 > It was identified that the endpoint supports a combination of cipher suites and Secure Sockets Layer / Transport Layer Security (SSL/TLS) protocols that suffer from known cryptographic weaknesses.
 [link](https://docs.ostorlab.co/kb/TLS_INSECURE_CIPHER/)
 
-* Path Traversal Vulnerability [TODO]
+* Path Traversal Vulnerability 
 >  Note that calling getLastPathSegment on the Uri parameter is not safe. A malicious app can supply an encoded Uri path like %2F..%2F..path%2Fto%2Fsecret.txt so the result of getLastPathSegment will be /../../path/to/secret.txt.[link](https://support.google.com/faqs/answer/7496913?hl=en)
 
-* InsecureRandom : [TODO]
+* InsecureRandom : 
 > Random number generator is seeded using constant value which results in the generation of predictable numbers.
 [link](https://docs.ostorlab.co/kb/INSECURE_RANDOM_SEED/)
 
-* SQLiteDatabaseCall : [TODO]
+* SQLiteDatabaseCall : 
 > Improper SQL query construction could lead to SQL injection. An SQL injection attack consists of injecting of an SQL query via the input data from the client to the application
 [link](https://docs.ostorlab.co/kb/DANGEROUS_API_SQL/)
 
-* SerializableMemoryCorruption : [?]
+* WebviewInsecureSettings :
+> Webview debugging uses the Chrome Debug Protocol and is exposed using an abstract named unix socket.Abstract sockets do not use file system permissions to enforce access and are therefore accessible to all applications on the device.
+[link](https://docs.ostorlab.co/kb/DANGEROUS_API_WEBVIEW_REMOTE_DEBUGGING_ENABLED/)
 
-* MemoryCorruption : [?]
-
-* ~~AESCipher :~~
-
-* ~~DexClassLoaderCall :~~
-
-* ~~InsecureFilePermissions :~~
-
-* ~~PathClassLoaderCall :~~
-
-* ~~WebviewInsecureSettings :~~
-
-* ~~InsecureSharedPreferences :~~
-
-* ~~MobileOnlyDownloadManager :~~
-
-* ~~ParcelableMemoryCorruption :~~
-
-* ~~PackageContextLoadCall :~~
-
-* ~~Implicit PendingIntent Vulnerability :~~
+* InsecureSharedPreferences :
+> Setting Shared Preferences with insecure permissions either world readable or world writable may expose sensitive information stored in shared preferences to arbitrary read or write by a malicious attacker.
+[link](https://docs.ostorlab.co/kb/INSECURE_PERMISSION_SHARED_PREFERENCES/)

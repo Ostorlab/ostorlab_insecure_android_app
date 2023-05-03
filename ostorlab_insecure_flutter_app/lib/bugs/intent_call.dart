@@ -9,16 +9,12 @@ class IntentCall extends BugRule {
 
   /// Returns a description of this [BugRule] implementation.
   @override
-  String get description => "The application uses a string value to construct an Intent";
+  String get description => "The application broadcasts data through an intent";
 
   /// Constructs an Intent with a string value.
   @override
   Future<void> run() async {
-    final intent1 = AndroidIntent(action: 'co.ostorlab');
-    final intent2 = AndroidIntent(action: 'com.google.android.view');
-    final intent3 = AndroidIntent(action: 'android.test.VIEW');
-    intent1.launch();
-    intent2.launch();
-    intent3.launch();
+    final intent = AndroidIntent(action: 'co.ostorlab', arguments:{"token":"SuperSecretToken"});
+    intent.sendBroadcast();
   }
 }
