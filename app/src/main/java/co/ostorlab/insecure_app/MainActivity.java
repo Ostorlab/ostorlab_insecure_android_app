@@ -34,6 +34,8 @@ import co.ostorlab.insecure_app.bugs.calls.SQLiteDatabaseCall;
 import co.ostorlab.insecure_app.bugs.calls.BiometricFingerprintManagerVulnerability;
 import co.ostorlab.insecure_app.bugs.calls.PackageContextCall;
 
+import io.flutter.embedding.android.FlutterActivity;
+
 public class MainActivity extends AppCompatActivity {
     private TextView outputView;
     private Button runAllButton ;
@@ -44,10 +46,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         System.loadLibrary("native-lib");
         outputView = findViewById(R.id.runOutputId);
-        runAllButton = findViewById(R.id.runAllId);
-
 
         final Button runAllButton = findViewById(R.id.runAllId);
+        final Button runAllFlutterButton = findViewById(R.id.runAllFlutterId);
+        runAllFlutterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(
+                        FlutterActivity.createDefaultIntent(MainActivity.this)
+                );
+            }
+        });
+
         runAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 executeAllRules();
             }
         });
+         
     }
 
     private void executeAllRules() {

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Insecure_App</string>
     <string name="action_settings">Settings</string>
-    <string name="run_all">Run All</string>
+    <string name="run_all">Run All (Native)</string>
+    <string name="run_all_flutter">Run All (Flutter)</string>
     <string name="output">Output</string>
 </resources>

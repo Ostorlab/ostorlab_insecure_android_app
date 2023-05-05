@@ -104,6 +104,9 @@ out/
 # Gradle files
 .gradle/
 build/
+.cxx/
+.idea/**/gradle.xml
+.idea/**/libraries
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -123,3 +126,9 @@ captures/
 # Intellij
 *.iml
 .idea/workspace.xml
+.idea/libraries/
+
+# Flutter module
+# There is a conflict between .gitignore of Android project and flutter module
+# We force include the flutter module so it can use its own .gitignore file
+!ostorlab_insecure_flutter_app/**

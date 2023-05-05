@@ -21,7 +21,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/run_all" />
-
+        <Button
+            android:id="@+id/runAllFlutterId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/run_all_flutter" />
         <TextView
             android:id="@+id/runOutputId"
             android:layout_width="match_parent"

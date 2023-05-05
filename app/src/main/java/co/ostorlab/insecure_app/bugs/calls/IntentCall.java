@@ -9,16 +9,13 @@ public class IntentCall extends BugRule {
 
     @Override
     public void run() throws Exception {
-        Intent intent1 = new Intent("co.ostorlab");
-        Intent intent2 = new Intent("com.google.android.view");
-        Intent intent3 = new Intent("android.test.VIEW");
-        getContext().sendBroadcast(intent1);
-        getContext().sendBroadcast(intent2);
-        getContext().sendBroadcast(intent3);
+        Intent intent = new Intent("co.ostorlab");
+        intent.putExtra("token", "SuperSecretToken");
+        getContext().sendBroadcast(intent);
     }
 
     @Override
     public String getDescription() {
-        return "The application uses a string value to construct an Intent";
+        return "The application broadcasts data through an intent";
     }
 }
