@@ -10,6 +10,12 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
+  - task: FlutterInstall@0
+    inputs:
+      mode: 'auto'
+      channel: 'stable'
+      version: '3.7.12'
+      architecture: 'arm64'
   - task: CmdLine@2
     inputs:
       script: |
