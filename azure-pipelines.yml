@@ -10,7 +10,7 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
-  - task: FlutterInstall@1
+  - task: FlutterInstall@2
     displayName: Setup flutter
     inputs:
       channel: 'stable'
