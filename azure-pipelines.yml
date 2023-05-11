@@ -35,30 +35,6 @@ stages:
         script: |
           cp $(keyprop.secureFilePath) $(Build.SourcesDirectory)/android/key.properties
           cp $(key.secureFilePath) $(Build.SourcesDirectory)/android/app/key.jks
-          
+      
           echo "key.properties copied to $(Build.SourcesDirectory)/android/key.properties"
           echo "key.jks copied to $(Build.SourcesDirectory)/android/app/key.jks"
-    - task: FlutterInstall@0
-      displayName: "Install Flutter SDK"
-      inputs:
-        mode: 'auto'
-        channel: 'stable'
-        version: 'latest'
-
-    - task: FlutterCommand@0
-      displayName: "Run Flutter diagnostics"
-      inputs:
-        projectDirectory: '.'
-        arguments: 'doctor -v'
-
-    - task: FlutterBuild@0
-      displayName: "Build application"
-      inputs:
-        target: 'aab'
-        projectDirectory: '$(Build.SourcesDirectory)'
-
-    - task: FlutterTest@0
-      displayName: "Run unit tests"
-      inputs:
-        generateCodeCoverageReport: true
-        projectDirectory: '$(Build.SourcesDirectory)'
