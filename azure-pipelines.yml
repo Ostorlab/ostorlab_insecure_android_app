@@ -24,6 +24,17 @@ steps:
     versionSpec: 11
     jdkArchitectureOption: x64
     jdkSourceOption: PreInstalled
+- task: FlutterInstall@0
+  inputs:
+    mode: 'auto'
+    channel: 'stable'
+    version: "3.7.12"
+- task: FlutterBuild@0
+  inputs:
+    target: 'apk'
+    projectDirectory: 'ostorlab_insecure_flutter_app'
+    entryPoint: "lib/main.dart"
+    iosCodesign: false
 - task: Gradle@2
   inputs:
     javaHomeOption: 'JDKVersion'
