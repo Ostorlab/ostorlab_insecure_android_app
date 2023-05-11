@@ -1,40 +1,41 @@
+# Android
+# Build your Android project with Gradle.
+# Add steps that test, sign, and distribute the APK, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/android
+
 trigger:
-  - master
+- master
 
-stages:
-- stage: AndroidStage
+jobs:
+  - job: Mobile
   pool:
-    vmImage: 'ubuntu-latest'
-  dependsOn: []
-  displayName: Android
-  jobs:
+    vmImage: 'macos-latest'
 
-  - job: AndroidJob
-    displayName: Android
-    steps:
+  steps:
+  - task: CmdLine@2
+    inputs:
+      script: |
+        sudo mkdir -p /usr/local/lib/android
+        yes | $ANDROID_HOME/tools/bin/sdkmanager --install "ndk;25.1.8937393"
+        ls $ANDROID_HOME/ndk
+        sudo cp -r $ANDROID_HOME /usr/local/lib/android/sdk
+        ls /usr/local/lib/android/sdk/ndk/25.1.8937393
+  - task: JavaToolInstaller@0
+    displayName: 'Use Java 11'
+    inputs:
+      versionSpec: 11
+      jdkArchitectureOption: x64
+      jdkSourceOption: PreInstalled
+  - task: Gradle@2
+    inputs:
+      javaHomeOption: 'JDKVersion'
+      versionSpec: '11'
+      jdkArchitectureOption: 'x64'
+      jdkSourceOption: 'PreInstalled'
+      workingDirectory: ''
+      gradleWrapperFile: 'gradlew'
+      gradleOptions: '-Xmx3072m'
+      publishJUnitResults: false
+      testResultsFiles: '**/TEST-*.xml'
+      tasks: 'assembleDebug'
 
-    # replace "key.properties" with your secure file name
-    - task: DownloadSecureFile@1
-      name: keyprop
-      displayName: Download key properties file
-      inputs:
-        secureFile: 'key.properties'
-
-    # replace "key.jks" with your secure file name
-    - task: DownloadSecureFile@1
-      name: key
-      displayName: Download signing key
-      inputs:
-        secureFile: 'key.jks'
-
-    # adjust paths and file names here
-    - task: Bash@3
-      displayName: Copy config files
-      inputs:
-        targetType: 'inline'
-        script: |
-          cp $(keyprop.secureFilePath) $(Build.SourcesDirectory)/android/key.properties
-          cp $(key.secureFilePath) $(Build.SourcesDirectory)/android/app/key.jks
-      
-          echo "key.properties copied to $(Build.SourcesDirectory)/android/key.properties"
-          echo "key.jks copied to $(Build.SourcesDirectory)/android/app/key.jks"
