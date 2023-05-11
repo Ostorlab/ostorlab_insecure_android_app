@@ -10,12 +10,6 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
-  - task: FlutterInstall@0
-    inputs:
-      mode: 'auto'
-      channel: 'stable'
-      version: '3.7.12'
-      architecture: 'arm64'
   - task: CmdLine@2
     inputs:
       script: |
@@ -30,6 +24,14 @@ steps:
       versionSpec: 11
       jdkArchitectureOption: x64
       jdkSourceOption: PreInstalled
+  - task: FlutterInstall@0
+    inputs:
+      channel: 'stable'
+      version: 'latest'
+  - task: FlutterBuild@0
+    inputs:
+      target: 'ios'
+      projectDirectory: 'ostorlab_insecure_flutter_app'
   - task: Gradle@2
     inputs:
       javaHomeOption: 'JDKVersion'
