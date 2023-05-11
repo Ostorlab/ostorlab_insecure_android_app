@@ -24,6 +24,11 @@ steps:
       versionSpec: 11
       jdkArchitectureOption: x64
       jdkSourceOption: PreInstalled
+  - task: FlutterInstall@0
+    displayName: Setup flutter
+    inputs:
+      channel: 'stable'
+      version: '3.7.12'
   - task: Gradle@2
     inputs:
       javaHomeOption: 'JDKVersion'
