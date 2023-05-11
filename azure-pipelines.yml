@@ -36,3 +36,14 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug'
+- task: FlutterInstall@0
+  inputs:
+    mode: 'auto'
+    channel: 'stable'
+    version: '3.7.12'
+- task: FlutterBuild@0
+  inputs:
+    target: 'apk'
+    projectDirectory: '.'
+    entryPoint: "lib/main.dart"
+    iosCodesign: false
