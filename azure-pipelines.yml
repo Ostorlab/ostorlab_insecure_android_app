@@ -34,7 +34,6 @@ steps:
     target: 'apk'
     projectDirectory: 'ostorlab_insecure_flutter_app'
     entryPoint: "lib/main.dart"
-    iosCodesign: false
 - task: Gradle@2
   inputs:
     javaHomeOption: 'JDKVersion'
