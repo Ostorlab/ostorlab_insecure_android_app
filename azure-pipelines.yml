@@ -10,11 +10,6 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
-  - task: FlutterInstall@2
-    displayName: Setup flutter
-    inputs:
-      channel: 'stable'
-      version: '3.7.12'
   - task: CmdLine@2
     inputs:
       script: |
