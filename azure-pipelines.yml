@@ -9,11 +9,25 @@ trigger:
 pool:
   vmImage: 'macos-latest'
 
-steps:
-- task: FlutterInstall@0
-  inputs:
-    channel: 'stable'
-    version: '3.7.12'
-- bash: |
-    $(FlutterToolPath)/flutter pub get
-  displayName: flutter package get
+jobs:
+- job: ANDROID
+  displayName: Build_Android_APK
+  pool:
+    name: AndroidBuilder
+  steps:
+  - checkout: self
+  - task: FlutterInstall@0
+    inputs:
+      mode: 'auto'
+      channel: 'stable'
+      version: 'custom'
+      customVersion: '3.7.12'
+  - task: CmdLine@2
+    displayName: Upgrade & clean Flutter
+    inputs:
+      script: |
+        $(FlutterToolPath)/flutter clean \
+        cd ios \
+        pod deintegrate \
+        rm Flutter/Flutter.podspec \
+        rm podfile.lock \
