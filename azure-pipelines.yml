@@ -16,12 +16,4 @@ steps:
     mode: 'auto'
     channel: 'stable'
     version: 'latest'
-- task: CmdLine@2
-  displayName: Upgrade & clean Flutter
-  inputs:
-    script: |
-      $(FlutterToolPath)/flutter clean \
-      cd ios \
-      pod deintegrate \
-      rm Flutter/Flutter.podspec \
-      rm podfile.lock \
+
