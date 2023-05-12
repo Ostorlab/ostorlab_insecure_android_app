@@ -31,13 +31,15 @@ steps:
     channel: 'stable'
     version: 'custom'
     customVersion: '3.7.12'
-- task: CmdLine@2
-  displayName: 'Get dependencies'
+- task: Gradle@2
   inputs:
-    - script: flutter pub get
-      workingDirectory: 'ostorlab_insecure_flutter_app'
-- task: CmdLine@2
-  displayName: 'Start AAR build'
-  inputs:
-    - script: flutter build aar --no-sound-null-safety
-      workingDirectory: 'ostorlab_insecure_flutter_app'
+    javaHomeOption: 'JDKVersion'
+    versionSpec: '11'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
+    workingDirectory: ''
+    gradleWrapperFile: 'gradlew'
+    gradleOptions: '-Xmx3072m'
+    publishJUnitResults: false
+    testResultsFiles: '**/TEST-*.xml'
+    tasks: 'assembleDebug'
