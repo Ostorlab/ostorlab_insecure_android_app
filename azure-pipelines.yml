@@ -13,7 +13,7 @@ pool:
 steps:
 - task: FlutterInstall@0
   inputs:
-    mode: 'auto'
+    Mode: 'auto'
     channel: 'stable'
     version: 'latest'
 
