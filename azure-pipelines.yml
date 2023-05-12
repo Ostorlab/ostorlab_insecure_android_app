@@ -36,11 +36,11 @@ steps:
   inputs:
     projectDirectory: '.'
     arguments: 'doctor -v'
-- task: FlutterBuild@0
-  displayName: "Build application"
+- task: CmdLine@2
   inputs:
-    target: 'aar'
-    projectDirectory: ostorlab_insecure_flutter_app
+    script: |
+      export PATH="$PATH:`pwd`/flutter/bin"
+      flutter build aar --no-sound-null-safety
 - task: Gradle@2
   inputs:
     javaHomeOption: 'JDKVersion'
