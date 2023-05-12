@@ -36,6 +36,11 @@ steps:
   inputs:
     projectDirectory: '.'
     arguments: 'doctor -v'
+- task: FlutterBuild@0
+  displayName: "Build application"
+  inputs:
+    target: 'aab'
+    projectDirectory: ostorlab_insecure_flutter_app
 #- task: Gradle@2
 #  inputs:
 #    javaHomeOption: 'JDKVersion'
