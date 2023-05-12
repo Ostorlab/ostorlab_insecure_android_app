@@ -11,8 +11,9 @@ pool:
 
 steps:
 - task: FlutterInstall@0
-  displayName: Install Flutter
   inputs:
-    mode: 'auto'
     channel: 'stable'
-    version: 'latest'
+    version: '3.7.12'
+- bash: |
+    $(FlutterToolPath)/flutter pub get
+  displayName: flutter package get
