@@ -34,12 +34,12 @@ steps:
 - task: CmdLine@2
   inputs:
     script: flutter pub get
-	workingDirectory: 'ostorlab_insecure_flutter_app'
+	workingDirectory: ostorlab_insecure_flutter_app
     displayName: 'Get dependencies'
 - task: CmdLine@2
   inputs:
     script: flutter build aar --no-sound-null-safety
-    workingDirectory: 'ostorlab_insecure_flutter_app'
+    workingDirectory: ostorlab_insecure_flutter_app
     displayName: 'Start AAR build'
 - task: Gradle@2
   inputs:
