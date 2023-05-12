@@ -38,9 +38,8 @@ steps:
     arguments: 'doctor -v'
 - task: CmdLine@2
   inputs:
-    script: |
-      export PATH="$PATH:`pwd`/flutter/bin"
-      flutter build aar --no-sound-null-safety
+    script: /Users/runner/hostedtoolcache/Flutter/3.7.12/macos/flutter/bin/flutter build aar --no-sound-null-safety
+    workingDirectory: ostorlab_insecure_flutter_app
 - task: Gradle@2
   inputs:
     javaHomeOption: 'JDKVersion'
