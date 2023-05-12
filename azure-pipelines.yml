@@ -39,6 +39,7 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
+      cd $(projectName)/ostorlab_insecure_flutter_app
       /Users/runner/hostedtoolcache/Flutter/3.7.12/macos/flutter/bin/flutter build aar --no-sound-null-safety
 - task: Gradle@2
   inputs:
