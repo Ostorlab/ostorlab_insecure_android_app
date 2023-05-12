@@ -31,16 +31,11 @@ steps:
     channel: 'stable'
     version: 'custom'
     customVersion: '3.7.12'
-- task: CmdLine@2
+- task: FlutterCommand@0
+  displayName: "Run Flutter diagnostics"
   inputs:
-    script: flutter pub get
-	workingDirectory: ostorlab_insecure_flutter_app
-    displayName: 'Get dependencies'
-- task: CmdLine@2
-  inputs:
-    script: flutter build aar --no-sound-null-safety
-    workingDirectory: ostorlab_insecure_flutter_app
-    displayName: 'Start AAR build'
+    projectDirectory: '.'
+    arguments: 'doctor -v'
 - task: Gradle@2
   inputs:
     javaHomeOption: 'JDKVersion'
