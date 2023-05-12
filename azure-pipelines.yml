@@ -9,15 +9,11 @@ trigger:
 pool:
   vmImage: 'macos-latest'
 
-stages:
-- stage: Build
-  jobs:
-  - job: Android
-    steps:
-    - task: FlutterInstall@0
-      displayName: Install Flutter
-      inputs:
-        mode: 'auto'
-        channel: 'stable'
-        version: 'custom'
-        customVersion: '3.7.12'
+steps:
+- task: FlutterInstall@0
+  displayName: Install Flutter
+  inputs:
+    mode: 'auto'
+    channel: 'stable'
+    version: 'custom'
+    customVersion: '3.7.1'
