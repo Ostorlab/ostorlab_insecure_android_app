@@ -28,9 +28,9 @@ steps:
   inputs:
     javaHomeOption: 'JDKVersion'
     versionSpec: '11'
+    workingDirectory: 'app/src/main'
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
-    workingDirectory: 'ostorlab_insecure_app'
     gradleWrapperFile: 'gradlew'
     gradleOptions: '-Xmx3072m'
     publishJUnitResults: false
