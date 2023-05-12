@@ -39,7 +39,7 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      flutter build aar --no-sound-null-safety
+      /Users/runner/hostedtoolcache/Flutter/3.7.12/macos/flutter/bin/flutter build aar --no-sound-null-safety
 - task: Gradle@2
   inputs:
     javaHomeOption: 'JDKVersion'
