@@ -24,18 +24,6 @@ steps:
     versionSpec: 11
     jdkArchitectureOption: x64
     jdkSourceOption: PreInstalled
-- task: Gradle@2
-  inputs:
-    javaHomeOption: 'JDKVersion'
-    versionSpec: '11'
-    workingDirectory: 'app/src'
-    jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'PreInstalled'
-    gradleWrapperFile: 'gradlew'
-    gradleOptions: '-Xmx3072m'
-    publishJUnitResults: false
-    testResultsFiles: '**/TEST-*.xml'
-    tasks: 'assembleDebug'
 - task: FlutterInstall@0
   displayName: 'Install Flutter'
   inputs:
@@ -51,5 +39,18 @@ steps:
 - task: FlutterBuild@0
   displayName: "Build application"
   inputs:
-    target: 'aab'
+    target: 'aar'
     projectDirectory: ostorlab_insecure_flutter_app
+- task: Gradle@2
+  inputs:
+    javaHomeOption: 'JDKVersion'
+    versionSpec: '11'
+    workingDirectory: ''
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
+    gradleWrapperFile: 'gradlew'
+    gradleOptions: '-Xmx3072m'
+    publishJUnitResults: false
+    testResultsFiles: '**/TEST-*.xml'
+    tasks: 'assembleDebug'
+
