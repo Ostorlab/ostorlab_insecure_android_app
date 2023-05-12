@@ -28,7 +28,7 @@ steps:
   inputs:
     javaHomeOption: 'JDKVersion'
     versionSpec: '11'
-    workingDirectory: 'app/src/main'
+    workingDirectory: 'app/src'
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
     gradleWrapperFile: 'gradlew'
