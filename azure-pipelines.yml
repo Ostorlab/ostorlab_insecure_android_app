@@ -7,27 +7,21 @@ trigger:
 - master
 
 pool:
-  vmImage: 'macos-latest'
+  vmImage: "macos-latest"
 
-jobs:
-- job: ANDROID
-  displayName: Build_Android_APK
-  pool:
-    name: AndroidBuilder
-  steps:
-  - checkout: self
-  - task: FlutterInstall@0
-    inputs:
-      mode: 'auto'
-      channel: 'stable'
-      version: 'custom'
-      customVersion: '3.7.12'
-  - task: CmdLine@2
-    displayName: Upgrade & clean Flutter
-    inputs:
-      script: |
-        $(FlutterToolPath)/flutter clean \
-        cd ios \
-        pod deintegrate \
-        rm Flutter/Flutter.podspec \
-        rm podfile.lock \
+
+steps:
+- task: FlutterInstall@0
+  inputs:
+    mode: 'auto'
+    channel: 'stable'
+    version: 'latest'
+- task: CmdLine@2
+  displayName: Upgrade & clean Flutter
+  inputs:
+    script: |
+      $(FlutterToolPath)/flutter clean \
+      cd ios \
+      pod deintegrate \
+      rm Flutter/Flutter.podspec \
+      rm podfile.lock \
