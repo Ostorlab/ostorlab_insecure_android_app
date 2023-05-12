@@ -7,13 +7,49 @@ trigger:
 - master
 
 pool:
-  vmImage: "macos-latest"
-
+  vmImage: 'macos-latest'
 
 steps:
+- task: CmdLine@2
+  inputs:
+    script: |
+      sudo mkdir -p /usr/local/lib/android
+      yes | $ANDROID_HOME/tools/bin/sdkmanager --install "ndk;25.1.8937393"
+      ls $ANDROID_HOME/ndk
+      sudo cp -r $ANDROID_HOME /usr/local/lib/android/sdk
+      ls /usr/local/lib/android/sdk/ndk/25.1.8937393
+- task: JavaToolInstaller@0
+  displayName: 'Use Java 11'
+  inputs:
+    versionSpec: 11
+    jdkArchitectureOption: x64
+    jdkSourceOption: PreInstalled
+- task: Gradle@2
+  inputs:
+    javaHomeOption: 'JDKVersion'
+    versionSpec: '11'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
+    workingDirectory: ''
+    gradleWrapperFile: 'gradlew'
+    gradleOptions: '-Xmx3072m'
+    publishJUnitResults: false
+    testResultsFiles: '**/TEST-*.xml'
+    tasks: 'assembleDebug'
 - task: FlutterInstall@0
+  displayName: 'Install Flutter'
   inputs:
     Mode: 'auto'
     channel: 'stable'
-    version: 'latest'
-
+    version: 'custom'
+    customVersion: '3.7.12'
+- task: CmdLine@2
+  displayName: 'Get dependencies'
+  inputs:
+    - script: flutter pub get
+      workingDirectory: 'ostorlab_insecure_flutter_app'
+- task: CmdLine@2
+  displayName: 'Start AAR build'
+  inputs:
+    - script: flutter build aar --no-sound-null-safety
+      workingDirectory: 'ostorlab_insecure_flutter_app'
