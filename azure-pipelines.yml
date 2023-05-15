@@ -24,13 +24,29 @@ steps:
     versionSpec: 11
     jdkArchitectureOption: x64
     jdkSourceOption: PreInstalled
+- task: FlutterInstall@0
+  displayName: 'Install Flutter'
+  inputs:
+    Mode: 'auto'
+    channel: 'stable'
+    version: 'custom'
+    customVersion: '3.7.12'
+- task: FlutterCommand@0
+  displayName: "Run Flutter diagnostics"
+  inputs:
+    projectDirectory: '.'
+    arguments: 'doctor -v'
+- task: CmdLine@2
+  inputs:
+    script: /Users/runner/hostedtoolcache/Flutter/3.7.12/macos/flutter/bin/flutter build aar --no-sound-null-safety
+    workingDirectory: ostorlab_insecure_flutter_app
 - task: Gradle@2
   inputs:
     javaHomeOption: 'JDKVersion'
     versionSpec: '11'
+    workingDirectory: ''
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
-    workingDirectory: ''
     gradleWrapperFile: 'gradlew'
     gradleOptions: '-Xmx3072m'
     publishJUnitResults: false
