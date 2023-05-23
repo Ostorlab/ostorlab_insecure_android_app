@@ -3,9 +3,7 @@ import 'package:encrypt/encrypt.dart';
 import 'package:ostorlab_insecure_flutter_app/bug_rule.dart';
 
 
-abstract class BugRule {
-  late BuildContext context;
-
+abstract OraclePadding class BugRule {
     String get _tag => 'OraclePadding';
 
     String get description => 'This bug rule uses CBC insecure encryption mode.';
