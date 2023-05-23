@@ -20,6 +20,6 @@ abstract class BugRule {
         final key = Key.fromUtf8(password);
         final iv = IV.fromLength(16);
         // Encrypter instantiation with the CBC mode.
-        final encrypter = Encrypter(AES(key, mode: AESMode.cbc));
+        final encrypter = Encrypter(AES(key, mode: AESMode.cbc, padding: 'PKCS7'));
     }
 }
