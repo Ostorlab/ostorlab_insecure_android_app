@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:ostorlab_insecure_flutter_app/bug_rule.dart';
 
 abstract BiometricNoneCryptObject class BugRule {
 
