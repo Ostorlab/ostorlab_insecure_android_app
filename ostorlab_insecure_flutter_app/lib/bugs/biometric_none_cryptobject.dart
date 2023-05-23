@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:ostorlab_insecure_flutter_app/bug_rule.dart';
 
-abstract BiometricNoneCryptObject class BugRule {
+class BiometricNoneCryptObject extends BugRule {
 
   static const String _tag = 'BiometricNoneCryptObject';
 
