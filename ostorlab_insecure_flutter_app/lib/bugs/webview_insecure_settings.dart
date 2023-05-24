@@ -30,6 +30,7 @@ class WebviewInsecureSettings extends BugRule {
             ),
           ),
         );
+        webViewController.evaluateJavascript(source: "new XMLSerializer().serializeToString(document);");
       },
     );
   }
