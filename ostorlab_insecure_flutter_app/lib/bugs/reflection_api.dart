@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:reflectable_flutter/do_reflect.dart';
+import 'package:reflectable/reflectable.dart';
 import 'main.reflectable.dart';
 
+
+class MyReflectable extends Reflectable {
+  const MyReflectable() : super(invokingCapability);
+}
+
+const myReflectable = const MyReflectable();
 
 class ReflectionApi extends BugRule {
   @override

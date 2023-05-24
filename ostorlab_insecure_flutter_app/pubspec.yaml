@@ -31,7 +31,7 @@ dependencies:
   sqflite: ^2.2.8
   path_provider: ^2.0.2
   flutter_inappwebview: ^5.7.2+3
-#  flutter_android: ^0.8.0
+  flutter_android: ^0.8.0
   reflectable: any
   build_runner: any
   built_value_generator: any
