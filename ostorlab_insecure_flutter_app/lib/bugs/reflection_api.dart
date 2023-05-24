@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reflectable/reflectable.dart';
-import 'main.reflectable.dart';
+import 'package:ostorlab_insecure_flutter_app/main.reflectable.dart';
 
 
 class MyReflectable extends Reflectable {
