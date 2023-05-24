@@ -15,6 +15,7 @@ import 'package:ostorlab_insecure_flutter_app/bugs/sqlite_database_call.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/static_iv.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/tls_traffic.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/webview_insecure_settings.dart';
+import 'package:ostorlab_insecure_flutter_app/bugs/oracle_padding.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/biometric_none_cryptobject.dart';
 
 void main() {
@@ -79,6 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
     caller.addRule(PathTraversal());
     caller.addRule(WebviewInsecureSettings());
     caller.addRule(InsecureSharedPreferences());
+    caller.addRule(OraclePadding());
     caller.addRule(BiometricNoneCryptObject());
 
     try {
