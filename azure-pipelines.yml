@@ -55,5 +55,5 @@ steps:
 - task: CmdLine@2
   inputs:
     workingDirectory: ''
-    script: ls build/outputs
+    script: ls app/build/outputs/apk/debug
 
