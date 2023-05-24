@@ -14,7 +14,7 @@ class OraclePadding extends BugRule {
         String password = "ThisIs128bitSize";
 
         final plainText = utf8.encode(data);
-        // specify an ecryption key and a random initialization vector
+        // Specify an ecryption key and a random initialization vector.
         final key = Key.fromUtf8(password);
         final iv = IV.fromLength(16);
         // Encrypter instantiation with the CBC mode.
