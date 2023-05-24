@@ -56,10 +56,3 @@ steps:
   inputs:
     workingDirectory: ''
     script: ls app/build/outputs/apk/debug
-
-- task: ostorlab-azure-security-scanner@1
-  inputs:
-    apiKey: '2aNFAiCm.ykXPvIYhpj4C1kvgLZKKVdgm2JeeoExw'
-    filepath: 'app/build/outputs/apk/debug/app-debug.apk'
-    platform: 'android'
-    artifactsDir: '$(build.artifactStagingDirectory)/ostorlabArtifacts'
