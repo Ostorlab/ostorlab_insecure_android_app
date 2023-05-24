@@ -16,6 +16,7 @@ import 'package:ostorlab_insecure_flutter_app/bugs/static_iv.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/tls_traffic.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/webview_insecure_settings.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/biometric_none_cryptobject.dart';
+import 'package:ostorlab_insecure_flutter_app/bugs/reflection_api.dart';
 
 void main() {
   runApp(MyApp());
@@ -80,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
     caller.addRule(WebviewInsecureSettings());
     caller.addRule(InsecureSharedPreferences());
     caller.addRule(BiometricNoneCryptObject());
+    caller.addRule(ReflectionApi());
 
     try {
       await caller.callRules();
