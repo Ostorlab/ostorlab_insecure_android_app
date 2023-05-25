@@ -32,6 +32,9 @@ dependencies:
   path_provider: ^2.0.2
   flutter_inappwebview: ^5.7.2+3
   flutter_android: ^0.8.0
+  reflectable: any
+  build_runner: any
+  built_value_generator: any
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
