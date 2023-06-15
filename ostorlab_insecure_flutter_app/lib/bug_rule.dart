@@ -9,6 +9,10 @@ abstract class BugRule {
     // Implementation of run method
   }
 
+  Future<void> runTainted(String userInput) async {
+    // Implementation of run method for taint analysis
+  }
+
   /// Returns the description of the bug rule.
   String get description;
 

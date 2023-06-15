@@ -37,7 +37,19 @@ class BugRuleCaller {
       try {
         await rule.run();
       } catch (e) {
-        print('Exception caught while running rule ${rule.toString()}: ${e.toString()}');
+        print(
+            'Exception caught while running rule ${rule.toString()}: ${e.toString()}');
+      }
+    }
+  }
+
+  Future<void> callTaintedRules(String user_input) async {
+    for (final rule in rules) {
+      try {
+        await rule.runTainted(user_input);
+      } catch (e) {
+        print(
+            'Exception caught while running rule ${rule.toString()}: ${e.toString()}');
       }
     }
   }

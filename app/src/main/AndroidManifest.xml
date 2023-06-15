@@ -41,4 +41,16 @@
             />
     </application>
 
+
+    <application>
+        <activity>
+      
+
+            <intent-filter>
+                <action android:name="RECEIVE_USER_INPUT_INTENT" />
+                <!-- <category android:name="android.intent.category.DEFAULT"/> -->
+            </intent-filter>
+        </activity>
+      </application>
+
 </manifest>
