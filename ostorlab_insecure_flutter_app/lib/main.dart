@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:ostorlab_insecure_flutter_app/bug_rule_caller.dart';
@@ -19,8 +21,9 @@ import 'package:ostorlab_insecure_flutter_app/bugs/oracle_padding.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/biometric_none_cryptobject.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/reflection_api.dart';
 
-import 'package:android_intent_plus/android_intent.dart';
+// import 'package:android_intent_plus/android_intent.dart';
 import 'package:flutter/material.dart';
+import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 void main() {
   runApp(MyApp());
@@ -52,22 +55,31 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   late TextEditingController _controller;
+  late StreamSubscription _intentData;
   String _output = '';
-  String data = '';
+  String? data;
 
   @override
   void initState() {
     super.initState();
     _controller = TextEditingController(text: _output);
-    void launchIntent() {
-      AndroidIntent intent = AndroidIntent(
-        action: 'android.intent.action.SEND',
-        componentName: 'co.ostorlab.insecure_app.MainActivity',
-      );
+    _intentData =
+        ReceiveSharingIntent.getTextStream().listen((String user_input) {
+      setState(() {
+        data = user_input;
+      });
+    });
+    ReceiveSharingIntent.getInitialText().then((String? user_input) => {
+          setState(() {
+            data = user_input;
+          })
+        });
+  }
 
-      intent.launch();
-      String data = intent.data ?? "";
-    }
+  @override
+  void dispose() {
+    _intentData.cancel();
+    super.dispose();
   }
 
   void _runAll(String user_input) async {
@@ -138,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 ElevatedButton(
                   onPressed: () {
-                    _runAll(data);
+                    _runAll(data ?? "");
                   },
                   child: Text('Run All'),
                 ),
