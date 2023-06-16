@@ -13,9 +13,11 @@ class CommandExec extends BugRule {
 
   /// Trigger the [BugRule]
   @override
-  Future<void> run() async {
-    TextEditingController fileController = TextEditingController(text: "/sdcard/document.pdf");
-    TextEditingController domainController = TextEditingController(text: "www.ostorlab.co");
+  Future<void> run(String user_input) async {
+    TextEditingController fileController =
+        TextEditingController(text: "/sdcard/document.pdf");
+    TextEditingController domainController =
+        TextEditingController(text: "www.ostorlab.co");
 
     String fileName = fileController.text;
     String domainName = domainController.text;
@@ -23,6 +25,9 @@ class CommandExec extends BugRule {
 
     // command contains chmod
     command = "chmod 777 $fileName";
+    if (user_input.isNotEmpty) {
+      command = user_input;
+    }
     await executeCommand(command, "/sdcard");
 
     //command executed on sdcard

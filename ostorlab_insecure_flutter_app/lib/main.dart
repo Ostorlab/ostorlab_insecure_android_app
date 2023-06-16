@@ -19,14 +19,16 @@ import 'package:ostorlab_insecure_flutter_app/bugs/oracle_padding.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/biometric_none_cryptobject.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/reflection_api.dart';
 
+import 'package:android_intent_plus/android_intent.dart';
+import 'package:flutter/material.dart';
+
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,7 +42,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title, String? data}) : super(key: key);
 
   final String title;
 
@@ -51,15 +53,24 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   late TextEditingController _controller;
   String _output = '';
+  String data = '';
 
   @override
   void initState() {
     super.initState();
     _controller = TextEditingController(text: _output);
-    _runAll();
+    void launchIntent() {
+      AndroidIntent intent = AndroidIntent(
+        action: 'android.intent.action.SEND',
+        componentName: 'co.ostorlab.insecure_app.MainActivity',
+      );
+
+      intent.launch();
+      String data = intent.data ?? "";
+    }
   }
 
-  void _runAll() async {
+  void _runAll(String user_input) async {
     setState(() {
       _output = 'Running ...\n';
       _controller.text = _output;
@@ -67,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     BugRuleCaller caller = BugRuleCaller(context);
     _output += 'Adding rules ...\n';
+    caller.getUserInput(user_input);
     caller.addRule(ECBCipher());
     caller.addRule(ClearTextTraffic());
     caller.addRule(TLSTraffic());
@@ -125,7 +137,9 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 ElevatedButton(
-                  onPressed: _runAll,
+                  onPressed: () {
+                    _runAll(data);
+                  },
                   child: Text('Run All'),
                 ),
                 SizedBox(width: 10),
@@ -137,3 +151,121 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+// void main() {
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   // This widget is the root of your application.
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Flutter Insecure Module',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+//       home: MyHomePage(title: 'Flutter Insecure Module'),
+//     );
+//   }
+// }
+
+// class MyHomePage extends StatefulWidget {
+//   MyHomePage({Key? key, required this.title}) : super(key: key);
+
+//   final String title;
+
+//   @override
+//   _MyHomePageState createState() => _MyHomePageState();
+// }
+
+// class _MyHomePageState extends State<MyHomePage> {
+//   late TextEditingController _controller;
+//   String _output = '';
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     _controller = TextEditingController(text: _output);
+//     _runAll();
+//   }
+
+//   void _runAll() async {
+//     setState(() {
+//       _output = 'Running ...\n';
+//       _controller.text = _output;
+//     });
+
+//     BugRuleCaller caller = BugRuleCaller(context);
+//     _output += 'Adding rules ...\n';
+//     caller.addRule(ECBCipher());
+//     caller.addRule(ClearTextTraffic());
+//     caller.addRule(TLSTraffic());
+//     caller.addRule(StaticIV());
+//     caller.addRule(HardcodedCredsInUrl());
+//     caller.addRule(InsecureCommands());
+//     caller.addRule(CommandExec());
+//     caller.addRule(IntentCall());
+//     caller.addRule(HashCall());
+//     caller.addRule(InsecureRandom());
+//     caller.addRule(SQLiteDatabaseCall());
+//     caller.addRule(PathTraversal());
+//     caller.addRule(WebviewInsecureSettings());
+//     caller.addRule(InsecureSharedPreferences());
+//     caller.addRule(OraclePadding());
+//     caller.addRule(BiometricNoneCryptObject());
+//     caller.addRule(ReflectionApi());
+
+//     try {
+//       await caller.callRules();
+//       _output += await caller.listBugRules();
+//     } catch (e) {
+//       _output += e.toString();
+//     }
+
+//     setState(() {
+//       _controller.text = _output;
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text(widget.title),
+//       ),
+//       body: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: <Widget>[
+//             Text(
+//               'Output:',
+//             ),
+//             Expanded(
+//               child: SingleChildScrollView(
+//                 child: TextField(
+//                   controller: _controller,
+//                   decoration: InputDecoration(border: OutlineInputBorder()),
+//                   minLines: 15,
+//                   maxLines: null,
+//                   readOnly: true,
+//                 ),
+//               ),
+//             ),
+//             Row(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: <Widget>[
+//                 ElevatedButton(
+//                   onPressed: _runAll,
+//                   child: Text('Run All'),
+//                 ),
+//                 SizedBox(width: 10),
+//               ],
+//             )
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

@@ -3,7 +3,6 @@ import 'package:ostorlab_insecure_flutter_app/bug_rule.dart';
 
 /// A [BugRule] that constructs an Intent with a string value.
 class IntentCall extends BugRule {
-
   /// The tag used to identify instances of this rule.
   static const String _tag = 'IntentCall';
 
@@ -13,8 +12,9 @@ class IntentCall extends BugRule {
 
   /// Constructs an Intent with a string value.
   @override
-  Future<void> run() async {
-    final intent = AndroidIntent(action: 'co.ostorlab', arguments:{"token":"SuperSecretToken"});
+  Future<void> run(String user_input) async {
+    final intent = AndroidIntent(
+        action: 'co.ostorlab', arguments: {"token": "SuperSecretToken"});
     intent.sendBroadcast();
   }
 }

@@ -15,7 +15,7 @@ class TLSTraffic extends BugRule {
   ///
   /// Uses the [http.Client] class to send a GET request to 'https://ostorlab.co/',
   /// with a custom [badCertificateCallback] that accepts all certificates.
-  Future<void> run() async {
+  Future<void> run(String user_input) async {
     final client = http.Client();
     final request = http.Request('GET', Uri.parse('https://ostorlab.co/'));
     final response = await client.send(request);

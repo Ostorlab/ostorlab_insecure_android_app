@@ -6,25 +6,29 @@ import 'package:sqflite/sqflite.dart';
 
 class SQLiteDatabaseCall extends BugRule {
   @override
-  Future<void> run() async {
+  Future<void> run(String user_input) async {
     SqfliteHelper sqfliteHelper = SqfliteHelper();
     Database db = await sqfliteHelper.getWritableDatabase();
 
     // get user input for name and amount from a text field
-    TextEditingController nameController = TextEditingController(text: "ostorlab_user");
+    if (user_input.isEmpty) {
+      user_input = "ostorlab_user";
+    }
+    TextEditingController nameController =
+        TextEditingController(text: user_input);
     TextEditingController amountController = TextEditingController(text: "0");
 
     String name = nameController.text;
     double amount = double.tryParse(amountController.text) ?? 0.0;
 
     // insert data into database
-    String insertQuery = "INSERT INTO ${SqfliteHelper.TABLE_NAME}(${SqfliteHelper.NAME}, ${SqfliteHelper.AMOUNT}) VALUES(?, ?)";
+    String insertQuery =
+        "INSERT INTO ${SqfliteHelper.TABLE_NAME}(${SqfliteHelper.NAME}, ${SqfliteHelper.AMOUNT}) VALUES(?, ?)";
     await db.rawInsert(insertQuery, [name, amount]);
 
     sqfliteHelper.dropTable();
     db.close();
   }
-
 
   @override
   String get description => 'The application uses sqflite';

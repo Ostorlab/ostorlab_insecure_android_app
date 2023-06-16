@@ -8,7 +8,8 @@ class InsecureSharedPreferences extends BugRule {
 
   /// Returns a description of this [BugRule] implementation.
   @override
-  String get description => 'Call to shared preference method using insecure permission';
+  String get description =>
+      'Call to shared preference method using insecure permission';
 
   /// Android Context modes
   int MODE_PRIVATE = 0;
@@ -17,11 +18,13 @@ class InsecureSharedPreferences extends BugRule {
   int MODE_MULTI_PROCESS = 4; // This constant was deprecated in API level 23.
 
   /// Create multiple shared preferences instances using different flags.
-  Future<void> run() async {
+  Future<void> run(String user_input) async {
     String token = 'SuperSecretToken';
     Context.getSharedPreferences(token, MODE_PRIVATE);
     Context.getSharedPreferences(token, MODE_WORLD_READABLE);
-    Context.getSharedPreferences(token, MODE_WORLD_READABLE | MODE_WORLD_WRITEABLE);
-    Context.getSharedPreferences(token, MODE_WORLD_READABLE | MODE_MULTI_PROCESS);
+    Context.getSharedPreferences(
+        token, MODE_WORLD_READABLE | MODE_WORLD_WRITEABLE);
+    Context.getSharedPreferences(
+        token, MODE_WORLD_READABLE | MODE_MULTI_PROCESS);
   }
 }

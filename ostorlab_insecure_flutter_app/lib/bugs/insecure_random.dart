@@ -16,11 +16,12 @@ class InsecureRandom extends BugRule {
 
   /// Returns a description of this [BugRule] implementation.
   @override
-  String get description => 'The application uses insecure random number generators, which can lead to security vulnerabilities and should be replaced with cryptographically secure alternatives.';
+  String get description =>
+      'The application uses insecure random number generators, which can lead to security vulnerabilities and should be replaced with cryptographically secure alternatives.';
 
   /// Triggers the bug rule by using an insecure random number generator and a cryptographically secure random number generator.
   @override
-  Future<void> run() async {
+  Future<void> run(String user_input) async {
     // Define a random number generator with an insecure seed value
     final gen1 = Random(SEED);
 

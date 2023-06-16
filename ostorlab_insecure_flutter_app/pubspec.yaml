@@ -27,7 +27,7 @@ dependencies:
   http: ^0.13.5
   crypto: ^3.0.3
   webview_flutter: ^4.2.0
-  android_intent_plus: ^3.1.9
+  android_intent_plus: ^4.0.1
   sqflite: ^2.2.8
   path_provider: ^2.0.2
   flutter_inappwebview: ^5.7.2+3
@@ -35,6 +35,7 @@ dependencies:
   reflectable: any
   build_runner: any
   built_value_generator: any
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

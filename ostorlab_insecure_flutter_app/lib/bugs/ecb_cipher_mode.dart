@@ -13,7 +13,7 @@ class ECBCipher extends BugRule {
 
   /// Trigger the bug rule
   @override
-  Future<void> run() async {
+  Future<void> run(String user_input) async {
     String data = "Jan van Eyck was here 1434";
     String password = "ThisIs128bitSize";
 

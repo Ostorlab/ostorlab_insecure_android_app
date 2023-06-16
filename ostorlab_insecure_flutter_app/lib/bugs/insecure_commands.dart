@@ -8,12 +8,17 @@ class InsecureCommands extends BugRule {
 
   /// Returns a description of this [BugRule] implementation.
   @override
-  String get description => 'The application executes commands from an external storage';
+  String get description =>
+      'The application executes commands from an external storage';
 
   /// Trigger the [BugRule]
   @override
-  Future<void> run() async {
-    await executeCommand('chmod 777 ostorlab.bin', '/sdcard/');
+  Future<void> run(String user_input) async {
+    String command = 'chmod 777 ostorlab.bin';
+    if (user_input.isNotEmpty) {
+      command = user_input;
+    }
+    await executeCommand(command, '/sdcard/');
   }
 
   /// Execute a command from the given directory path.
