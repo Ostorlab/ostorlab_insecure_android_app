@@ -21,8 +21,7 @@ import 'package:ostorlab_insecure_flutter_app/bugs/oracle_padding.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/biometric_none_cryptobject.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/reflection_api.dart';
 
-import 'package:flutter/material.dart';
-import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+import 'package:receive_intent/receive_intent.dart' as receive_intent;
 
 void main() {
   runApp(MyApp());
@@ -56,23 +55,24 @@ class _MyHomePageState extends State<MyHomePage> {
   late TextEditingController _controller;
   late StreamSubscription _intentData;
   String _output = '';
-  String? data;
+
+  Future<void> _initReceiveIntent() async {
+    final receivedIntent =
+        await receive_intent.ReceiveIntent.getInitialIntent();
+    final extraList = receivedIntent!.extra!.values.toList();
+    String input = "";
+    for (var i = 0; i < extraList.length; i++) {
+      input += extraList[i];
+    }
+    _runAll(input);
+  }
 
   @override
   void initState() {
     super.initState();
     _controller = TextEditingController(text: _output);
-    _intentData =
-        ReceiveSharingIntent.getTextStream().listen((String user_input) {
-      setState(() {
-        data = user_input;
-      });
-    });
-    ReceiveSharingIntent.getInitialText().then((String? user_input) => {
-          setState(() {
-            data = user_input;
-          })
-        });
+
+    _initReceiveIntent();
   }
 
   @override
@@ -81,15 +81,14 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
-  void _runAll(String user_input) async {
+  void _runAll(String input) async {
     setState(() {
-      _output = 'Running ...\n';
+      _output = 'Running ... \n';
       _controller.text = _output;
     });
 
     BugRuleCaller caller = BugRuleCaller(context);
     _output += 'Adding rules ...\n';
-    caller.getUserInput(user_input);
     caller.addRule(ECBCipher());
     caller.addRule(ClearTextTraffic());
     caller.addRule(TLSTraffic());
@@ -109,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
     caller.addRule(ReflectionApi());
 
     try {
-      await caller.callRules();
+      await caller.callRules(input);
       _output += await caller.listBugRules();
     } catch (e) {
       _output += e.toString();
@@ -148,9 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 ElevatedButton(
-                  onPressed: () {
-                    _runAll(data ?? "");
-                  },
+                  onPressed: () => _runAll(""),
                   child: Text('Run All'),
                 ),
                 SizedBox(width: 10),

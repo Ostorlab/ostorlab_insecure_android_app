@@ -7,7 +7,6 @@ class BugRuleCaller {
 
   late List<BugRule> rules;
   late BuildContext context;
-  late String user_input;
 
   /// Creates a new instance of [BugRuleCaller] with the provided [BuildContext].
   BugRuleCaller(this.context) {
@@ -23,10 +22,6 @@ class BugRuleCaller {
     rules.add(rule);
   }
 
-  void getUserInput(String user_input) {
-    this.user_input = user_input;
-  }
-
   /// Returns a string representation of the [BugRule] instances managed by this [BugRuleCaller] instance.
   Future<String> listBugRules() async {
     final buffer = StringBuffer();
@@ -37,10 +32,10 @@ class BugRuleCaller {
   }
 
   /// Calls the [run] method of each [BugRule] instance managed by this [BugRuleCaller] instance.
-  Future<void> callRules() async {
+  Future<void> callRules(String input) async {
     for (final rule in rules) {
       try {
-        await rule.run(this.user_input);
+        await rule.run(input);
       } catch (e) {
         print(
             'Exception caught while running rule ${rule.toString()}: ${e.toString()}');
