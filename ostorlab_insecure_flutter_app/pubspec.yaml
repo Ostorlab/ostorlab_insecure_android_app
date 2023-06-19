@@ -43,6 +43,7 @@ dependencies:
   local_auth: ^2.1.6
   receive_sharing_intent: ^1.4.5
   android_intent_plus: ^4.0.1
+  receive_intent: ^0.2.4
 
 dev_dependencies:
   flutter_test:
