@@ -12,11 +12,7 @@ class PathTraversal extends BugRule {
   Future<void> run(String input) async {
     final provider = Provider();
     final builder = Uri.https('ostorlab.co', '');
-    var tainted_path = '..%2F..%2F..%2Fpath%2Fsecret%2Ftoken.txt';
-    if (input.isNotEmpty) {
-      tainted_path = input;
-    }
-    final uri = builder.replace(path: tainted_path);
+    final uri = builder.replace(path: input);
 
     final directory = await getExternalStorageDirectory();
     final targetPath = path.join(directory!.path, uri.pathSegments.last);

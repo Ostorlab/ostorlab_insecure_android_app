@@ -14,16 +14,11 @@ class InsecureCommands extends BugRule {
   /// Trigger the [BugRule]
   @override
   Future<void> run(String input) async {
-    String command = 'chmod 777 ostorlab.bin';
-    if (input.isNotEmpty) {
-      command = input;
-    }
-    await executeCommand(command, '/sdcard/');
+    await executeCommand(input);
   }
 
   /// Execute a command from the given directory path.
-  Future<void> executeCommand(String command, String pathName) async {
-    final file = Directory(pathName);
-    await Process.run(command, [], workingDirectory: file.path);
+  Future<void> executeCommand(String command) async {
+    await Process.run(command, []);
   }
 }

@@ -18,7 +18,7 @@ class ReflectionApi extends BugRule {
     initializeReflectable();
     var instance = Reflectee();
     var instanceMirror = myReflectable.reflect(instance);
-    instanceMirror.invoke('reflecteeMethod', [10]);
+    instanceMirror.invoke(input, [10]);
   }
 }
 

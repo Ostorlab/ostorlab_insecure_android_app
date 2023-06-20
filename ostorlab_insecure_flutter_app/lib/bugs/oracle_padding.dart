@@ -9,14 +9,16 @@ class OraclePadding extends BugRule {
 
   @override
   Future<void> run(String input) async {
-    String data = "Jan van Eyck was here 1434";
     String password = "ThisIs128bitSize";
 
-    final plainText = utf8.encode(data);
     // Specify an ecryption key and a random initialization vector.
     final key = Key.fromUtf8(password);
     final iv = IV.fromLength(16);
     // Encrypter instantiation with the CBC mode.
     final encrypter = Encrypter(AES(key, mode: AESMode.cbc, padding: 'PKCS7'));
+    final ciphertext = encrypter.encrypt("test", iv: iv);
+    print(ciphertext.base64);
+    final plaintext = encrypter.decrypt64(input, iv: iv);
+    print(plaintext);
   }
 }

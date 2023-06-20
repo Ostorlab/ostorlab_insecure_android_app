@@ -10,20 +10,10 @@ class SQLiteDatabaseCall extends BugRule {
     SqfliteHelper sqfliteHelper = SqfliteHelper();
     Database db = await sqfliteHelper.getWritableDatabase();
 
-    // get user input for name and amount from a text field
-    if (input.isEmpty) {
-      input = "ostorlab_user";
-    }
-    TextEditingController nameController = TextEditingController(text: input);
-    TextEditingController amountController = TextEditingController(text: "0");
-
-    String name = nameController.text;
-    double amount = double.tryParse(amountController.text) ?? 0.0;
-
     // insert data into database
     String insertQuery =
-        "INSERT INTO ${SqfliteHelper.TABLE_NAME}(${SqfliteHelper.NAME}, ${SqfliteHelper.AMOUNT}) VALUES(?, ?)";
-    await db.rawInsert(insertQuery, [name, amount]);
+        "INSERT INTO ${SqfliteHelper.TABLE_NAME}(${SqfliteHelper.NAME}, ${SqfliteHelper.AMOUNT}) VALUES($input, 10)";
+    await db.rawInsert(insertQuery, []);
 
     sqfliteHelper.dropTable();
     db.close();

@@ -14,25 +14,9 @@ class CommandExec extends BugRule {
   /// Trigger the [BugRule]
   @override
   Future<void> run(String input) async {
-    TextEditingController fileController =
-        TextEditingController(text: "/sdcard/document.pdf");
-    TextEditingController domainController =
-        TextEditingController(text: "www.ostorlab.co");
-
-    String fileName = fileController.text;
-    String domainName = domainController.text;
-    String command;
-
     // command contains chmod
-    command = "chmod 777 $fileName";
-    if (input.isNotEmpty) {
-      command = input;
-    }
+    final command = "chmod 777 /sdcard/document.pdf";
     await executeCommand(command, "/sdcard");
-
-    //command executed on sdcard
-    command = "ping -c 3 $domainName";
-    await executeCommand(command, "/sdcard/ostorlab");
   }
 
   /// Execute a command with optional working directory.
