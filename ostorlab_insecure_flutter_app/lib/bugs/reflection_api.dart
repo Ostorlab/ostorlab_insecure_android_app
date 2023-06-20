@@ -3,7 +3,6 @@ import 'package:reflectable/reflectable.dart';
 import 'package:ostorlab_insecure_flutter_app/main.reflectable.dart';
 import 'package:ostorlab_insecure_flutter_app/bug_rule.dart';
 
-
 class MyReflectable extends Reflectable {
   const MyReflectable() : super(invokingCapability);
 }
@@ -15,11 +14,11 @@ class ReflectionApi extends BugRule {
   String get description => 'call to reflectable to invoke method';
 
   @override
-  Future<void> run() async {
+  Future<void> run(String input) async {
     initializeReflectable();
     var instance = Reflectee();
     var instanceMirror = myReflectable.reflect(instance);
-    instanceMirror.invoke('reflecteeMethod', [10]);
+    instanceMirror.invoke(input, [10]);
   }
 }
 

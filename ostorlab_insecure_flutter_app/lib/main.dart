@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:ostorlab_insecure_flutter_app/bug_rule_caller.dart';
@@ -19,14 +21,15 @@ import 'package:ostorlab_insecure_flutter_app/bugs/oracle_padding.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/biometric_none_cryptobject.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/reflection_api.dart';
 
+import 'package:receive_intent/receive_intent.dart' as receive_intent;
+
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,7 +43,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title, String? data}) : super(key: key);
 
   final String title;
 
@@ -50,18 +53,33 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   late TextEditingController _controller;
+  late StreamSubscription _intentData;
   String _output = '';
+
+  Future<void> _initReceiveIntent() async {
+    final receivedIntent =
+        await receive_intent.ReceiveIntent.getInitialIntent();
+    final extraList = receivedIntent!.extra;
+    _runAll(input: extraList!["fuzz"] ?? "");
+  }
 
   @override
   void initState() {
     super.initState();
     _controller = TextEditingController(text: _output);
-    _runAll();
+
+    _initReceiveIntent();
   }
 
-  void _runAll() async {
+  @override
+  void dispose() {
+    _intentData.cancel();
+    super.dispose();
+  }
+
+  void _runAll({String input = ""}) async {
     setState(() {
-      _output = 'Running ...\n';
+      _output = 'Running ... \n';
       _controller.text = _output;
     });
 
@@ -86,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
     caller.addRule(ReflectionApi());
 
     try {
-      await caller.callRules();
+      await caller.callRules(input);
       _output += await caller.listBugRules();
     } catch (e) {
       _output += e.toString();

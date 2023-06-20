@@ -12,7 +12,7 @@ class HardcodedCredsInUrl extends BugRule {
 
   /// Trigger the bug rule
   @override
-  Future<void> run() async {
+  Future<void> run(String input) async {
     print(_tag + " Message: " + get_url());
     WebViewController webView = WebViewController();
     await webView.loadRequest(Uri.parse(get_url()));

@@ -9,7 +9,7 @@ class WebviewInsecureSettings extends BugRule {
   String get description => 'The application has insecure webview';
 
   @override
-  Future<void> run() async {
+  Future<void> run(String input) async {
     await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(true);
     InAppWebViewController webViewController;
     InAppWebView(
@@ -30,7 +30,8 @@ class WebviewInsecureSettings extends BugRule {
             ),
           ),
         );
-        webViewController.evaluateJavascript(source: "new XMLSerializer().serializeToString(document);");
+        webViewController.evaluateJavascript(
+            source: "new XMLSerializer().serializeToString(document);");
       },
     );
   }

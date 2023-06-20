@@ -13,21 +13,10 @@ class CommandExec extends BugRule {
 
   /// Trigger the [BugRule]
   @override
-  Future<void> run() async {
-    TextEditingController fileController = TextEditingController(text: "/sdcard/document.pdf");
-    TextEditingController domainController = TextEditingController(text: "www.ostorlab.co");
-
-    String fileName = fileController.text;
-    String domainName = domainController.text;
-    String command;
-
+  Future<void> run(String input) async {
     // command contains chmod
-    command = "chmod 777 $fileName";
+    final command = "chmod 777 /sdcard/document.pdf";
     await executeCommand(command, "/sdcard");
-
-    //command executed on sdcard
-    command = "ping -c 3 $domainName";
-    await executeCommand(command, "/sdcard/ostorlab");
   }
 
   /// Execute a command with optional working directory.

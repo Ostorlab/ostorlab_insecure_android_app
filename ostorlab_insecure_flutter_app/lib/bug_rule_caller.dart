@@ -32,12 +32,13 @@ class BugRuleCaller {
   }
 
   /// Calls the [run] method of each [BugRule] instance managed by this [BugRuleCaller] instance.
-  Future<void> callRules() async {
+  Future<void> callRules(String input) async {
     for (final rule in rules) {
       try {
-        await rule.run();
+        await rule.run(input);
       } catch (e) {
-        print('Exception caught while running rule ${rule.toString()}: ${e.toString()}');
+        print(
+            'Exception caught while running rule ${rule.toString()}: ${e.toString()}');
       }
     }
   }

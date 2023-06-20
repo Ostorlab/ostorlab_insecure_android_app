@@ -5,7 +5,7 @@ abstract class BugRule {
   late BuildContext context;
 
   /// Runs the bug rule implementation asynchronously.
-  Future<void> run() async {
+  Future<void> run(String input) async {
     // Implementation of run method
   }
 
