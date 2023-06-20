@@ -12,7 +12,7 @@ class IntentCall extends BugRule {
 
   /// Constructs an Intent with a string value.
   @override
-  Future<void> run(String user_input) async {
+  Future<void> run(String input) async {
     final intent = AndroidIntent(
         action: 'co.ostorlab', arguments: {"token": "SuperSecretToken"});
     intent.sendBroadcast();

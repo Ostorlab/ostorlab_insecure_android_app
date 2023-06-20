@@ -17,7 +17,7 @@ class HashCall extends BugRule {
   /// Computes the SHA-1 hash of the message "Ostorlab hidden message" without salt or iteration.
   /// The hash is computed using the `crypto` package and printed to the console.
   @override
-  Future<void> run(String user_input) async {
+  Future<void> run(String input) async {
     final String message = 'Ostorlab hidden message';
 
     final sha = sha1.convert(utf8.encode(message));

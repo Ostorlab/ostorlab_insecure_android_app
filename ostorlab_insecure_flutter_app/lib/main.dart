@@ -59,12 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> _initReceiveIntent() async {
     final receivedIntent =
         await receive_intent.ReceiveIntent.getInitialIntent();
-    final extraList = receivedIntent!.extra!.values.toList();
-    String input = "";
-    for (var i = 0; i < extraList.length; i++) {
-      input += extraList[i];
-    }
-    _runAll(input);
+    final extraList = receivedIntent!.extra;
+    _runAll(input: extraList!["fuzz"] ?? "");
   }
 
   @override
@@ -81,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
-  void _runAll(String input) async {
+  void _runAll({String input = ""}) async {
     setState(() {
       _output = 'Running ... \n';
       _controller.text = _output;
@@ -147,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 ElevatedButton(
-                  onPressed: () => _runAll(""),
+                  onPressed: _runAll,
                   child: Text('Run All'),
                 ),
                 SizedBox(width: 10),

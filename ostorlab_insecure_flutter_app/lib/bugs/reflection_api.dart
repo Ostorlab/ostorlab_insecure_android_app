@@ -14,7 +14,7 @@ class ReflectionApi extends BugRule {
   String get description => 'call to reflectable to invoke method';
 
   @override
-  Future<void> run(String user_input) async {
+  Future<void> run(String input) async {
     initializeReflectable();
     var instance = Reflectee();
     var instanceMirror = myReflectable.reflect(instance);

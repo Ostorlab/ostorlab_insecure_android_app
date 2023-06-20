@@ -21,7 +21,7 @@ class InsecureRandom extends BugRule {
 
   /// Triggers the bug rule by using an insecure random number generator and a cryptographically secure random number generator.
   @override
-  Future<void> run(String user_input) async {
+  Future<void> run(String input) async {
     // Define a random number generator with an insecure seed value
     final gen1 = Random(SEED);
 

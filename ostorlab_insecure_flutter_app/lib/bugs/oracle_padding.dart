@@ -7,7 +7,8 @@ class OraclePadding extends BugRule {
 
   String get description => 'This bug rule uses CBC insecure encryption mode.';
 
-  Future<void> run(String user_input) async {
+  @override
+  Future<void> run(String input) async {
     String data = "Jan van Eyck was here 1434";
     String password = "ThisIs128bitSize";
 

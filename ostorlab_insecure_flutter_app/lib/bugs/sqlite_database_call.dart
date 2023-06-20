@@ -6,16 +6,15 @@ import 'package:sqflite/sqflite.dart';
 
 class SQLiteDatabaseCall extends BugRule {
   @override
-  Future<void> run(String user_input) async {
+  Future<void> run(String input) async {
     SqfliteHelper sqfliteHelper = SqfliteHelper();
     Database db = await sqfliteHelper.getWritableDatabase();
 
     // get user input for name and amount from a text field
-    if (user_input.isEmpty) {
-      user_input = "ostorlab_user";
+    if (input.isEmpty) {
+      input = "ostorlab_user";
     }
-    TextEditingController nameController =
-        TextEditingController(text: user_input);
+    TextEditingController nameController = TextEditingController(text: input);
     TextEditingController amountController = TextEditingController(text: "0");
 
     String name = nameController.text;

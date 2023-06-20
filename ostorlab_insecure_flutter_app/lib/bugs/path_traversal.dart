@@ -9,12 +9,12 @@ class PathTraversal extends BugRule {
   String get description => 'call to getLastPathSegment with Uri parameter';
 
   @override
-  Future<void> run(String user_input) async {
+  Future<void> run(String input) async {
     final provider = Provider();
     final builder = Uri.https('ostorlab.co', '');
     var tainted_path = '..%2F..%2F..%2Fpath%2Fsecret%2Ftoken.txt';
-    if (user_input.isNotEmpty) {
-      tainted_path = user_input;
+    if (input.isNotEmpty) {
+      tainted_path = input;
     }
     final uri = builder.replace(path: tainted_path);
 
