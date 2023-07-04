@@ -150,3 +150,59 @@ The list of vulnerabilities;
 * InsecureSharedPreferences :
 > Setting Shared Preferences with insecure permissions either world readable or world writable may expose sensitive information stored in shared preferences to arbitrary read or write by a malicious attacker.
 [link](https://docs.ostorlab.co/kb/INSECURE_PERMISSION_SHARED_PREFERENCES/)
+
+
+
+# Building and Installing the App
+Follow these steps to build and install the Ostorlab Insecure Android App:
+
+## Prerequisites
+
+Before building the app, make sure you have the following prerequisites installed:
+
+1. Android Studio: You can download Android Studio from the official website: https://developer.android.com/studio. Follow the installation instructions specific to your operating system.
+
+2. Flutter: The app uses Flutter framework, so you need to have Flutter installed. You can download Flutter from the official website: https://flutter.dev. Follow the installation instructions specific to your operating system.
+
+## Building:
+
+1. Clone the repository: Run the following command in your terminal or command prompt to clone the repository to your local machine:
+   ```bash
+   git clone https://github.com/Ostorlab/ostorlab_insecure_android_app.git
+   ```
+2. Set the Android SDK path: Export the  and PATH variables in your terminal or command prompt. Replace $HOME/Android/Sdk with the actual path to your Android SDK installation:
+
+   ```bash  
+       export ANDROID_HOME=$HOME/Android/Sdk  
+       export PATH=$PATH:$ANDROID_HOME/tools  
+   ```  
+3. Navigate to the Flutter project: Change directory to the ostorlab_insecure_flutter_app directory within the cloned repository:
+   ``` bash
+   cd ostorlab_insecure_flutter_app  
+   ```
+
+4. Get Flutter dependencies: Run the following command to fetch the required dependencies for the Flutter project:
+
+   ```bash  
+   flutter pub get
+   ```  
+
+5. Build the Flutter project: Use the following command to build the Flutter project and generate an AAR (Android Archive) file:
+   ```bash
+   flutter build aar --no-sound-null-safety
+   ```
+6. Build the app using Gradle: Go back to the root directory of the cloned repository and run the Gradle command to build the app:
+   ```bash  
+   ./gradlew assembleDebug
+   ```  
+
+## Installing
+After successfully building the app, you can install it on an Android device or emulator using the following steps:
+
+1. Connect an Android device or start an emulator: Ensure that you have a physical Android device connected to your computer via USB, or start an emulator using Android Studio.
+2. Install the app: Once the device or emulator is ready, locate the APK file of the app. The APK file can be found in the `ostorlab_insecure_android_app/app/build/outputs/apk/debug` directory of the cloned repository. Install the APK on the device or emulator by running the following command:
+   ```bash  
+   adb install path/to/ostorlab_insecure_android_app/app/build/outputs/apk/debug/app-debug.apk
+   ```
+   Replace path/to with the actual path to the cloned repository on your local machine.
+3. Launch the app: You can now find and launch the "Ostorlab Insecure" app on your Android device or emulator.
