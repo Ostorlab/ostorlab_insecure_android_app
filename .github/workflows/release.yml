@@ -1,0 +1,53 @@
+name: Build and release apk
+on:
+  release:
+    types: [published]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Prepare NDK dir for caching ( workaround for https://github.com/actions/virtual-environments/issues/1337 )
+        run: |
+          sudo mkdir -p /usr/local/lib/android/sdk/ndk
+          sudo chmod -R 777 /usr/local/lib/android/sdk/ndk
+          sudo chown -R $USER:$USER /usr/local/lib/android/sdk/ndk
+
+      - name: Install NDK
+        if: steps.ndk-cache.outputs.cache-hit != 'true'
+        run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;25.1.8937393"
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 11
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.7.12"
+          channel: 'stable'
+
+      - name: Get dependencies
+        working-directory: ostorlab_insecure_flutter_app
+        run: flutter pub get
+
+      - name: Start AAR build
+        working-directory: ostorlab_insecure_flutter_app
+        run: flutter build aar --no-sound-null-safety
+
+      - name: Build Android app
+        uses: gradle/gradle-build-action@v2.4.2
+        with:
+          arguments: assembleDebug
+          gradle-version: 7.3.3
+      - name: Move to release
+        run: |
+          cp ./app/build/outputs/apk/debug/app-debug.apk ostorlab_insecure_app.apk
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ./ostorlab_insecure_app.apk
