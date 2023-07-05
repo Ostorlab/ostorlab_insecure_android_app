@@ -1,4 +1,4 @@
-name: Build and release apk
+name: Build and Release APK
 on:
   release:
     types: [published]
