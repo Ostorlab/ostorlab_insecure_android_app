@@ -46,15 +46,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         System.loadLibrary("native-lib");
         outputView = findViewById(R.id.runOutputId);
+        // Trigger flutter directly when the app starts.
+        triggerFlutter();
 
         final Button runAllButton = findViewById(R.id.runAllId);
         final Button runAllFlutterButton = findViewById(R.id.runAllFlutterId);
         runAllFlutterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(
-                        FlutterActivity.createDefaultIntent(MainActivity.this)
-                );
+                triggerFlutter();
             }
         });
 
@@ -65,9 +65,13 @@ public class MainActivity extends AppCompatActivity {
                 executeAllRules();
             }
         });
-         
-    }
 
+    }
+    private void triggerFlutter(){
+        startActivity(
+                FlutterActivity.createDefaultIntent(MainActivity.this)
+        );
+    }
     private void executeAllRules() {
         BugRuleCaller caller = new BugRuleCaller(getApplicationContext());
         outputView.append("Adding rules ...\n");
