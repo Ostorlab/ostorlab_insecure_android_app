@@ -14,6 +14,7 @@ import co.ostorlab.insecure_app.bugs.calls.CommandExec;
 import co.ostorlab.insecure_app.bugs.calls.HashCall;
 import co.ostorlab.insecure_app.bugs.calls.ImplicitPendingIntentVulnerability;
 import co.ostorlab.insecure_app.bugs.calls.InsecureCommands;
+import co.ostorlab.insecure_app.bugs.calls.InsecureDeserialization;
 import co.ostorlab.insecure_app.bugs.calls.InsecureFilePermissions;
 import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
@@ -102,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new BiometricFingerprintManagerVulnerability());
         caller.addRule(new BiometricFingerprintPromptVulnerability(this));
         caller.addRule(new PackageContextCall());
+        caller.addRule(new InsecureDeserialization());
         try {
             caller.callRules();
             outputView.append(caller.listBugRules());
