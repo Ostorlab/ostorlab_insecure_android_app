@@ -12,17 +12,11 @@ pool:
 steps:
 - task: ostorlab-azure-security-scanner@1
   inputs:
-    apiKey: 'AAAAA'
-    filepath: '/home/aa/Downloads/working_ostorlab_flutter_app.apk'
+    apiKey: 'JxTn2Wak.LvVe0iOneXzsNEuOhwRZtcod5LKr2wsu'
+    filepath: '$(build.artifactStagingDirectory)/test.apk'
     platform: 'android'
     artifactsDir: '$(build.artifactStagingDirectory)/ostorlabArtifacts'
-    scanProfile: 'Full Scan'
+    scanProfile: 'Fast Scan'
     title: 'Scan_title_azure'
     waitMinutes: 1
     riskThreshold: 'high'
-    extra: |      
-      sbom:          
-        - '/home/aa/azure_extension/package-lock.json'          
-        - '/home/aa/azure_extension/package-lock.json'      
-      credentials:          
-        - {'login': 'azure-test@me.com', 'pass': 'pass1'}
