@@ -20,3 +20,6 @@ steps:
     title: 'Scan_title_azure'
     waitMinutes: 1
     riskThreshold: 'high'
+    extra: |      
+      sbom:          
+        - '$(Build.SourcesDirectory)/package-lock.json'              
