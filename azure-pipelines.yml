@@ -13,7 +13,7 @@ steps:
 - task: ostorlab-azure-security-scanner@1
   inputs:
     apiKey: 'JxTn2Wak.LvVe0iOneXzsNEuOhwRZtcod5LKr2wsu'
-    filepath: '$(Pipeline.Workspace)/test.apk'
+    filepath: '$(Build.SourcesDirectory)/test.apk'
     platform: 'android'
     artifactsDir: '$(build.artifactStagingDirectory)/ostorlabArtifacts'
     scanProfile: 'Fast Scan'
