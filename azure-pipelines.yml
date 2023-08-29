@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: ostorlab-azure-security-scanner@1
+- task: dev-ostorlab@1
   inputs:
     apiKey: 'AAAAA'
     filepath: '/home/aa/Downloads/working_ostorlab_flutter_app.apk'
