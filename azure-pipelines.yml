@@ -22,4 +22,4 @@ steps:
     riskThreshold: 'high'
     extra: |      
       sbom:          
-        - '$(Build.SourcesDirectory)/package-lock.json'              
+        - '$(Build.SourcesDirectory)/package_lock.json'              
