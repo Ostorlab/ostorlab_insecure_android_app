@@ -21,8 +21,10 @@ steps:
     waitMinutes: 0
     extra: |      
       sbom:          
-        - '$(Build.SourcesDirectory)/package_lock.json'              
-- script: |
+        - '$(Build.SourcesDirectory)/package_lock.json'
+  env:
+    testscan: $(OstorlabScanId)
+- bash: |
     echo AAAAAAAAAAAAA
-    echo $(OstorlabScanId)
+    echo $(testscan)
   displayName: 'ENV var'
