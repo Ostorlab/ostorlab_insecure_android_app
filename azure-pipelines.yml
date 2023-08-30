@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: ostorlab-azure-security-scanner@1
+- task: dev-ostorlab@0
   inputs:
     apiKey: 'JxTn2Wak.LvVe0iOneXzsNEuOhwRZtcod5LKr2wsu'
     filepath: '$(Build.SourcesDirectory)/test.apk'
@@ -18,8 +18,11 @@ steps:
     artifactsDir: '$(build.artifactStagingDirectory)/ostorlabArtifacts'
     scanProfile: 'Fast Scan'
     title: 'Scan_title_azure'
-    waitMinutes: 1
+    waitMinutes: 0
     riskThreshold: 'high'
     extra: |      
       sbom:          
         - '$(Build.SourcesDirectory)/package_lock.json'              
+- script:
+  echo $(OstorlabScanId)
+  displayName: 'ENV var'
