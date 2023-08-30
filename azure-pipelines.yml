@@ -12,7 +12,7 @@ pool:
 steps:
 - task: alpha-falcon.alpha-falcon.ostorlab-azure-security-scanner.dev-ostorlab@0
   inputs:
-    apiKey: 'JxTn2Wak.LvVe0iOneXzsNEuOhwRZtcod5LKr2wsu'
+    apiKey: 'M9nm8iDi.Hm1VEpZVNXBwgMSDiBELcD2zOSvujzwY'
     filepath: '$(Build.SourcesDirectory)/test.apk'
     platform: 'android'
     artifactsDir: '$(build.artifactStagingDirectory)/ostorlabArtifacts'
