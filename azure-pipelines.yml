@@ -19,9 +19,8 @@ steps:
     scanProfile: 'Fast Scan'
     title: 'Scan_title_azure'
     waitMinutes: 0
-    riskThreshold: 'high'
     extra: |      
       sbom:          
         - '$(Build.SourcesDirectory)/package_lock.json'              
-- script: echo $(OstorlabScanId)
+- script: echo ${{ OstorlabScanId }}
   displayName: 'ENV var'
