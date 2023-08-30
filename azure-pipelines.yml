@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: dev-ostorlab@0
+- task: alpha-falcon.alpha-falcon.ostorlab-azure-security-scanner.dev-ostorlab@0
   inputs:
     apiKey: 'JxTn2Wak.LvVe0iOneXzsNEuOhwRZtcod5LKr2wsu'
     filepath: '$(Build.SourcesDirectory)/test.apk'
