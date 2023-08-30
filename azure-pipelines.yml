@@ -23,6 +23,6 @@ steps:
       sbom:          
         - '$(Build.SourcesDirectory)/package_lock.json'              
 - script: |
-  echo AAAAAAAAAAAAA
-  echo $(OstorlabScanId)
+    echo AAAAAAAAAAAAA
+    echo $(OstorlabScanId)
   displayName: 'ENV var'
