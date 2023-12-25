@@ -4,7 +4,7 @@ android {
     compileSdkVersion 33
     defaultConfig {
         applicationId "co.ostorlab.insecure_app"
-        minSdkVersion 24
+        minSdkVersion 26
         targetSdkVersion 33
         versionCode 1
         versionName "1.0"
