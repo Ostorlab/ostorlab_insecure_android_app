@@ -24,6 +24,7 @@ import co.ostorlab.insecure_app.bugs.calls.MobileOnlyDownloadManager;
 import co.ostorlab.insecure_app.bugs.calls.ParcelableMemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.PathTraversalVulnerability;
+import co.ostorlab.insecure_app.bugs.calls.RegisterReceiverExported;
 import co.ostorlab.insecure_app.bugs.calls.SerializableMemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
 import co.ostorlab.insecure_app.bugs.calls.HardcodedUrlInUrl;
@@ -102,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new BiometricFingerprintManagerVulnerability());
         caller.addRule(new BiometricFingerprintPromptVulnerability(this));
         caller.addRule(new PackageContextCall());
+        caller.addRule(new RegisterReceiverExported(this));
+
         try {
             caller.callRules();
             outputView.append(caller.listBugRules());
