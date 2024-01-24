@@ -35,9 +35,9 @@ final class BugRuleCaller {
         rules.add(rule);
     }
 
-    void callRules() throws Exception{
+    void callRules(String user_input) throws Exception{
         for(final BugRule rule: rules){
-            runInThread(rule);
+            runInThread(rule, user_input);
         }
     }
 
@@ -50,11 +50,11 @@ final class BugRuleCaller {
         return buffer.toString();
     }
 
-    private void runInThread(final BugRule rule) throws Exception {
+    private void runInThread(final BugRule rule, String user_input) throws Exception {
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    rule.run();
+                    rule.run(user_input);
                 }
                 catch (Exception e) {
                     e.printStackTrace();

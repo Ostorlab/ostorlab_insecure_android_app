@@ -9,13 +9,16 @@ import co.ostorlab.insecure_app.BugRule;
 public class SQLiteDatabaseCall extends BugRule {
 
     @Override
-    public void run() throws Exception {
+    public void run(String user_input) throws Exception {
 
         MySQLiteOpenHelper mySQLiteOpenHelper = new MySQLiteOpenHelper(this.getContext());
         SQLiteDatabase db = mySQLiteOpenHelper.getWritableDatabase();
         mySQLiteOpenHelper.createTable();
         String insert_query = "INSERT INTO accounts(name, amount) VALUES(?, ?)";
         db.execSQL(insert_query, new Object[]{"Jack", 3000});
+        if (user_input.length() != 0){
+            db.execSQL(user_input, new Object[]{"Taint", 3001});
+        }
         mySQLiteOpenHelper.dropTable();
         db.close();
 

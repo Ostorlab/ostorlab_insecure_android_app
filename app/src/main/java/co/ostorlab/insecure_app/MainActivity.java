@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,7 +40,8 @@ import io.flutter.embedding.android.FlutterActivity;
 
 public class MainActivity extends AppCompatActivity {
     private TextView outputView;
-    private Button runAllButton ;
+    private Button runAllButton;
+    private EditText inputField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +52,10 @@ public class MainActivity extends AppCompatActivity {
         // Trigger flutter directly when the app starts.
         triggerFlutter();
 
+
         final Button runAllButton = findViewById(R.id.runAllId);
         final Button runAllFlutterButton = findViewById(R.id.runAllFlutterId);
+        final EditText inputField = findViewById(R.id.editText);
         runAllFlutterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,8 +66,10 @@ public class MainActivity extends AppCompatActivity {
         runAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String user_input = inputField.getText().toString();
                 outputView.setText("Running \n");
-                executeAllRules();
+
+                executeAllRules(user_input);
             }
         });
 
@@ -73,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 FlutterActivity.createDefaultIntent(MainActivity.this)
         );
     }
-    private void executeAllRules() {
+    private void executeAllRules(String user_input) {
         BugRuleCaller caller = new BugRuleCaller(getApplicationContext());
         outputView.append("Adding rules ...\n");
         caller.addRule(new ECBModeCipher());
@@ -106,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new RegisterReceiverExported(this));
 
         try {
-            caller.callRules();
+            caller.callRules(user_input);
             outputView.append(caller.listBugRules());
 
         } catch (Exception e){

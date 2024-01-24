@@ -34,7 +34,14 @@ public class SerializableMemoryCorruption extends BugRule {
     }
 
     @Override
-    public void run() throws Exception {
+    public void run(String user_input) throws Exception {
+        if (user_input.length() != 0){
+            FileInputStream fileInputStream = new FileInputStream(user_input);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            SerializableObject serializableObject = new SerializableObject();
+            serializableObject.readObject(objectInputStream);
+        }
+
         String fileName = "";
         FileInputStream fileInputStream = new FileInputStream(fileName);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);

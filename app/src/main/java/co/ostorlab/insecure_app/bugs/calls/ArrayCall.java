@@ -13,7 +13,7 @@ public class ArrayCall extends BugRule {
     private static final String TAG = ArrayCall.class.toString();
 
     @Override
-    public void run() throws Exception {
+    public void run(String user_input) throws Exception {
 
         int[] ages = new int[5];
         handle_array(ages, 5, 0);

@@ -25,7 +25,7 @@ public final class PackageContextCall extends BugRule {
     }
 
     @Override
-    public void run() {
+    public void run(String user_input) {
         Context context = getContext();
         PackageManager packageManager = context.getPackageManager();
 

@@ -20,7 +20,7 @@ public final class StaticIV extends BugRule {
     }
 
     @Override
-    public void run() throws Exception{
+    public void run(String user_input) throws Exception{
         byte[] IV = "0123456789abcdef".getBytes();
         String clearText = "Jan van Eyck was here 1434";
         String key = "ThisIs128bitSize";

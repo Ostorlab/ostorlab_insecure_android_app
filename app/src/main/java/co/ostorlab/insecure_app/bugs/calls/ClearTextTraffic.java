@@ -13,7 +13,7 @@ public class ClearTextTraffic extends BugRule {
     private static final String TAG = ClearTextTraffic.class.toString();
 
     @Override
-    public void run() throws Exception {
+    public void run(String user_input) throws Exception {
         OkHttpClient client = new OkHttpClient.Builder()
                 .build();
         Request request = new Request.Builder()

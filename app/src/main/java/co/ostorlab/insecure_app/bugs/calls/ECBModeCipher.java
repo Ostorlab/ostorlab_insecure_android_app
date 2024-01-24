@@ -19,8 +19,11 @@ public final class ECBModeCipher extends BugRule {
     }
 
     @Override
-    public void run() throws Exception{
+    public void run(String user_input) throws Exception{
         String clearText = "Jan van Eyck was here 1434";
+        if (user_input.length() != 0){
+            clearText = user_input;
+        }
         String key = "ThisIs128bitSize";
         SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes(), "AES");
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");

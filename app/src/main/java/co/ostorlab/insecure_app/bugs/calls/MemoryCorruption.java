@@ -22,7 +22,7 @@ public final class MemoryCorruption extends BugRule {
     }
 
     @Override
-    public void run() throws Exception{
+    public void run(String user_input) throws Exception{
         String input = String.join("", Collections.nCopies(200, "()"));
         triggerStackOverflow(input);
     }

@@ -8,7 +8,7 @@ import co.ostorlab.insecure_app.BugRule;
 
 public final class InsecureRandom extends BugRule {
     @Override
-    public void run() throws Exception {
+    public void run(String user_input) throws Exception {
         SecureRandom secureRandom = new SecureRandom();
         Random random = new Random();
         random = new Random(12345);

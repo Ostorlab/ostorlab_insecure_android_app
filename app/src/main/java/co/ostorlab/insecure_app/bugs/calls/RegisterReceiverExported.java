@@ -34,7 +34,7 @@ public class RegisterReceiverExported extends BugRule {
     }
 
     @Override
-    public void run() throws Exception {
+    public void run(String user_input) throws Exception {
         IntentFilter intentFilter = new IntentFilter(WifiManager.WIFI_STATE_CHANGED_ACTION);
         mActivity.registerReceiver(new WifiStateReceiver(), intentFilter, Context.RECEIVER_EXPORTED);
     }

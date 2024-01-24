@@ -16,14 +16,20 @@ public final class WebviewInsecureSettings extends BugRule {
     }
 
     @Override
-    public void run() throws Exception {
+    public void run(String user_input) throws Exception {
         ContextCompat.getMainExecutor(getContext()).execute(()  -> {
             WebView webView  = new WebView(getContext());
             webView.getSettings().setJavaScriptEnabled(true);
             webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
             webView.getSettings().setAllowFileAccess(true);
             webView.setWebContentsDebuggingEnabled(true);
-            webView.loadUrl("http://www.ostorlab.co");
-                });
+            if (user_input.length() != 0){
+                webView.loadUrl(user_input);
+            }
+            else{
+                webView.loadUrl("http://www.ostorlab.co");
+            }
+        });
+
     }
 }
