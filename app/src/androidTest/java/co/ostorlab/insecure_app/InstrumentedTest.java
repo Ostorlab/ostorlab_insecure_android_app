@@ -54,7 +54,7 @@ public class InstrumentedTest {
     @Test
     public void ruleCaller_callECBModeCipher_NoExceptionThrown() throws Exception{
         caller.addRule(new ECBModeCipher());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -62,56 +62,56 @@ public class InstrumentedTest {
     @Test
     public void ruleCaller_callClearTextTraffic_NoExceptionThrown() throws Exception{
         caller.addRule(new ClearTextTraffic());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
     @Test
     public void ruleCaller_callTLSTraffic_NoExceptionThrown() throws Exception{
         caller.addRule(new TLSTraffic());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
     @Test
     public void ruleCaller_callAESCipher_NoExceptionThrown() throws Exception{
         caller.addRule(new AESCipher());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
     @Test
     public void ruleCaller_callStaticIV_NoExceptionThrown() throws Exception{
         caller.addRule(new StaticIV());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
     @Test
     public void ruleCaller_callHardcodedKeyInUrl_NoExceptionThrown() throws Exception{
         caller.addRule(new HardcodedUrlInUrl());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
     @Test
     public void ruleCaller_callPathClassLoader_NoExceptionThrown() throws Exception{
         caller.addRule(new PathClassLoaderCall());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
     @Test
     public void ruleCaller_callDexClassLoader_NoExceptionThrown() throws Exception{
         caller.addRule(new DexClassLoaderCall());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
     @Test
     public void ruleCaller_callInsecureFilePermissions_NoExceptionThrown() throws Exception{
         caller.addRule(new InsecureFilePermissions());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -119,7 +119,7 @@ public class InstrumentedTest {
     @Test
     public void ruleCaller_callInsecureSharedPreferences_NoExceptionThrown() throws Exception{
         caller.addRule(new InsecureSharedPreferences());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -127,7 +127,7 @@ public class InstrumentedTest {
     @Test
     public void ruleCaller_callInsecureCommands_NoExceptionThrown() throws Exception{
         caller.addRule(new InsecureCommands());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -135,7 +135,7 @@ public class InstrumentedTest {
     @Test
     public void ruleCaller_callWebviewInsecureSettings_NoExceptionThrown() throws Exception{
         caller.addRule(new WebviewInsecureSettings());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -143,7 +143,7 @@ public class InstrumentedTest {
     @Test
     public void ruleCaller_callMobileOnlyDownloadManager_NoExceptionThrown() throws Exception{
         caller.addRule(new MobileOnlyDownloadManager());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -151,7 +151,7 @@ public class InstrumentedTest {
     @Test
     public void ruleCaller_callInsecureRandom_NoExceptionThrown() throws Exception{
         caller.addRule(new InsecureRandom());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -159,7 +159,7 @@ public class InstrumentedTest {
     @Test
     public void ruleCaller_callIntent_NoExceptionThrown() throws Exception{
         caller.addRule(new IntentCall());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }

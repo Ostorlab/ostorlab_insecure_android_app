@@ -70,7 +70,7 @@ public class BugRuleCallerTest {
 //    public void ruleCaller_whenCalled_rulesCalled() throws Exception{
 //        BugRule bugRule = Mockito.mock(BugRule.class);
 //        caller.addRule(bugRule);
-//        caller.callRules();
+//        caller.callRules("");
 //
 //        verify(bugRule, Mockito.times(1)).run();
 //    }
@@ -78,7 +78,7 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_callECBModeCipher_NoExceptionThrown() throws Exception{
         caller.addRule(new ECBModeCipher());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -86,56 +86,56 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_callClearTextTraffic_NoExceptionThrown() throws Exception{
         caller.addRule(new ClearTextTraffic());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
     @Test
     public void ruleCaller_callTLSTraffic_NoExceptionThrown() throws Exception{
         caller.addRule(new TLSTraffic());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
     @Test
     public void ruleCaller_callAESCipher_NoExceptionThrown() throws Exception{
         caller.addRule(new AESCipher());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
     @Test
     public void ruleCaller_callStaticIV_NoExceptionThrown() throws Exception{
         caller.addRule(new StaticIV());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
     @Test
     public void ruleCaller_callHardcodedKeyInUrl_NoExceptionThrown() throws Exception{
         caller.addRule(new HardcodedUrlInUrl());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
     @Test
     public void ruleCaller_callPathClassLoader_NoExceptionThrown() throws Exception{
         caller.addRule(new PathClassLoaderCall());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
     @Test
     public void ruleCaller_callDexClassLoader_NoExceptionThrown() throws Exception{
         caller.addRule(new DexClassLoaderCall());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
     @Test
     public void ruleCaller_callInsecureFilePermissions_NoExceptionThrown() throws Exception{
         caller.addRule(new InsecureFilePermissions());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -143,7 +143,7 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_callWebviewInsecureSettings_NoExceptionThrown() throws Exception{
         caller.addRule(new WebviewInsecureSettings());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -151,7 +151,7 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_callMobileOnlyDownloadManager_NoExceptionThrown() throws Exception{
         caller.addRule(new MobileOnlyDownloadManager());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -159,7 +159,7 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_callInsecureRandom_NoExceptionThrown() throws Exception{
         caller.addRule(new InsecureRandom());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -167,7 +167,7 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_ArrayCall_NoExceptionThrown() throws Exception{
         caller.addRule(new ArrayCall());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -175,7 +175,7 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_SQLiteDatabaseCall_NoExceptionThrown() throws Exception{
         caller.addRule(new SQLiteDatabaseCall());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -183,7 +183,7 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_IntentCall_NoExceptionThrown() throws Exception{
         caller.addRule(new IntentCall());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -191,7 +191,7 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_SerializableMemoryCorruption_NoExceptionThrown() throws Exception{
         caller.addRule(new SerializableMemoryCorruption());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -199,7 +199,7 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_PathTraversalVulnerability_NoExceptionThrown() throws Exception{
         caller.addRule(new PathTraversalVulnerability());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -207,7 +207,7 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_ParcelableMemoryCorruption_NoExceptionThrown() throws Exception{
         caller.addRule(new ParcelableMemoryCorruption());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -215,7 +215,7 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_ImplicitPendingIntentVulnerability_NoExceptionThrown() throws Exception{
         caller.addRule(new ImplicitPendingIntentVulnerability());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -223,7 +223,7 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_BiometricFingerprintManagerVulnerability_NoExceptionThrown() throws Exception{
         caller.addRule(new BiometricFingerprintManagerVulnerability());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -231,7 +231,7 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_BiometricFingerprintPromptVulnerability_NoExceptionThrown() throws Exception{
         caller.addRule(new BiometricFingerprintPromptVulnerability(mockActivity));
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
@@ -239,7 +239,7 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_PackageContext_NoExceptionThrown() throws Exception{
         caller.addRule(new PackageContextCall());
-        caller.callRules();
+        caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
     }
