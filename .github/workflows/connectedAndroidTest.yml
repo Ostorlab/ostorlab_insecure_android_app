@@ -17,7 +17,7 @@ jobs:
 
       - name: Install NDK
         if: steps.ndk-cache.outputs.cache-hit != 'true'
-        run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;25.1.8937393"
+        run: echo "y" | /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;25.1.8937393"
 
       - uses: actions/setup-java@v3
         with:
