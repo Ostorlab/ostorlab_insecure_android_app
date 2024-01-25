@@ -53,13 +53,17 @@ public class MainActivity extends AppCompatActivity {
         String user_input;
         if (intent.hasExtra("user_input")) {
             user_input = intent.getStringExtra("user_input");
+            executeAllRules(user_input);
+            triggerFlutter(user_input);
         }
         else {
             user_input = "";
+            // Trigger flutter directly when the app starts.
+            triggerFlutter(user_input);
         }
 
-        // Trigger flutter directly when the app starts.
-//         triggerFlutter();
+
+
 
 
         final Button runAllButton = findViewById(R.id.runAllId);
@@ -67,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         runAllFlutterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                triggerFlutter();
+                triggerFlutter(user_input);
             }
         });
 
@@ -80,10 +84,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    private void triggerFlutter(){
-        startActivity(
-                FlutterActivity.createDefaultIntent(MainActivity.this)
-        );
+    private void triggerFlutter(String user_input){
+        Intent customIntent = new Intent(this, FlutterActivity.class);
+        customIntent.putExtra("user_input", user_input);
+        startActivity(customIntent);
     }
     private void executeAllRules(String user_input) {
         BugRuleCaller caller = new BugRuleCaller(getApplicationContext());
