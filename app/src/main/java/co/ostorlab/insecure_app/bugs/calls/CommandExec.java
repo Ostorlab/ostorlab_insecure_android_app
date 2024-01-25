@@ -14,7 +14,7 @@ public class CommandExec extends BugRule {
         String command = "";
 
         // Tainted command.
-        if (user_input.length() != 0){
+        if (user_input.isEmpty() == false){
             executeCommand(command, null);
         }
 

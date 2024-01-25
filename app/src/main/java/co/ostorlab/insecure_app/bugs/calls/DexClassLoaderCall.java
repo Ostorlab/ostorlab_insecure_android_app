@@ -25,7 +25,7 @@ public final class DexClassLoaderCall extends BugRule {
         /*
             Dex class loading from user input
         */
-        if (user_input.length() != 0){
+        if (user_input.isEmpty() == false){
             String apkFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "user_input";
             DexClassLoader classLoader1 = new DexClassLoader(
                 apkFile,

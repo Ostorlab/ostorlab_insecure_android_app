@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.EditText;
+import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,7 +41,6 @@ import io.flutter.embedding.android.FlutterActivity;
 public class MainActivity extends AppCompatActivity {
     private TextView outputView;
     private Button runAllButton;
-    private EditText inputField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +48,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         System.loadLibrary("native-lib");
         outputView = findViewById(R.id.runOutputId);
+
+        final Intent intent = getIntent();
+        String user_input;
+        if (intent.hasExtra("user_input")) {
+            user_input = intent.getStringExtra("user_input");
+        }
+        else {
+            user_input = "";
+        }
+
         // Trigger flutter directly when the app starts.
-        triggerFlutter();
+//         triggerFlutter();
 
 
         final Button runAllButton = findViewById(R.id.runAllId);
         final Button runAllFlutterButton = findViewById(R.id.runAllFlutterId);
-        final EditText inputField = findViewById(R.id.editText);
         runAllFlutterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,9 +74,7 @@ public class MainActivity extends AppCompatActivity {
         runAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String user_input = inputField.getText().toString();
                 outputView.setText("Running \n");
-
                 executeAllRules(user_input);
             }
         });

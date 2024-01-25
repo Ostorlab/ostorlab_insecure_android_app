@@ -23,7 +23,7 @@ public final class WebviewInsecureSettings extends BugRule {
             webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
             webView.getSettings().setAllowFileAccess(true);
             webView.setWebContentsDebuggingEnabled(true);
-            if (user_input.length() != 0){
+            if (user_input.isEmpty() == false){
                 webView.loadUrl(user_input);
             }
             else{

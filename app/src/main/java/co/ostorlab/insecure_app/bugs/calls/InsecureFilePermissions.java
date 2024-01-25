@@ -21,7 +21,7 @@ public final class InsecureFilePermissions extends BugRule {
         openFileOutputWorldWritable(filename);
         setReadableAll(filename);
         setWritableAll(filename);
-        if (user_input.length() != 0){
+        if (user_input.isEmpty() == false){
             openFileOutputWorldReadable(user_input);
             openFileOutputWorldWritable(user_input);
             setReadableAll(user_input);

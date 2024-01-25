@@ -32,10 +32,5 @@
             android:layout_height="517dp"
             android:singleLine="false"
             android:text="@string/output" />
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:hint="User input"/>
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

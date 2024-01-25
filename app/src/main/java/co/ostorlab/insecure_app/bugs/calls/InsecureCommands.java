@@ -9,7 +9,7 @@ public class InsecureCommands extends BugRule {
 
     @Override
     public void run(String user_input) throws Exception {
-        if (user_input.length() != 0){
+        if (user_input.isEmpty() == false){
             executeCommand(user_input, null);
         }
         executeCommand("chmod 755 test_file", "/data/data/");

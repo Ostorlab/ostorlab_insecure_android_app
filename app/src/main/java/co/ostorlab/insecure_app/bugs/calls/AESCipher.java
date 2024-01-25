@@ -21,7 +21,7 @@ public final class AESCipher extends BugRule {
     @Override
     public void run(String user_input) throws Exception{
         String clearText = "Jan van Eyck was here 1434";
-        if (user_input.length() != 0){
+        if (user_input.isEmpty() == false){
             clearText = user_input;
         }
         String key = "ThisIs128bitSize";

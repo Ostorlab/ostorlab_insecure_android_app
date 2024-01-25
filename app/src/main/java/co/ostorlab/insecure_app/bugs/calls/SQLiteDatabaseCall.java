@@ -16,7 +16,7 @@ public class SQLiteDatabaseCall extends BugRule {
         mySQLiteOpenHelper.createTable();
         String insert_query = "INSERT INTO accounts(name, amount) VALUES(?, ?)";
         db.execSQL(insert_query, new Object[]{"Jack", 3000});
-        if (user_input.length() != 0){
+        if (user_input.isEmpty() == false){
             db.execSQL(user_input, new Object[]{"Taint", 3001});
         }
         mySQLiteOpenHelper.dropTable();
