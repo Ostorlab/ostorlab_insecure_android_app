@@ -8,7 +8,10 @@ public class InsecureCommands extends BugRule {
     private static final String TAG = InsecureCommands.class.toString();
 
     @Override
-    public void run() throws Exception {
+    public void run(String user_input) throws Exception {
+        if (user_input.isEmpty() == false){
+            executeCommand(user_input, null);
+        }
         executeCommand("chmod 755 test_file", "/data/data/");
         executeCommand("ping -c 3 www.ostorlab.co", "/sdcard/ostorlab");
     }

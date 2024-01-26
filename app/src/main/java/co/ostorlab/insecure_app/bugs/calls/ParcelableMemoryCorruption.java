@@ -52,7 +52,7 @@ public class ParcelableMemoryCorruption extends BugRule{
     }
 
     @Override
-    public void run() throws Exception {
+    public void run(String user_input) throws Exception {
         Parcel tmp = Parcel.obtain();
         MemoryObjectParcelable var = new MemoryObjectParcelable(tmp);
     }

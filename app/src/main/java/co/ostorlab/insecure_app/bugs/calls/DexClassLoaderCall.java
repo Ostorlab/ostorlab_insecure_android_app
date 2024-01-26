@@ -21,7 +21,20 @@ public final class DexClassLoaderCall extends BugRule {
     }
 
     @Override
-    public void run() throws Exception {
+    public void run(String user_input) throws Exception {
+        /*
+            Dex class loading from user input
+        */
+        if (user_input.isEmpty() == false){
+            String apkFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "user_input";
+            DexClassLoader classLoader1 = new DexClassLoader(
+                apkFile,
+                apkFile,
+                apkFile,
+                ClassLoader.getSystemClassLoader());
+            classLoader1.loadClass("a.b.c");
+        }
+
         /*
             Dex class loading from external storage
          */

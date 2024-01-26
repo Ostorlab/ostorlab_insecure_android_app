@@ -15,7 +15,7 @@ public final class InsecureSharedPreferences extends BugRule {
     }
 
     @Override
-    public void run() throws Exception{
+    public void run(String user_input) throws Exception{
         String myPreference = "myPreference";
         getContext().getSharedPreferences("PrivateOnly", Context.MODE_PRIVATE);
         getContext().getSharedPreferences("WorldReadableOnly", Context.MODE_WORLD_READABLE);

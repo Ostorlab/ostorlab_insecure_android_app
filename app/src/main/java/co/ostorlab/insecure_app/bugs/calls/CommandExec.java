@@ -8,10 +8,15 @@ public class CommandExec extends BugRule {
     private static final String TAG = CommandExec.class.toString();
 
     @Override
-    public void run() throws Exception {
+    public void run(String user_input) throws Exception {
 
         String domainName = "google.com";
         String command = "";
+
+        // Tainted command.
+        if (user_input.isEmpty() == false){
+            executeCommand(command, null);
+        }
 
         // command contains chmod
         command = "chmod 777" + domainName;

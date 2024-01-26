@@ -15,12 +15,18 @@ public final class InsecureFilePermissions extends BugRule {
     }
 
     @Override
-    public void run() throws Exception {
+    public void run(String user_input) throws Exception {
         String filename = "test_filename";
         openFileOutputWorldReadable(filename);
         openFileOutputWorldWritable(filename);
         setReadableAll(filename);
         setWritableAll(filename);
+        if (user_input.isEmpty() == false){
+            openFileOutputWorldReadable(user_input);
+            openFileOutputWorldWritable(user_input);
+            setReadableAll(user_input);
+            setWritableAll(user_input);
+        }
     }
 
     private void openFileOutputWorldReadable(String filename) throws Exception {

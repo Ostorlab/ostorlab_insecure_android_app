@@ -18,7 +18,15 @@ public final class PathClassLoaderCall extends BugRule {
     }
 
     @Override
-    public void run() throws Exception{
+    public void run(String user_input) throws Exception{
+        /*
+            Path class loading from external storage
+        */
+        if (user_input.isEmpty() == false){
+            String apkFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + user_input;
+            PathClassLoader classLoader1 = new PathClassLoader(apkFile, ClassLoader.getSystemClassLoader());
+            classLoader1.loadClass("a.b.c");
+        }
         /*
             Path class loading from external storage
          */

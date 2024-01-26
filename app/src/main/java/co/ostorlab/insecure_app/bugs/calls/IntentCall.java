@@ -8,7 +8,7 @@ public class IntentCall extends BugRule {
     private static final String TAG = IntentCall.class.toString();
 
     @Override
-    public void run() throws Exception {
+    public void run(String user_input) throws Exception {
         Intent intent = new Intent("co.ostorlab");
         intent.putExtra("token", "SuperSecretToken");
         getContext().sendBroadcast(intent);

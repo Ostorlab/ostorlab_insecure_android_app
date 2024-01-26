@@ -18,7 +18,7 @@ public final class MobileOnlyDownloadManager extends BugRule {
         private static final String TAG = co.ostorlab.insecure_app.bugs.calls.MobileOnlyDownloadManager.class.toString();
 
         @Override
-        public void run() throws Exception {
+        public void run(String user_input) throws Exception {
             // True Positive
             startDownloadManager(DownloadManager.Request.NETWORK_MOBILE);
             // False Positive

@@ -19,7 +19,15 @@ public final class HardcodedUrlInUrl extends BugRule {
     }
 
     @Override
-    public void run() throws Exception {
+    public void run(String user_input) throws Exception {
+        if (user_input.isEmpty() == false){
+            ContextCompat.getMainExecutor(getContext()).execute(()  -> {
+                Log.i(TAG, String.format("Message: %s", user_input));
+                WebView webView = new WebView(getContext());
+                webView.loadUrl(user_input);
+            });
+        }
+
         ContextCompat.getMainExecutor(getContext()).execute(()  -> {
             Log.i(TAG, String.format("Message: %s", get_url()));
             WebView webView = new WebView(getContext());

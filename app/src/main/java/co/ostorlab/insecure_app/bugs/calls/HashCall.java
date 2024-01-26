@@ -9,7 +9,7 @@ public class HashCall extends BugRule {
     private static final String TAG = HashCall.class.toString();
 
     @Override
-    public void run() throws Exception {
+    public void run(String user_input) throws Exception {
 
         String monMessage = "Ostorlab hidden message";
 

@@ -15,7 +15,7 @@ public final class TLSTraffic extends BugRule {
     private static final String TAG = TLSTraffic.class.toString();
 
     @Override
-    public void run() throws Exception {
+    public void run(String user_input) throws Exception {
         OkHttpClient client = new OkHttpClient.Builder()
                 .hostnameVerifier(ALLOW_ALL_HOSTNAME_VERIFIER)
                 .build();

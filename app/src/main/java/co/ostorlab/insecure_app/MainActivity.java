@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,7 +40,7 @@ import io.flutter.embedding.android.FlutterActivity;
 
 public class MainActivity extends AppCompatActivity {
     private TextView outputView;
-    private Button runAllButton ;
+    private Button runAllButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +48,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         System.loadLibrary("native-lib");
         outputView = findViewById(R.id.runOutputId);
-        // Trigger flutter directly when the app starts.
-        triggerFlutter();
+
+        final Intent intent = getIntent();
+        String user_input = intent.hasExtra("user_input") ? intent.getStringExtra("user_input") : "";
+
+        executeAllRules(user_input);
+        triggerFlutter(user_input);
+
+
 
         final Button runAllButton = findViewById(R.id.runAllId);
         final Button runAllFlutterButton = findViewById(R.id.runAllFlutterId);
         runAllFlutterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                triggerFlutter();
+                triggerFlutter(user_input);
             }
         });
 
@@ -63,17 +70,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 outputView.setText("Running \n");
-                executeAllRules();
+                executeAllRules(user_input);
             }
         });
 
     }
-    private void triggerFlutter(){
-        startActivity(
-                FlutterActivity.createDefaultIntent(MainActivity.this)
-        );
+    private void triggerFlutter(String user_input){
+        Intent customIntent = new Intent(this, FlutterActivity.class);
+        customIntent.putExtra("user_input", user_input);
+        startActivity(customIntent);
     }
-    private void executeAllRules() {
+    private void executeAllRules(String user_input) {
         BugRuleCaller caller = new BugRuleCaller(getApplicationContext());
         outputView.append("Adding rules ...\n");
         caller.addRule(new ECBModeCipher());
@@ -106,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new RegisterReceiverExported(this));
 
         try {
-            caller.callRules();
+            caller.callRules(user_input);
             outputView.append(caller.listBugRules());
 
         } catch (Exception e){
