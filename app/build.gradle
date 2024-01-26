@@ -72,5 +72,6 @@ dependencies {
     debugImplementation 'co.ostorlab.ostorlab_insecure_flutter_app:flutter_debug:1.0'
     profileImplementation 'co.ostorlab.ostorlab_insecure_flutter_app:flutter_profile:1.0'
     releaseImplementation 'co.ostorlab.ostorlab_insecure_flutter_app:flutter_release:1.0'
+    api "com.github.spullara.mustache.java:compiler:0.9.10"
 }
 
