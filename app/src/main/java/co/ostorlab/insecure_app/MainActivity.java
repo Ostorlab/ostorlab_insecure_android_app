@@ -50,19 +50,10 @@ public class MainActivity extends AppCompatActivity {
         outputView = findViewById(R.id.runOutputId);
 
         final Intent intent = getIntent();
-        String user_input;
-        if (intent.hasExtra("user_input")) {
-            user_input = intent.getStringExtra("user_input");
-            executeAllRules(user_input);
-            triggerFlutter(user_input);
-        }
-        else {
-            user_input = "";
-            // Trigger flutter directly when the app starts.
-            triggerFlutter(user_input);
-        }
+        String user_input = intent.hasExtra("user_input") ? intent.getStringExtra("user_input") : "";
 
-
+        executeAllRules(user_input);
+        triggerFlutter(user_input);
 
 
 
