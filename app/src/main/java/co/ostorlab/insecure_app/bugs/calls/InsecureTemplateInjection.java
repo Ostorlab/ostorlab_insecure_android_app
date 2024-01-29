@@ -2,14 +2,13 @@ package co.ostorlab.insecure_app.bugs.calls;
 import co.ostorlab.insecure_app.BugRule;
 
 import android.content.Context;
+import freemarker.cache.ClassTemplateLoader;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import com.github.mustachejava.DefaultMustacheFactory;
-import com.github.mustachejava.Mustache;
-import com.github.mustachejava.MustacheFactory;
-import android.content.res.Resources;
 import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public final class InsecureTemplateInjection extends BugRule {
@@ -23,45 +22,41 @@ public final class InsecureTemplateInjection extends BugRule {
 
     @Override
     public String getDescription() {
-        return "insecure template injection.";
+        return "Insecure template injection.";
     }
 
     @Override
     public void run(String user_input) throws Exception {
-
         TemplateRenderer templateRenderer = new TemplateRenderer();
 
-        String templateFileName = "template.mustache";
-        String renderedTemplate = templateRenderer.renderTemplate(appContext.getApplicationContext(), templateFileName, user_input);
+        String templateFileName = "template.ftl";
+        String renderedTemplate = templateRenderer.renderTemplate(appContext, templateFileName, user_input);
     }
-
 }
 
 class TemplateRenderer {
 
     public String renderTemplate(Context context, String templateFileName, String user_input) {
         try {
-            // Load the template from assets
-            InputStream inputStream = context.getAssets().open(templateFileName);
-            InputStreamReader reader = new InputStreamReader(inputStream);
+            // Create FreeMarker configuration
+            Configuration cfg = new Configuration(Configuration.VERSION_2_3_31);
+            cfg.setTemplateLoader(new ClassTemplateLoader(getClass(), "/"));
 
-            // Compile the Mustache template
-            MustacheFactory mf = new DefaultMustacheFactory();
-            Mustache mustache = mf.compile(reader, templateFileName);
+            // Get the template
+            Template template = cfg.getTemplate(templateFileName);
 
-            // Render the template with the provided data model
-            return executeTemplate(mustache, user_input);
-        } catch (IOException e) {
+            // Create the data model
+            Map<String, Object> dataModel = new HashMap<>();
+            dataModel.put("message", user_input);
+
+            // Render the template
+            StringWriter writer = new StringWriter();
+            template.process(dataModel, writer);
+
+            return writer.toString();
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-    }
-
-    private String executeTemplate(Mustache mustache, String user_input) {
-        java.util.Map<String, Object> context = new java.util.HashMap<>();
-        StringWriter writer = new StringWriter();
-
-        context.put("message", user_input);
-        return mustache.execute(writer, context).toString();
     }
 }
