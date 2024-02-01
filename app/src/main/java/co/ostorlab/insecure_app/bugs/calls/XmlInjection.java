@@ -24,25 +24,14 @@ public class XmlInjection extends BugRule {
     private void createXmlFile(String user_input) throws Exception {
         // Create a new XML file in the app's internal storage
         FileOutputStream fos = getContext().openFileOutput("injected_data.xml", Context.MODE_PRIVATE);
+        String xmlContent = "<root>" + user_input + "</root>";
+
 
         // Create an XmlSerializer
         XmlSerializer serializer = Xml.newSerializer();
         serializer.setOutput(fos, "UTF-8");
 
-        // Start the XML document
-        serializer.startDocument(null, Boolean.TRUE);
-
-        // Start the root element
-        serializer.startTag(null, "root");
-
-        // Inject the sanitized user input into the XML
-        serializer.text(user_input);
-
-        // End the root element
-        serializer.endTag(null, "root");
-
-        // End the XML document
-        serializer.endDocument();
+        Xml.parse(xmlContent, null);
 
         // Close the output stream
         fos.close();

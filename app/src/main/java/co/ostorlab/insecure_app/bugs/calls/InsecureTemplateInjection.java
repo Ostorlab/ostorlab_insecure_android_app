@@ -3,6 +3,8 @@ import co.ostorlab.insecure_app.BugRule;
 
 import android.content.Context;
 import freemarker.cache.ClassTemplateLoader;
+import freemarker.cache.StringTemplateLoader;
+import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import java.io.IOException;
@@ -41,17 +43,22 @@ class TemplateRenderer {
             // Create FreeMarker configuration
             Configuration cfg = new Configuration(Configuration.VERSION_2_3_31);
             cfg.setTemplateLoader(new ClassTemplateLoader(getClass(), "/"));
+            StringTemplateLoader templateLoader = new StringTemplateLoader();
+
+            String template_content = "<!DOCTYPE html><html><body><h1>Hello, " + user_input + "!</h1></body></html>";
+            templateLoader.putTemplate("hardcodedTemplate.ftl", template_content);
+            cfg.setTemplateLoader(templateLoader);
+            cfg.setDefaultEncoding("UTF-8");
+            cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+
 
             // Get the template
-            Template template = cfg.getTemplate(templateFileName);
+            Template template = cfg.getTemplate("hardcodedTemplate.ftl");
 
             // Create the data model
-            Map<String, Object> dataModel = new HashMap<>();
-            dataModel.put("message", user_input);
-
-            // Render the template
             StringWriter writer = new StringWriter();
-            template.process(dataModel, writer);
+            template.process(null, writer);
+
 
             return writer.toString();
         } catch (Exception e) {
