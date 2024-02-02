@@ -12,7 +12,6 @@ public class XmlInjection extends BugRule {
 
     @Override
     public void run(String user_input) throws Exception {
-
         createXmlFile(user_input);
     }
 
@@ -22,18 +21,14 @@ public class XmlInjection extends BugRule {
     }
 
     private void createXmlFile(String user_input) throws Exception {
-        // Create a new XML file in the app's internal storage
         FileOutputStream fos = getContext().openFileOutput("injected_data.xml", Context.MODE_PRIVATE);
         String xmlContent = "<root>" + user_input + "</root>";
 
-
-        // Create an XmlSerializer
         XmlSerializer serializer = Xml.newSerializer();
         serializer.setOutput(fos, "UTF-8");
 
         Xml.parse(xmlContent, null);
 
-        // Close the output stream
         fos.close();
     }
 }

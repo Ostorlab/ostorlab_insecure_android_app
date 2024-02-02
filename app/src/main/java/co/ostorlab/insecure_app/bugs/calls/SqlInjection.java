@@ -1,6 +1,5 @@
 package co.ostorlab.insecure_app.bugs.calls;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,7 +17,7 @@ public class SqlInjection extends BugRule {
             new ExecuteQueryTask().execute(user_input);
         }
         else{
-            new ExecuteQueryTask().execute("INSERT INTO accounts(name, amount) VALUES(?, ?)");
+            new ExecuteQueryTask().execute("INSERT INTO accounts(name, amount) VALUES(John Doe, 10)");
         }
     }
 
@@ -37,24 +36,18 @@ class ExecuteQueryTask extends AsyncTask<String, Void, String> {
         String result = "";
 
         try {
-            // Register the JDBC driver for SQLite
             Class.forName("org.sqlite.JDBC");
 
-            // Create a connection to an in-memory database
             Connection connection = DriverManager.getConnection("jdbc:sqlite::memory:");
 
-            // Create a statement
             Statement statement = connection.createStatement();
 
-            // Execute the query
             ResultSet resultSet = statement.executeQuery(query);
 
-            // Process the result set (replace this with your own logic)
             while (resultSet.next()) {
                 result += resultSet.getString(1) + "\n";
             }
 
-            // Close resources
             resultSet.close();
             statement.close();
             connection.close();

@@ -2,7 +2,6 @@ package co.ostorlab.insecure_app.bugs.calls;
 import co.ostorlab.insecure_app.BugRule;
 
 import android.content.Context;
-import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 
 public final class InsecureWifiApi extends BugRule {
