@@ -23,7 +23,7 @@ public final class InsecureWifiApi extends BugRule {
         WifiManager wifiManager = (WifiManager) appContext.getSystemService(Context.WIFI_SERVICE);
 
         if (wifiManager != null && wifiManager.isWifiEnabled()){
-            wifiManager.getConnectionInfo();
+            wifiManager.getConnectionInfo().getBSSID();
             wifiManager.getConfiguredNetworks();
             wifiManager.getDhcpInfo();
         }
