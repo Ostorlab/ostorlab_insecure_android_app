@@ -38,7 +38,6 @@ import co.ostorlab.insecure_app.bugs.calls.PackageContextCall;
 import co.ostorlab.insecure_app.bugs.calls.XmlInjection;
 import co.ostorlab.insecure_app.bugs.calls.SqlInjection;
 import co.ostorlab.insecure_app.bugs.calls.RegisterBroadcastReceiverDynamically;
-import co.ostorlab.insecure_app.bugs.calls.InsecureTemplateInjection;
 import co.ostorlab.insecure_app.bugs.calls.InsecureWifiApi;
 
 import io.flutter.embedding.android.FlutterActivity;
@@ -119,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new XmlInjection());
         caller.addRule(new SqlInjection());
         caller.addRule(new RegisterBroadcastReceiverDynamically(this));
-        caller.addRule(new InsecureTemplateInjection(this));
         caller.addRule(new InsecureWifiApi(this));
 
         try {
