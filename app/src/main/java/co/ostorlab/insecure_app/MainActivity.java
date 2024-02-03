@@ -35,6 +35,10 @@ import co.ostorlab.insecure_app.bugs.calls.ArrayCall;
 import co.ostorlab.insecure_app.bugs.calls.SQLiteDatabaseCall;
 import co.ostorlab.insecure_app.bugs.calls.BiometricFingerprintManagerVulnerability;
 import co.ostorlab.insecure_app.bugs.calls.PackageContextCall;
+import co.ostorlab.insecure_app.bugs.calls.XmlInjection;
+import co.ostorlab.insecure_app.bugs.calls.SqlInjection;
+import co.ostorlab.insecure_app.bugs.calls.RegisterBroadcastReceiverDynamically;
+import co.ostorlab.insecure_app.bugs.calls.InsecureWifiApi;
 
 import io.flutter.embedding.android.FlutterActivity;
 
@@ -111,6 +115,10 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new BiometricFingerprintPromptVulnerability(this));
         caller.addRule(new PackageContextCall());
         caller.addRule(new RegisterReceiverExported(this));
+        caller.addRule(new XmlInjection());
+        caller.addRule(new SqlInjection());
+        caller.addRule(new RegisterBroadcastReceiverDynamically(this));
+        caller.addRule(new InsecureWifiApi(this));
 
         try {
             caller.callRules(user_input);
