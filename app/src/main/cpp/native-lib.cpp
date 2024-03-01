@@ -71,3 +71,11 @@ Java_co_ostorlab_insecure_1app_bugs_calls_MemoryCorruption_triggerStackOverflow(
     crackaddrOverflow(strInput.c_str(), strInput.length());
     return input;
 }
+
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_co_ostorlab_insecure_1app_bugs_calls_SerializableMemoryCorruption_00024SerializableObject_freePtr(
+        JNIEnv *env, jobject thiz, jlong ptr) {
+    free((void*) ptr);
+}

@@ -11,16 +11,20 @@ import co.ostorlab.insecure_app.BugRule;
 
 public class SerializableMemoryCorruption extends BugRule {
     public class SerializableObject implements Serializable{
-        private static final long serialVersionUID = 0L;
 
-        Object looselyDefinedThing;
-        String methodName;
+        {
+            System.loadLibrary("native-lib");
+        }
+
+        private static final long serialVersionUID = 0L;
+        private long ptr;
+
+        private native void freePtr(long ptr);
 
         private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
             ois.defaultReadObject();
             try {
-                Method method = looselyDefinedThing.getClass().getMethod(methodName);
-                method.invoke(looselyDefinedThing);
+                freePtr(ptr);
             } catch (Exception e) {
                 // handle error...
                 e.printStackTrace();
