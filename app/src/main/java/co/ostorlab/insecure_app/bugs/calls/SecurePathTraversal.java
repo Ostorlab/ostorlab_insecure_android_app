@@ -16,10 +16,13 @@ import java.io.IOException;
 
 import co.ostorlab.insecure_app.BugRule;
 
-public class SecurePathTraversal extends BugRule {
-    public class Provider extends ContentProvider {
 
-        private static final String BASE_DIRECTORY = Environment.getExternalStorageDirectory().getPath();
+public class SecurePathTraversal extends BugRule {
+
+    private static final String BASE_DIRECTORY = Environment.getExternalStorageDirectory().getPath();
+
+
+    public class Provider extends ContentProvider {
 
         @Override
         public boolean onCreate() {
