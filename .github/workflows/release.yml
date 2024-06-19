@@ -42,7 +42,7 @@ jobs:
         uses: gradle/gradle-build-action@v2.4.2
         with:
           arguments: assembleDebug
-          gradle-version: 7.5
+          gradle-version: 7.3.3
       - name: Move to release
         run: |
           cp ./app/build/outputs/apk/debug/app-debug.apk ostorlab_insecure_app.apk

@@ -242,11 +242,11 @@ public class BugRuleCallerTest {
         Assert.assertEquals(caller.getRules().size(), 1);
     }
 
-//    @Test
-//    public void ruleCaller_SecurePathTraversal_NoExceptionThrown() throws Exception{
-//        caller.addRule(new SecurePathTraversal());
-//        caller.callRules("");
-//
-//        Assert.assertEquals(caller.getRules().size(), 1);
-//    }
+    @Test
+    public void ruleCaller_SecurePathTraversal_NoExceptionThrown() throws Exception{
+        caller.addRule(new SecurePathTraversal());
+        caller.callRules("");
+
+        Assert.assertEquals(caller.getRules().size(), 1);
+    }
 }
