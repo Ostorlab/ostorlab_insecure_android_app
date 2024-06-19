@@ -30,6 +30,7 @@ import co.ostorlab.insecure_app.bugs.calls.MobileOnlyDownloadManager;
 import co.ostorlab.insecure_app.bugs.calls.ParcelableMemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.PathTraversalVulnerability;
+import co.ostorlab.insecure_app.bugs.calls.SecurePathTraversal;
 import co.ostorlab.insecure_app.bugs.calls.SerializableMemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
 import co.ostorlab.insecure_app.bugs.calls.HardcodedUrlInUrl;
@@ -239,6 +240,14 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_PackageContext_NoExceptionThrown() throws Exception{
         caller.addRule(new PackageContextCall());
+        caller.callRules("");
+
+        Assert.assertEquals(caller.getRules().size(), 1);
+    }
+
+    @Test
+    public void ruleCaller_SecurePathTraversal_NoExceptionThrown() throws Exception{
+        caller.addRule(new SecurePathTraversal());
         caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
