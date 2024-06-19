@@ -25,7 +25,6 @@ import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
 import co.ostorlab.insecure_app.bugs.calls.InsecureRandom;
 import co.ostorlab.insecure_app.bugs.calls.IntentCall;
-import co.ostorlab.insecure_app.bugs.calls.MemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.MobileOnlyDownloadManager;
 import co.ostorlab.insecure_app.bugs.calls.ParcelableMemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
@@ -41,11 +40,9 @@ import co.ostorlab.insecure_app.bugs.calls.SQLiteDatabaseCall;
 import co.ostorlab.insecure_app.bugs.calls.BiometricFingerprintManagerVulnerability;
 import co.ostorlab.insecure_app.bugs.calls.PackageContextCall;
 
-import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import androidx.fragment.app.FragmentActivity;
