@@ -12,10 +12,15 @@ import androidx.annotation.Nullable;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import co.ostorlab.insecure_app.BugRule;
 
-public class PathTraversalVulnerability extends BugRule {
+
+public class SecurePathTraversal extends BugRule {
+
+    private static final String BASE_DIRECTORY = "/storage/";
+
     public class Provider extends ContentProvider {
 
         @Override
@@ -52,10 +57,17 @@ public class PathTraversalVulnerability extends BugRule {
         }
 
         @Override
-        public ParcelFileDescriptor openFile(Uri uri, @NonNull String mode) throws FileNotFoundException
-        {
-            File file = new File(Environment.getExternalStorageDirectory(), uri.getLastPathSegment());
-            return ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY);
+        public ParcelFileDescriptor openFile(Uri uri, @NonNull String mode) throws FileNotFoundException {
+            try {
+                // Insecure pattern are from the methods getPath, getAbsolutePath, toPath, toAbsolutePath.
+                File file = new File(BASE_DIRECTORY, uri.getLastPathSegment()).getCanonicalFile();
+                if (!file.getPath().startsWith(BASE_DIRECTORY)) {
+                    throw new SecurityException("Attempt to access a file outside the base directory.");
+                }
+                return ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY);
+            } catch (IOException e) {
+                throw new FileNotFoundException("File not found or inaccessible.");
+            }
         }
     }
 
@@ -81,6 +93,6 @@ public class PathTraversalVulnerability extends BugRule {
 
     @Override
     public String getDescription() {
-        return "call to getLastPathSegment with Uri parameter";
+        return "Secure call to getLastPathSegment with Uri parameter";
     }
 }

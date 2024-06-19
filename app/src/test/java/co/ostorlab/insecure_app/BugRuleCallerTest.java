@@ -25,11 +25,11 @@ import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
 import co.ostorlab.insecure_app.bugs.calls.InsecureRandom;
 import co.ostorlab.insecure_app.bugs.calls.IntentCall;
-import co.ostorlab.insecure_app.bugs.calls.MemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.MobileOnlyDownloadManager;
 import co.ostorlab.insecure_app.bugs.calls.ParcelableMemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.PathTraversalVulnerability;
+import co.ostorlab.insecure_app.bugs.calls.SecurePathTraversal;
 import co.ostorlab.insecure_app.bugs.calls.SerializableMemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
 import co.ostorlab.insecure_app.bugs.calls.HardcodedUrlInUrl;
@@ -40,11 +40,9 @@ import co.ostorlab.insecure_app.bugs.calls.SQLiteDatabaseCall;
 import co.ostorlab.insecure_app.bugs.calls.BiometricFingerprintManagerVulnerability;
 import co.ostorlab.insecure_app.bugs.calls.PackageContextCall;
 
-import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import androidx.fragment.app.FragmentActivity;
@@ -239,6 +237,14 @@ public class BugRuleCallerTest {
     @Test
     public void ruleCaller_PackageContext_NoExceptionThrown() throws Exception{
         caller.addRule(new PackageContextCall());
+        caller.callRules("");
+
+        Assert.assertEquals(caller.getRules().size(), 1);
+    }
+
+    @Test
+    public void ruleCaller_SecurePathTraversal_NoExceptionThrown() throws Exception{
+        caller.addRule(new SecurePathTraversal());
         caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);

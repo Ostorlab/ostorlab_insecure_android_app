@@ -26,6 +26,7 @@ import co.ostorlab.insecure_app.bugs.calls.ParcelableMemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.PathClassLoaderCall;
 import co.ostorlab.insecure_app.bugs.calls.PathTraversalVulnerability;
 import co.ostorlab.insecure_app.bugs.calls.RegisterReceiverExported;
+import co.ostorlab.insecure_app.bugs.calls.SecurePathTraversal;
 import co.ostorlab.insecure_app.bugs.calls.SerializableMemoryCorruption;
 import co.ostorlab.insecure_app.bugs.calls.StaticIV;
 import co.ostorlab.insecure_app.bugs.calls.HardcodedUrlInUrl;
@@ -119,6 +120,9 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new SqlInjection());
         caller.addRule(new RegisterBroadcastReceiverDynamically(this));
         caller.addRule(new InsecureWifiApi(this));
+        // Secure
+        caller.addRule(new SecurePathTraversal());
+
 
         try {
             caller.callRules(user_input);
