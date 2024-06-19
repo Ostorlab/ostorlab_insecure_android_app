@@ -19,7 +19,7 @@ import co.ostorlab.insecure_app.BugRule;
 
 public class SecurePathTraversal extends BugRule {
 
-    private static final String BASE_DIRECTORY = Environment.getExternalStorageDirectory().getPath();
+    private static final String BASE_DIRECTORY = "/storage/";
 
     public class Provider extends ContentProvider {
 
