@@ -1,0 +1,56 @@
+name: Run periodic scan
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 7"
+jobs:
+  Build_and_run_scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Prepare NDK dir for caching ( workaround for https://github.com/actions/virtual-environments/issues/1337 )
+        run: |
+          sudo -S mkdir -p /usr/local/lib/android/sdk/ndk
+          sudo -S chmod -R 777 /usr/local/lib/android/sdk/ndk
+          sudo -S chown -R $USER:$USER /usr/local/lib/android/sdk/ndk
+
+      - name: install NDK
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r25b
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 11
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.7.12"
+          channel: 'stable'
+
+      - name: Get dependencies
+        working-directory: ostorlab_insecure_flutter_app
+        run: flutter pub get
+
+      - name: Start AAR build
+        working-directory: ostorlab_insecure_flutter_app
+        run: flutter build aar --no-sound-null-safety
+
+      - name: Build Android app
+        uses: gradle/gradle-build-action@v2.4.2
+        with:
+          arguments: assembleDebug
+          gradle-version: 7.3.3
+
+      - name: Starts Scan
+        uses: Ostorlab/ostorlab_actions@v1.1.1
+        with:
+          scan_profile: full_scan
+          asset_type: android-apk
+          target: ./app/build/outputs/apk/debug/app-debug.apk
+          scan_title: Periodic insecure android app scan
+          ostorlab_api_key: ${{ secrets.OSTORLAB_API_KEY }}
