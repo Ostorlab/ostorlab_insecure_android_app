@@ -15,9 +15,10 @@ jobs:
           sudo chmod -R 777 /usr/local/lib/android/sdk/ndk
           sudo chown -R $USER:$USER /usr/local/lib/android/sdk/ndk
 
-      - name: Install NDK
-        if: steps.ndk-cache.outputs.cache-hit != 'true'
-        run: echo "y" | ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager --install "ndk;25.1.8937393"
+      - name: install NDK
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r25b
 
       - uses: actions/setup-java@v3
         with:

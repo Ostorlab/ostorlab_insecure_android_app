@@ -16,9 +16,10 @@ jobs:
           sudo chmod -R 777 /usr/local/lib/android/sdk/ndk
           sudo chown -R $USER:$USER /usr/local/lib/android/sdk/ndk
 
-      - name: Install NDK
-        if: steps.ndk-cache.outputs.cache-hit != 'true'
-        run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;25.1.8937393"
+      - name: install NDK
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r25b
 
       - uses: actions/setup-java@v3
         with:
@@ -51,6 +52,7 @@ jobs:
         with:
           files: |
             ./ostorlab_insecure_app.apk
+
       - name: Launch Ostorlab Full Scan with just Login Credentials
         uses: Ostorlab/ostorlab_actions@v1.1.1
         with:
