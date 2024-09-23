@@ -8,7 +8,7 @@ class OpenPortOnDevice extends BugRule {
 
   /// Returns a description of this [BugRule] implementation.
   @override
-  String get description => 'Use of cleartext HTTP server';
+  String get description => 'Bind local host to a port';
 
   /// Trigger the [BugRule] by starting an HTTP server that listens for connections and binds to a port.
   @override
