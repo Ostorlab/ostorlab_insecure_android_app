@@ -20,6 +20,7 @@ import 'package:ostorlab_insecure_flutter_app/bugs/webview_insecure_settings.dar
 import 'package:ostorlab_insecure_flutter_app/bugs/oracle_padding.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/biometric_none_cryptobject.dart';
 import 'package:ostorlab_insecure_flutter_app/bugs/reflection_api.dart';
+import 'package:ostorlab_insecure_flutter_app/bugs/bind.dart';
 
 import 'package:receive_intent/receive_intent.dart' as receive_intent;
 
@@ -102,6 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
     caller.addRule(OraclePadding());
     caller.addRule(BiometricNoneCryptObject());
     caller.addRule(ReflectionApi());
+    caller.addRule(OpenPortOnDevice());
 
     try {
       await caller.callRules(input);

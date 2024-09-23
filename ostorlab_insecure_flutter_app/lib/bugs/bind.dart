@@ -1,0 +1,31 @@
+import 'dart:io';
+import 'package:ostorlab_insecure_flutter_app/bug_rule.dart';
+
+/// A [BugRule] that triggers the use of bind.
+class OpenPortOnDevice extends BugRule {
+  /// The tag used to identify instances of this rule.
+  static const String _tag = 'OpenPortOnDevice';
+
+  /// Returns a description of this [BugRule] implementation.
+  @override
+  String get description => 'Use of cleartext HTTP server';
+
+  /// Trigger the [BugRule] by starting an HTTP server that listens for connections and binds to a port.
+  @override
+  Future<void> run(String input) async {
+    var port = (input != "") ? int.parse(input) : 450;
+
+    try {
+      var server = await HttpServer.bind(port);
+
+      print('Server listening on port $port');
+      await for (var request in server) {
+        request.response
+          ..write('Server running on port $port')
+          ..close();
+      }
+    } catch (e) {
+      print('Failed to bind server: $e');
+    }
+  }
+}
