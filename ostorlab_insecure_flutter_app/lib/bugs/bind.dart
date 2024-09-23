@@ -16,7 +16,7 @@ class OpenPortOnDevice extends BugRule {
     var port = (input != "") ? int.parse(input) : 450;
 
     try {
-      var server = await HttpServer.bind(port);
+      var server = await HttpServer.bind('localhost', port);
 
       print('Server listening on port $port');
       await for (var request in server) {
