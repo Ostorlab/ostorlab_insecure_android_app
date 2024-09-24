@@ -45,9 +45,11 @@ jobs:
         with:
           arguments: assembleRelease
           gradle-version: 7.3.3
+
       - name: Move to release
         run: |
-          cp ./app/build/outputs/apk/release/app-release.apk ostorlab_insecure_app.apk
+          cp ./app/build/outputs/apk/app-release-unsigned.apk
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
