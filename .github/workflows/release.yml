@@ -48,7 +48,7 @@ jobs:
 
       - name: Move to release
         run: |
-          cp ./app/build/outputs/apk/app-release-unsigned.apk
+          cp ./app/build/outputs/apk/app-release-unsigned.apk ostorlab_insecure_app.apk
 
       - name: Release
         uses: softprops/action-gh-release@v1
