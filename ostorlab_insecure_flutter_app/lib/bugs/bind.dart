@@ -2,9 +2,9 @@ import 'dart:io';
 import 'package:ostorlab_insecure_flutter_app/bug_rule.dart';
 
 /// A [BugRule] that triggers the use of bind.
-class OpenPortOnDevice extends BugRule {
+class BindRule extends BugRule {
   /// The tag used to identify instances of this rule.
-  static const String _tag = 'OpenPortOnDevice';
+  static const String _tag = 'BindRule';
 
   /// Returns a description of this [BugRule] implementation.
   @override

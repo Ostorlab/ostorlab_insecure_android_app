@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
     caller.addRule(OraclePadding());
     caller.addRule(BiometricNoneCryptObject());
     caller.addRule(ReflectionApi());
-    caller.addRule(OpenPortOnDevice());
+    caller.addRule(BindRule());
 
     try {
       await caller.callRules(input);
