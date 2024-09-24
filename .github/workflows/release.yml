@@ -1,5 +1,6 @@
 name: Build and Release APK
 on:
+  workflow_dispatch:
   release:
     types: [published]
 jobs:
@@ -42,11 +43,11 @@ jobs:
       - name: Build Android app
         uses: gradle/gradle-build-action@v2.4.2
         with:
-          arguments: assembleDebug
+          arguments: assembleRelease
           gradle-version: 7.3.3
       - name: Move to release
         run: |
-          cp ./app/build/outputs/apk/debug/app-debug.apk ostorlab_insecure_app.apk
+          cp ./app/build/outputs/apk/release/app-release.apk ostorlab_insecure_app.apk
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
