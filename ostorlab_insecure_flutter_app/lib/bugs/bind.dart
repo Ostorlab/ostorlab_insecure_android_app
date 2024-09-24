@@ -13,7 +13,7 @@ class BindRule extends BugRule {
   /// Trigger the [BugRule] by starting an HTTP server that listens for connections and binds to a port.
   @override
   Future<void> run(String input) async {
-    var port = (input != "") ? int.parse(input) : 450;
+    var port = (input != "") ? int.parse(input) : 4450;
 
     try {
       var server = await HttpServer.bind('localhost', port);
