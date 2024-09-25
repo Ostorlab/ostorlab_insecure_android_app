@@ -49,11 +49,10 @@ jobs:
       - name: Install Uber APK Signer
         run: |
           wget https://github.com/patrickfav/uber-apk-signer/releases/download/v1.3.0/uber-apk-signer-1.3.0.jar
-          sudo mv uber-apk-signer-1.3.0.jar /usr/local/bin/uber-apk-signer.jar
 
       - name: Sign APK
         run: |
-          java -jar /usr/local/bin/uber-apk-signer.jar --apks ./app/build/outputs/apk/release/app-release-unsigned.apk -o ostorlab_insecure_app
+          java -jar uber-apk-signer-1.3.0.jar --apks ./app/build/outputs/apk/release/app-release-unsigned.apk -o ostorlab_insecure_app
 
       - name: Move to release
         run: |
