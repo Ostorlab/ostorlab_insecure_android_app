@@ -1,5 +1,6 @@
 name: Build and Release APK
 on:
+  workflow_dispatch:
   release:
     types: [published]
 jobs:
@@ -42,11 +43,21 @@ jobs:
       - name: Build Android app
         uses: gradle/gradle-build-action@v2.4.2
         with:
-          arguments: assembleDebug
+          arguments: assembleRelease
           gradle-version: 7.3.3
+
+      - name: Install Uber APK Signer
+        run: |
+          wget https://github.com/patrickfav/uber-apk-signer/releases/download/v1.3.0/uber-apk-signer-1.3.0.jar
+
+      - name: Sign APK
+        run: |
+          java -jar ./uber-apk-signer-1.3.0.jar --apks ./app/build/outputs/apk/release/app-release-unsigned.apk -o ostorlab_insecure_app
+
       - name: Move to release
         run: |
-          cp ./app/build/outputs/apk/debug/app-debug.apk ostorlab_insecure_app.apk
+          cp ./ostorlab_insecure_app/app-release-aligned-debugSigned.apk ostorlab_insecure_app.apk
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
@@ -54,11 +65,11 @@ jobs:
             ./ostorlab_insecure_app.apk
 
       - name: Launch Ostorlab Full Scan with just Login Credentials
-        uses: Ostorlab/ostorlab_actions@v1.1.1
+        uses: Ostorlab/ostorlab_actions@v2.0.0
         with:
           scan_profile: full_scan
           asset_type: android-apk
           target: ./ostorlab_insecure_app.apk
-          scan_title: Scan App
+          scan_title: Ostorlab Insecure App Workflow
           ostorlab_api_key: ${{ secrets.OSTORLAB_API_KEY }}
-          extra: --test-credentials-name "phone number" --test-credentials-value 2312132 --test-credentials-name "pin" --test-credentials-value 213212
+          extra: --test-credentials-name "phone_number" --test-credentials-value 2312132 --test-credentials-name "pin" --test-credentials-value 213212
