@@ -1,8 +1,7 @@
 name: Build and Release APK
 on:
-  workflow_dispatch:
-  release:
-    types: [published]
+  pull_request:
+    branches: [test-github-ostorlab-scanner-release]
 jobs:
   deploy:
     runs-on: ubuntu-latest
