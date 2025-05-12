@@ -19,9 +19,9 @@ import java.io.FileOutputStream;
 import co.ostorlab.insecure_app.bugs.calls.AESCipher;
 import co.ostorlab.insecure_app.bugs.calls.BiometricFingerprintPromptVulnerability;
 import co.ostorlab.insecure_app.bugs.calls.ClearTextTraffic;
-import co.ostorlab.insecure_app.bugs.calls.ImplicitPendingIntentVulnerability;
+import co.ostorlab.insecure_app.bugs.calls.ImplicitPendingIntent;
 import co.ostorlab.insecure_app.bugs.calls.InsecureFilePermissions;
-import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
+import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCallVulnerability;
 import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
 import co.ostorlab.insecure_app.bugs.calls.InsecureRandom;
 import co.ostorlab.insecure_app.bugs.calls.IntentCall;
@@ -125,7 +125,7 @@ public class BugRuleCallerTest {
     }
     @Test
     public void ruleCaller_callDexClassLoader_NoExceptionThrown() throws Exception{
-        caller.addRule(new DexClassLoaderCall());
+        caller.addRule(new DexClassLoaderCallVulnerability());
         caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);
@@ -212,7 +212,7 @@ public class BugRuleCallerTest {
 
     @Test
     public void ruleCaller_ImplicitPendingIntentVulnerability_NoExceptionThrown() throws Exception{
-        caller.addRule(new ImplicitPendingIntentVulnerability());
+        caller.addRule(new ImplicitPendingIntent());
         caller.callRules("");
 
         Assert.assertEquals(caller.getRules().size(), 1);

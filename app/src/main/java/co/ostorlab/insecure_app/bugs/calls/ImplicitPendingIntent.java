@@ -10,9 +10,9 @@ public class ImplicitPendingIntentVulnerability extends BugRule {
     public void run(String user_input) throws Exception {
         // Create an implicit base Intent and wrap it in a PendingIntent
 
-        Intent base = new Intent("ACTION_FOO");
+        Intent base = new Intent("ACTION_FOO_BAR");
 
-        base.setPackage("some_package");
+        base.setPackage("some_new_package");
 
         PendingIntent pi = PendingIntent.getService(getContext(), 0, base, 0);
     }
