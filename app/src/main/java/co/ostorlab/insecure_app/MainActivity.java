@@ -13,10 +13,10 @@ import co.ostorlab.insecure_app.bugs.calls.BiometricFingerprintPromptVulnerabili
 import co.ostorlab.insecure_app.bugs.calls.ClearTextTraffic;
 import co.ostorlab.insecure_app.bugs.calls.CommandExec;
 import co.ostorlab.insecure_app.bugs.calls.HashCall;
-import co.ostorlab.insecure_app.bugs.calls.ImplicitPendingIntentVulnerability;
+import co.ostorlab.insecure_app.bugs.calls.ImplicitPendingIntent;
 import co.ostorlab.insecure_app.bugs.calls.InsecureCommands;
 import co.ostorlab.insecure_app.bugs.calls.InsecureFilePermissions;
-import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCall;
+import co.ostorlab.insecure_app.bugs.calls.DexClassLoaderCallVulnerability;
 import co.ostorlab.insecure_app.bugs.calls.ECBModeCipher;
 import co.ostorlab.insecure_app.bugs.calls.InsecureRandom;
 import co.ostorlab.insecure_app.bugs.calls.InsecureSharedPreferences;
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new StaticIV());
         caller.addRule(new HardcodedUrlInUrl());
         caller.addRule(new PathClassLoaderCall());
-        caller.addRule(new DexClassLoaderCall());
+        caller.addRule(new DexClassLoaderCallVulnerability());
         caller.addRule(new InsecureFilePermissions());
         caller.addRule(new InsecureSharedPreferences());
         caller.addRule(new InsecureCommands());
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         caller.addRule(new ParcelableMemoryCorruption());
         caller.addRule(new SerializableMemoryCorruption());
         caller.addRule(new PathTraversalVulnerability());
-        caller.addRule(new ImplicitPendingIntentVulnerability());
+        caller.addRule(new ImplicitPendingIntent());
         caller.addRule(new BiometricFingerprintManagerVulnerability());
         caller.addRule(new BiometricFingerprintPromptVulnerability(this));
         caller.addRule(new PackageContextCall());

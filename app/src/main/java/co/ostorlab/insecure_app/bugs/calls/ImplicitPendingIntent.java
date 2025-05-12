@@ -5,7 +5,7 @@ import android.content.Intent;
 
 import co.ostorlab.insecure_app.BugRule;
 
-public class ImplicitPendingIntentVulnerability extends BugRule {
+public class ImplicitPendingIntent extends BugRule {
     @Override
     public void run(String user_input) throws Exception {
         // Create an implicit base Intent and wrap it in a PendingIntent
