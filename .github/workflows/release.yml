@@ -1,5 +1,8 @@
 name: Build and Release APK
 on:
+  workflow_dispatch:
+  release:
+    types: [published]
   pull_request:
     branches: [test-github-ostorlab-scanner-release]
 jobs:
@@ -71,4 +74,6 @@ jobs:
           target: ./ostorlab_insecure_app.apk
           scan_title: Ostorlab Insecure App Workflow
           ostorlab_api_key: ${{ secrets.OSTORLAB_API_KEY }}
+          repository: ${{ github.repository }}
+          pr-number: ${{ github.event.pull_request.number }}
           extra: --test-credentials-name "phone_number" --test-credentials-value 2312132 --test-credentials-name "pin" --test-credentials-value 213212
