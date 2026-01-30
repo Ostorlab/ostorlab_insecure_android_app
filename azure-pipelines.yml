@@ -10,9 +10,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: alpha-falcon.alpha-falcon.ostorlab-azure-security-scanner.dev-ostorlab@0
+- task: ostorlab-azure-security-scanner@1
   inputs:
-    apiKey: 'M9nm8iDi.Hm1VEpZVNXBwgMSDiBELcD2zOSvujzwY'
+    apiKey: 'qLKQhdAK.QyxmzLneYrBKo4IfPLQxHWzzDkIVjehx'
     filepath: '$(Build.SourcesDirectory)/test.apk'
     platform: 'android'
     artifactsDir: '$(build.artifactStagingDirectory)/ostorlabArtifacts'
